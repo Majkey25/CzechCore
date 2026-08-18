@@ -35,3 +35,11 @@ def test_check_json_serializes_structured_result_once(capsys: pytest.CaptureFixt
     assert payload["suggested_text"] == "Ahoj."
     assert payload["edits"][0]["kind"] == "capitalization"
     assert isinstance(payload["edits"], list)
+
+
+def test_cli_reports_installed_package_version(capsys: pytest.CaptureFixture[str]) -> None:
+    with pytest.raises(SystemExit) as exit_info:
+        main(["--version"])
+
+    assert exit_info.value.code == 0
+    assert capsys.readouterr().out.strip() == "czechcore 0.1.0"

@@ -8,9 +8,9 @@ from dataclasses import asdict
 from io import TextIOWrapper
 from typing import Protocol, cast
 
+from czechcore import __version__
 from czechcore.assets import AssetMissingError, download_assets
 from czechcore.core import CorrectionResult
-from czechcore.engine import CzechCore
 
 
 class Engine(Protocol):
@@ -27,8 +27,15 @@ class ReconfigurableOutput(Protocol):
     def reconfigure(self, *, encoding: str) -> None: ...
 
 
+def _default_engine() -> Engine:
+    from czechcore.engine import CzechCore
+
+    return CzechCore()
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="czechcore")
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("download", help="download and verify local model assets")
 
@@ -43,7 +50,7 @@ def _parser() -> argparse.ArgumentParser:
 def main(
     argv: Sequence[str] | None = None,
     *,
-    engine_factory: Callable[[], Engine] = CzechCore,
+    engine_factory: Callable[[], Engine] = _default_engine,
 ) -> int:
     standard_output = sys.stdout  # pyright: ignore[reportUnknownMemberType] Python 3.14 stub
     if isinstance(standard_output, TextIOWrapper):
