@@ -47,6 +47,8 @@ numbers, modality, and ambiguity preserved; unsafe outputs fall back to proofrea
 
 ## Priority 2 — portable runtime
 
+- [x] Specify the versioned UTF-8/native result contract, offset unit, model
+  manifest, scheduling, and platform trust boundaries.
 - [ ] Export encoder/decoder generation to a verified portable format.
 - [ ] Quantize with measured accuracy, latency, startup, and memory deltas.
 - [ ] Produce a model manifest with hashes, licenses, tokenizer revision, and
@@ -58,10 +60,18 @@ approved tolerance and fits measured device budgets.
 
 ## Priority 3 — operating-system adapters
 
-- [ ] Windows Spell Checking API provider for underlines and suggestions.
-- [ ] Android `SpellCheckerService` for platform consumers.
+- [x] Select Windows TSF plus one per-user engine process as the primary live
+  integration; retain a Spell Checking API provider as a later compatibility
+  surface.
+- [x] Select Android `SpellCheckerService` and `ACTION_PROCESS_TEXT` as the
+  smallest integration, plus an optional maintained offline IME for universal
+  live suggestions/automatic application.
+- [ ] Implement and package the Windows TSF text service and engine broker.
+- [ ] Implement and package the Android text-service application.
+- [ ] Integrate the runtime into a maintained offline Android IME distribution.
 - [ ] UTF-16/code-point offset conversion with emoji regression tests.
-- [ ] Explicit optional autocorrect UI; never enabled silently.
+- [ ] Implement `off / underline / confirm / automatic` settings, stale-result
+  cancellation, one-step undo, and sensitive-field exclusion.
 
 Exit criterion: real application/device flows preserve text, offsets, privacy,
 and engine benchmark behavior.

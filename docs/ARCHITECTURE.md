@@ -139,3 +139,8 @@ API. They must not reimplement correction logic. Required adapter concerns:
 - expose suggestions by default and autocorrect only as an explicit setting;
 - bundle or provision correctly licensed model assets;
 - measure device memory, startup, and latency after quantization.
+
+The selected OS surfaces, native runtime boundary, user modes, lifecycle,
+security controls, performance budgets, and release gates are maintained in
+[`PLATFORM_INTEGRATION.md`](PLATFORM_INTEGRATION.md) and
+[ADR-0005](decisions/0005-native-runtime-and-thin-platform-adapters.md).
