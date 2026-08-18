@@ -115,9 +115,11 @@ probability that the correction is objectively right. Consequently:
 
 - suggestion mode can expose an edit without applying it;
 - autocorrect is opt-in;
-- the default `0.995` threshold is deliberately conservative;
-- a production default must eventually be calibrated on a larger held-out
-  Czech corpus with an explicit precision target.
+- the default `0.995` threshold accepted no changes on the complete GECCC
+  development run;
+- no current scalar threshold is approved for production automatic correction;
+- production selection requires a separately trained calibrator, an explicit
+  precision target, confidence intervals, and frozen held-out evaluation.
 
 ## Safety policy
 

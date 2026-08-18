@@ -21,6 +21,8 @@ def test_documentation_index_targets_exist() -> None:
         "API.md",
         "DEVELOPMENT.md",
         "EVALUATION.md",
+        "PLATFORM_INTEGRATION.md",
+        "RESEARCH_REPORT.md",
         "ROADMAP.md",
         "SCIENTIFIC_BASIS.md",
         "decisions/README.md",

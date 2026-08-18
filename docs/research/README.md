@@ -4,6 +4,23 @@ This directory contains CzechCore's maintained scientific syntheses. Downloaded
 papers, HTML snapshots, repositories, and datasets live in
 `.reference/research/` and are intentionally not committed.
 
+> [!NOTE]
+> Start with the consolidated [research and engineering
+> report](../RESEARCH_REPORT.md). This index exposes the underlying methods and
+> machine-readable evidence behind that report.
+
+## Evidence snapshot
+
+| Surface | Current evidence |
+| --- | ---: |
+| Normative IJP structure | 22 chapters / 202 explanations |
+| Czech correction taxonomy | 13 families / 101 phenomena |
+| GECCC aggregate | 83,058 sentences / 228,805 edits / 65 types |
+| GECCC development evaluation | 8,478 sentences |
+| Focused proofread acceptance | 65 cases |
+| Semantic rewrite acceptance | 12 cases |
+| Source provenance | 39 records |
+
 ## Current program
 
 - [Research program](PROGRAM.md)

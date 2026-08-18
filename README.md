@@ -1,199 +1,274 @@
-# CzechCore
+<h1 align="center">CzechCore</h1>
 
-[![CI](https://github.com/Majkey25/CzechCore/actions/workflows/ci.yml/badge.svg)](https://github.com/Majkey25/CzechCore/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Majkey25/CzechCore?display_name=tag&sort=semver)](https://github.com/Majkey25/CzechCore/releases/latest)
-[![Python 3.12–3.14](https://img.shields.io/badge/Python-3.12--3.14-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/Code-MIT-yellow.svg)](https://github.com/Majkey25/CzechCore/blob/main/LICENSE)
-[![Model license](https://img.shields.io/badge/Model-CC_BY--NC--SA_4.0-orange)](https://github.com/Majkey25/CzechCore/blob/main/NOTICE.md)
-[![Inference: offline](https://img.shields.io/badge/Inference-offline-2E7D32)](#safety-and-limits)
+<p align="center"><strong>Offline, context-aware Czech grammatical error correction with exact edit spans,<br>measured on GECCC and designed for live text-editor integration.</strong></p>
 
-Offline, context-aware Czech grammar correction. CzechCore returns exact text
-edits for underlines and keeps automatic application behind an explicit
-confidence threshold.
+<p align="center">
+  <a href="https://github.com/Majkey25/CzechCore/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Majkey25/CzechCore/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/Majkey25/CzechCore/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Majkey25/CzechCore?display_name=tag&amp;sort=semver"></a>
+  <a href="https://www.python.org/"><img alt="Python 3.12–3.14" src="https://img.shields.io/badge/Python-3.12--3.14-3776AB?logo=python&amp;logoColor=white"></a>
+  <a href="#measured-status"><img alt="Research alpha" src="https://img.shields.io/badge/status-research_alpha-5C6BC0"></a>
+  <a href="#privacy-and-licenses"><img alt="Inference offline" src="https://img.shields.io/badge/inference-offline-2E7D32"></a>
+  <a href="LICENSE"><img alt="Code MIT" src="https://img.shields.io/badge/code-MIT-yellow.svg"></a>
+  <a href="NOTICE.md"><img alt="Model non-commercial" src="https://img.shields.io/badge/model-CC_BY--NC--SA_4.0-orange"></a>
+</p>
 
-**Status:** `v0.1.0` alpha. The engine and CLI work; Windows and Android system
-adapters are deliberately not part of this release.
+<p align="center">
+  <a href="docs/RESEARCH_REPORT.md">Research report</a> ·
+  <a href="docs/EVALUATION.md">Evaluation</a> ·
+  <a href="docs/ARCHITECTURE.md">Architecture</a> ·
+  <a href="docs/API.md">API</a> ·
+  <a href="docs/PLATFORM_INTEGRATION.md">Platform integration</a> ·
+  <a href="docs/ROADMAP.md">Roadmap</a>
+</p>
+
+> [!IMPORTANT]
+> `v0.2.0` is a research alpha, not a claim of perfect Czech or production-safe
+> silent autocorrection. The proofread engine, structured edits, evaluation
+> pipeline, and review-only local rewrite path are implemented. Windows and
+> Android system adapters remain the next deployment stage.
+
+## What the project does
+
+CzechCore reads a complete Czech sentence, proposes a corrected sentence, and
+returns the exact source ranges needed for underlines, suggestion menus, and
+explicit application. Text stays on the device after model assets are installed.
 
 ```text
-Když přišel domů šel spát.
-                    ↓
-Když přišel domů, šel spát.
+Když přišel domů šel spát.  ->  Když přišel domů, šel spát.
+Muži přišly domů.           ->  Muži přišli domů.
+To je je vážný problém.     ->  To je vážný problém.
 ```
 
-## What works
+The engine is not a word-list spell checker. Its compact Czech Transformer sees
+the whole sentence, while deterministic guards preserve URLs, email addresses,
+paths, versions, dates, phone numbers, code-like tokens, and quotation
+boundaries.
 
-- full-sentence Czech neural correction;
-- measured support for spelling, diacritics, punctuation, agreement, and
-  contextual grammar, with substantial known syntax/false-positive gaps;
-- exact Unicode source ranges and structured edits;
-- suggestions without changing the source by default;
-- opt-in confidence-gated autocorrect;
-- protected URLs, email addresses, paths, versions, and code-like tokens;
-- fully local inference after one explicit asset download;
-- CLI and JSON output ready for later Windows/Android adapters.
-- experimental local hybrid rewrite API/CLI with explicit review and invariant
-  fallback; no rewrite model is accepted as default yet.
+### Implemented capabilities
 
-CzechCore uses the 60.8M-parameter
-[`ufal/transformer-base-geccc-mate`](https://huggingface.co/ufal/transformer-base-geccc-mate)
-model. Its published model-card GECCC F0.5 is 73.73; CzechCore's reproduced
-post-safety development score is lower and reported separately below. The model
-is much smaller than the published ByT5 alternatives, making it a useful compact
-baseline, not a finished device engine.
+- contextual Czech proofread for diacritics, punctuation, agreement,
+  capitalization, spacing, and other grammatical edits;
+- immutable, ordered `TextEdit` objects with original Unicode offsets;
+- suggestion-first output and sentence-atomic application;
+- exact UDPipe sentence/token ranges and multiword-token handling;
+- four-beam neural generation with the unchanged sentence as a candidate;
+- batched correction for evaluation and background processing;
+- hard rejection of protected-literal damage, excessive rewrites, over-length
+  input, and invalid output;
+- a separate local-LLM rewrite API for disordered or colloquial sentences, with
+  number/literal/structure checks and mandatory human review;
+- reproducible corpus, taxonomy, calibration, morphology, and local-model
+  experiments with rejected results retained as evidence instead of hidden.
 
-## Documentation
+### Product modes
 
-| Document | Purpose |
-| --- | --- |
-| [Documentation index](https://github.com/Majkey25/CzechCore/blob/main/docs/README.md) | Source of truth and update policy |
-| [Scientific basis](https://github.com/Majkey25/CzechCore/blob/main/docs/SCIENTIFIC_BASIS.md) | Czech phenomena, model, formulas, citations |
-| [Evaluation](https://github.com/Majkey25/CzechCore/blob/main/docs/EVALUATION.md) | Metrics, reproducibility, measured baseline |
-| [API](https://github.com/Majkey25/CzechCore/blob/main/docs/API.md) | Python and CLI contracts, offsets, warnings |
-| [Architecture](https://github.com/Majkey25/CzechCore/blob/main/docs/ARCHITECTURE.md) | Components, data flow, assets, trust boundaries |
-| [Development](https://github.com/Majkey25/CzechCore/blob/main/docs/DEVELOPMENT.md) | Setup, quality gates, release process |
-| [Roadmap](https://github.com/Majkey25/CzechCore/blob/main/docs/ROADMAP.md) | Evidence-gated next work |
-| [Research program](https://github.com/Majkey25/CzechCore/blob/main/docs/research/README.md) | 202 IJP rules, 65 GECCC types, 101 phenomena, literature/training/eval |
-| [Decisions](https://github.com/Majkey25/CzechCore/blob/main/docs/decisions/README.md) | Accepted architectural decisions |
+| Mode | Current behavior | Application policy |
+| --- | --- | --- |
+| Proofread | Minimal sentence correction plus exact edits | Suggestions are the default |
+| Experimental apply | Applies one accepted sentence atomically above a caller threshold | Opt-in; current beam score is not calibrated correctness |
+| Rewrite | Uses a separately configured local LLM to reconstruct a clearer sentence | Whole sentence; always requires review |
+| Live typing | Underlines, confirmation, and optional safe auto-apply | Platform design complete; adapters not released |
 
-## Install
+Broad rewrite is intentionally separate from proofread. A fluent LLM sentence
+can still alter a name, number, negation, modality, or claim.
 
-Python 3.12–3.14 is supported. Python 3.12 is the release baseline.
+## Measured status
 
-### Windows
+The repository distinguishes a small regression suite from standard-corpus
+evaluation. Headline numbers below are measured on 2026-08-18; they are not
+marketing estimates.
+
+| Evidence | Result | Interpretation |
+| --- | ---: | --- |
+| GECCC development split | 8,478 sentences | Frozen standard-corpus evaluation |
+| M2 precision / recall / F0.5 | 0.7884 / 0.3551 / 0.6337 | Useful signal, substantial syntax gap |
+| Correct GECCC sources changed | 558 / 3,288 | Too high for silent production use |
+| Focused acceptance suite | 60 / 65 exact | 34 / 38 erroneous inputs fixed exactly |
+| Acceptance false changes | 1 / 27 correct inputs | Regression evidence, not population accuracy |
+| Warm acceptance latency | 72.79 ms/sentence | CPU, fixed batch 16 release run |
+| GECCC mean latency | 228.72 ms/sentence | CPU, complete pipeline |
+
+The measured verdict is precise: the current engine already produces useful
+Czech corrections and source-validated structured suggestions, but scalar beam confidence
+cannot select production-grade autocorrections. At threshold `0.995`, the GECCC
+development run accepts no changes; lower thresholds never reach acceptable
+sentence precision. The next quality step is a trained edit-validity/
+semantic-equivalence gate, not a cosmetic threshold change.
+
+Full commands, hardware, frozen revisions, failure categories, and raw metric
+definitions are in the [research report](docs/RESEARCH_REPORT.md),
+[GECCC baseline](docs/research/GECCC_BASELINE.md), and
+[evaluation protocol](docs/research/EVALUATION_PROTOCOL.md).
+
+## System design
+
+```mermaid
+flowchart LR
+    A[Original Czech text] --> B[UDPipe sentence and token ranges]
+    B --> C[Protected-literal analysis]
+    C --> D[Compact Czech GEC Transformer]
+    D --> E[Unchanged candidate plus four beams]
+    E --> F[Safety and abstention policy]
+    F --> G[Unicode edit alignment]
+    G --> H[Underlines and suggestions]
+    G --> I[Opt-in atomic application]
+
+    F --> J[Local LLM rewrite context]
+    J --> K[Literal, number, and structure invariants]
+    K --> L[Review-only whole-sentence alternative]
+```
+
+The default model is the 60.8M-parameter
+[`ufal/transformer-base-geccc-mate`](https://huggingface.co/ufal/transformer-base-geccc-mate),
+a BART-style Czech encoder-decoder trained with synthetic MATE errors and GECCC.
+CzechCore pins the model revision, verifies the required WordPiece tokenizer,
+uses the matching Czech UDPipe segmentation, and records every external artifact
+in a provenance manifest.
+
+## Scientific scope
+
+The research layer is larger than the runtime code because Czech correction
+cannot be validated by a handful of examples.
+
+| Research artifact | Coverage |
+| --- | ---: |
+| Official IJP structure | 22 chapters / 202 explanations |
+| Czech correction taxonomy | 13 families / 101 phenomena |
+| GECCC aggregate | 83,058 sentences / 228,805 edits |
+| Czech ERRANT coverage | all 65 observed error types |
+| Primary-source manifest | 39 papers, datasets, repositories, model cards, and rule collections |
+| Local rewrite screen | 4 model profiles, 12 meaning/invariant cases |
+
+Mapping a phenomenon means it is named, sourced, and measurable. It does **not**
+mean every phenomenon is already solved. The machine-readable taxonomy and
+coverage matrix make those gaps explicit.
+
+## Quick start
+
+Python 3.12 is the reference release environment; 3.13 and 3.14 are CI-tested.
 
 ```powershell
+git clone https://github.com/Majkey25/CzechCore.git
+cd CzechCore
 py -3.12 -m venv .venv
 .venv\Scripts\python -m pip install -e ".[dev]"
 .venv\Scripts\czechcore download
 ```
 
-### Linux/macOS
+`download` provisions pinned model assets explicitly. Normal correction then
+runs offline and never downloads a missing model silently.
 
-```bash
-python3.12 -m venv .venv
-.venv/bin/python -m pip install -e '.[dev]'
-.venv/bin/czechcore download
-```
-
-`download` fetches a pinned Transformer snapshot and a pinned UDPipe model. The
-UDPipe file is accepted only when its SHA-256 matches the value in `assets.py`.
-No user text is uploaded.
-
-### Release wheel
+### CLI
 
 ```powershell
-python -m pip install https://github.com/Majkey25/CzechCore/releases/download/v0.1.0/czechcore-0.1.0-py3-none-any.whl
-czechcore download
+czechcore check "Když přišel domů šel spát."
+czechcore check --json "Muži přišly domů."
+czechcore check --autocorrect --min-confidence 0.995 "To je je problém."
 ```
 
-## Use
+### Python
 
-Suggestion mode leaves `output_text` unchanged:
+```python
+from czechcore import CzechCore
+
+engine = CzechCore()
+result = engine.correct("Když přišel domů šel spát.")
+
+print(result.suggested_text)
+for edit in result.edits:
+    print(edit.start, edit.end, edit.replacement, edit.kind)
+```
+
+Suggestion mode leaves `result.output_text` equal to the original text. Every
+edit validates that `original_text[edit.start:edit.end] == edit.source`.
+
+### Explicit local rewrite
+
+```python
+from czechcore import CzechCore, HybridRewriter, LocalChatRewriteBackend
+
+rewriter = HybridRewriter(
+    CzechCore(),
+    LocalChatRewriteBackend("http://127.0.0.1:8080/v1/chat/completions"),
+)
+result = rewriter.suggest(
+    "jako jo je to prakticky nejpouzivanejsi nastroj na sirsi obsah nez co ma pip "
+    "a hodne na ai zamereny",
+    protected=("pip",),
+)
+```
+
+Only loopback HTTP is accepted; redirects are refused. No screened local LLM has
+yet passed the default rewrite gate, so callers must configure a model and review
+every returned rewrite.
+
+## Windows and Android direction
+
+The deployment design keeps one correction policy and makes platform code thin:
+
+- Android uses `SpellCheckerService` for supported editor underlines and an
+  optional `InputMethodService` keyboard path for truly immediate suggestions or
+  auto-apply;
+- Windows uses a TSF text service for display attributes, candidates, and edits,
+  with one per-user background engine so host applications do not each load a
+  model;
+- both adapters convert Unicode-scalar offsets to UTF-16, debounce inference,
+  discard stale revisions, skip password/sensitive fields, and expose
+  `off / underline / confirm / automatic` as explicit user settings;
+- broad sentence rewrite remains a selection/shortcut action, never a silent
+  keystroke transformation.
+
+The complete contracts, latency budgets, trust boundaries, alternatives, and
+acceptance gates are specified in
+[Platform integration](docs/PLATFORM_INTEGRATION.md).
+
+## Reproduce the repository evidence
 
 ```powershell
-czechcore check "Muži přišly domů."
-czechcore check --json "Když přišel domů šel spát."
-```
-
-Opt-in autocorrect applies a sentence only when the top candidate reaches the
-chosen relative model confidence:
-
-```powershell
-czechcore check --autocorrect --min-confidence 0.60 "Muži přišly domů."
-```
-
-The default autocorrect threshold is intentionally conservative (`0.995`). The
-confidence is relative to the returned beams and unchanged sentence. It is not a
-claim of empirical 99.5% correctness.
-
-Example JSON:
-
-```json
-{
-  "original_text": "Když přišel domů šel spát.",
-  "suggested_text": "Když přišel domů, šel spát.",
-  "output_text": "Když přišel domů šel spát.",
-  "edits": [
-    {
-      "start": 16,
-      "end": 16,
-      "source": "",
-      "replacement": ",",
-      "kind": "punctuation",
-      "confidence": 0.37000428836961735,
-      "applied": false
-    }
-  ],
-  "warnings": []
-}
-```
-
-Offsets index Python/Unicode code points in the exact original text.
-
-## Measured baseline
-
-Run:
-
-```powershell
-czechcore-benchmark benchmarks\cases.jsonl
-```
-
-Measured on 2026-08-18 with CPU inference:
-
-- 65 focused Czech acceptance sentences;
-- 60 exact outputs;
-- 34/38 erroneous sentences corrected exactly;
-- 0 wrong alternative rewrites;
-- 1/27 already-correct sentences changed;
-- about 77 ms per sentence with fixed batch-16 warm CPU inference after model load.
-
-This small repository suite is regression evidence, not a corpus-wide accuracy
-claim. The full 8,478-sentence GECCC development run currently reaches M2
-precision `0.7884`, recall `0.3551`, and F0.5 `0.6337` after the current safety
-replay, while still changing 558/3,288 already-correct source sentences. It
-therefore fails the release gate. See the
-[full baseline](https://github.com/Majkey25/CzechCore/blob/main/docs/research/GECCC_BASELINE.md).
-
-## Safety and limits
-
-- No grammar checker is correct for every ambiguous sentence.
-- CzechCore abstains on large rewrites, low-confidence candidates, changed
-  protected literals, and sentences beyond the model's 256-token limit.
-- A protected literal can make CzechCore leave the whole sentence unchanged.
-- The neural model is sentence-based; it does not use preceding paragraphs.
-- Meaning-preserving whole-sentence rewrite is specified and benchmarked but not
-  yet part of the public API; the first 0.6B mobile LLM candidate was rejected.
-- Android and Windows integration, ONNX/INT8 export, and personalization are not
-  implemented yet. They follow after engine evaluation.
-
-## Development
-
-```powershell
-python -m pytest -m "not model"
-python -m pytest -m model
-python -m ruff check .
-python -m ruff format --check .
+.venv\Scripts\python -m pytest -m "not model" --cov=czechcore --cov-report=term-missing
+.venv\Scripts\python -m pytest -m model
+.venv\Scripts\python -m ruff check .
+.venv\Scripts\python -m ruff format --check .
 .venv\Scripts\python -m pyright --pythonpath .venv\Scripts\python.exe
+.venv\Scripts\czechcore-benchmark benchmarks\cases.jsonl
 ```
 
-The `model` tests require `czechcore download` first.
+The complete GECCC run requires separately acquired licensed corpus artifacts.
+Source, dataset, model, and evaluator revisions are pinned in
+[`research/sources.json`](research/sources.json).
 
-Contributions must keep the benchmark honest and the offline boundary intact.
-See [CONTRIBUTING.md](https://github.com/Majkey25/CzechCore/blob/main/CONTRIBUTING.md)
-and [SECURITY.md](https://github.com/Majkey25/CzechCore/blob/main/SECURITY.md).
+## Documentation
 
-## Licenses
+| Document | Purpose |
+| --- | --- |
+| [Research report](docs/RESEARCH_REPORT.md) | Executive scientific report, results, interpretation, and release verdict |
+| [Scientific basis](docs/SCIENTIFIC_BASIS.md) | Czech phenomena, model theory, and primary literature |
+| [Evaluation](docs/EVALUATION.md) | Metrics, benchmark protocol, hardware, and measured baselines |
+| [Architecture](docs/ARCHITECTURE.md) | Runtime flow, components, assets, and trust boundaries |
+| [API](docs/API.md) | Python and CLI contracts, exact offsets, warnings, and concurrency |
+| [Platform integration](docs/PLATFORM_INTEGRATION.md) | Android/Windows UX, runtime boundary, scheduling, privacy, and gates |
+| [Research program](docs/research/README.md) | Taxonomy, corpora, training, calibration, and experiment index |
+| [Architecture decisions](docs/decisions/README.md) | Append-only design rationale and rejected alternatives |
 
-CzechCore source code is MIT licensed. The default UFAL neural and UDPipe model
-assets are CC BY-NC-SA 4.0 and therefore non-commercial. They are downloaded at
-runtime and are not part of this repository. See
-[NOTICE.md](https://github.com/Majkey25/CzechCore/blob/main/NOTICE.md).
+## Privacy and licenses
 
-Research basis: Petr Pechman, Milan Straka, Jana Straková, and Jakub Náplava,
-*Refining Czech GEC: Insights from a Multi-Experiment Approach* (TSD 2025/2026),
-<https://doi.org/10.1007/978-3-032-02551-7_7>.
+- User text is processed locally. The library performs no correction-time network
+  request.
+- Source code is MIT licensed.
+- The default UFAL Transformer and UDPipe assets are CC BY-NC-SA 4.0 and are not
+  bundled in the wheel. The current default stack is therefore non-commercial.
+- The optional local rewrite model has its own license and must be reviewed
+  separately.
 
-For software citation metadata, see
-[CITATION.cff](https://github.com/Majkey25/CzechCore/blob/main/CITATION.cff).
-Release history is maintained in
-[CHANGELOG.md](https://github.com/Majkey25/CzechCore/blob/main/CHANGELOG.md).
+See [NOTICE.md](NOTICE.md) for the complete asset boundary and
+[SECURITY.md](SECURITY.md) for reporting and local-endpoint controls.
+
+## Citation and contribution
+
+Software citation metadata is in [CITATION.cff](CITATION.cff). Scientific work
+should also cite the underlying GECCC and MATE publications listed in the
+[research report](docs/RESEARCH_REPORT.md#references).
+
+Contributions must preserve UTF-8 Czech, exact source offsets, offline inference,
+honest benchmark failures, and strict Ruff/Pyright checks. See
+[CONTRIBUTING.md](CONTRIBUTING.md).

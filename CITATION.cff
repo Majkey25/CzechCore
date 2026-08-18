@@ -4,10 +4,11 @@ title: CzechCore
 type: software
 abstract: >-
   An offline, context-aware Czech grammar correction engine with structured
-  Unicode edits, conservative abstention, and confidence-gated autocorrection.
+  Unicode edits, reproducible GECCC evaluation, conservative abstention, and a
+  review-only local semantic rewrite path.
 authors:
   - family-names: Majkey25
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-08-18
 license: MIT
 repository-code: "https://github.com/Majkey25/CzechCore"

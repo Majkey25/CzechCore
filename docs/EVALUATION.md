@@ -107,7 +107,7 @@ The `v0.1.0` release gate also requires:
 The exact final counts are updated during release verification. They are not
 substitutes for linguistic corpus evaluation.
 
-## Current unreleased research baseline
+## Measured `v0.2.0` research baseline
 
 The acceptance suite now has 65 cases and the complete GECCC development split
 has been evaluated. The current safety replay produces:
@@ -116,14 +116,27 @@ has been evaluated. The current safety replay produces:
 | --- | ---: |
 | Acceptance exact | 60 / 65 |
 | Acceptance false changes | 1 / 27 |
+| Acceptance batch-16 mean latency | 72.79 ms/sentence |
 | GECCC dev sentence exact | 4,152 / 8,478 |
 | GECCC dev false changes | 558 / 3,288 correct sources |
 | GECCC dev M2 precision / recall / F0.5 | 0.7884 / 0.3551 / 0.6337 |
 | Initial Czech ERRANT precision / recall / F0.5 | 0.7172 / 0.3473 / 0.5912 |
 
-This fails the release gate. See
+This fails the production-autocorrect gate. See
 [`docs/research/GECCC_BASELINE.md`](research/GECCC_BASELINE.md) and the committed
 machine-readable evaluation record for full configuration and category results.
+
+Final focused-suite command:
+
+```powershell
+.venv\Scripts\czechcore-benchmark benchmarks\cases.jsonl --batch-size 16
+```
+
+Final focused-suite output:
+
+```json
+{"total":65,"exact_matches":60,"source_correct":27,"changed_correct_sentences":1,"corrected_incorrect_sentences":34,"unchanged_incorrect_sentences":4,"wrong_incorrect_predictions":0,"elapsed_seconds":4.731189700018149,"mean_latency_ms":72.78753384643306}
+```
 
 ## How to extend the benchmark
 

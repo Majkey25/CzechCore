@@ -6,6 +6,8 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-08-18
+
 ### Added
 
 - Versioned research program for full Czech grammar/GEC coverage.
@@ -32,6 +34,12 @@ All notable changes are documented here. The format follows
   confidence cannot support useful autocorrect.
 - Reproducible document-grouped MorphoDiTa/logistic ranker experiment; the model
   artifact remains rejected because validation precision misses the 90% gate.
+- Consolidated scientific research report separating implemented behavior,
+  measured results, published evidence, failure analysis, and release readiness.
+- Concrete Windows/Android live-text architecture with shared runtime contract,
+  user modes, scheduling, privacy, performance targets, and acceptance gates.
+- ADR for one portable runtime, thin platform adapters, a Windows engine broker,
+  and native Android runtime consumption.
 
 ### Fixed
 
@@ -42,6 +50,10 @@ All notable changes are documented here. The format follows
 - Enforce token boundaries for protected literals and recheck invariants globally
   after all sentence edits, including when UDPipe splits inside a URL/version.
 - Force UTF-8 for benchmark JSON on Windows.
+- Replace the old script-oriented repository landing page with a product,
+  architecture, evidence, reproducibility, and deployment overview.
+- Clarify that beam-relative confidence is not correctness calibration and the
+  current default threshold has zero measured GECCC development coverage.
 
 ## [0.1.0] - 2026-08-18
 
@@ -80,5 +92,6 @@ All notable changes are documented here. The format follows
 - Android, Windows, ONNX/INT8, paragraph context, and personalization are not part
   of `v0.1.0`.
 
-[Unreleased]: https://github.com/Majkey25/CzechCore/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Majkey25/CzechCore/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Majkey25/CzechCore/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Majkey25/CzechCore/releases/tag/v0.1.0

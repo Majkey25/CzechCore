@@ -2,13 +2,13 @@
 
 ## Stability
 
-The `0.1.x` API is alpha. Public names are exported from `czechcore`; backend,
+The `0.2.x` API is alpha. Public names are exported from `czechcore`; backend,
 asset, and tokenizer modules are implementation details unless stated otherwise.
 
 ## Install and assets
 
 ```powershell
-python -m pip install czechcore-0.1.0-py3-none-any.whl
+python -m pip install czechcore-0.2.0-py3-none-any.whl
 czechcore download
 ```
 
@@ -44,8 +44,13 @@ def correct(
 | Parameter | Contract |
 | --- | --- |
 | `text` | Original Unicode text. It is never uploaded. |
-| `autocorrect` | If false, `output_text` remains original. If true, accepted sentences can be applied. |
+| `autocorrect` | If false, `output_text` remains original. If true, accepted sentences above the experimental caller threshold can be applied. |
 | `min_confidence` | Inclusive `[0, 1]` threshold for application. Invalid values raise `ValueError`. |
+
+`min_confidence` is a research control, not empirical correctness probability.
+The complete GECCC development curve found no current threshold suitable for
+production automatic correction; `0.995` accepted no changes. User-facing
+automatic mode therefore remains blocked on a separately calibrated selector.
 
 Empty text returns an empty result without invoking the model.
 
@@ -118,7 +123,7 @@ but different compact-GEC alternative for future ranking.
 
 Apply multiple edits from right to left. Library users can use
 `czechcore.core.apply_edits` when they intentionally depend on the internal
-helper, but it is not part of the stable public surface in `0.1.x`.
+helper, but it is not part of the stable public surface in `0.2.x`.
 
 ### `CorrectionKind`
 
@@ -150,7 +155,7 @@ many emoji.
 
 ### Concurrency
 
-`CzechCore` is designed for synchronous inference. `0.1.x` makes no shared-instance
+`CzechCore` is designed for synchronous inference. `0.2.x` makes no shared-instance
 thread-safety guarantee. Use one engine per worker or serialize access. Do not call
 the blocking model directly from an asynchronous event loop.
 

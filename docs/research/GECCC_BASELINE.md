@@ -2,8 +2,8 @@
 
 ## Verdict
 
-The first full standard-corpus run fails the release gate. The compact model is
-useful, especially for diacritics and punctuation, but the current selective
+The first full standard-corpus run fails the production-autocorrect gate. The
+compact model is useful, especially for diacritics and punctuation, but the current selective
 policy changes too many already-correct sentences and misses broad Czech syntax.
 The earlier 35-case acceptance score substantially overestimated production
 quality.

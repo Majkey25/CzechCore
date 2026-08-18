@@ -7,10 +7,12 @@ decisions. The root README is the quick start, not the complete specification.
 
 | Document | Maintains |
 | --- | --- |
+| [Research report](RESEARCH_REPORT.md) | Executive scientific result, methods, measurements, interpretation, release verdict |
 | [Scientific basis](SCIENTIFIC_BASIS.md) | Linguistic scope, model theory, published evidence |
 | [Evaluation](EVALUATION.md) | Metrics, benchmark protocol, current measurements |
 | [API](API.md) | Python and CLI contracts |
 | [Architecture](ARCHITECTURE.md) | Runtime flow, modules, assets, trust boundaries |
+| [Platform integration](PLATFORM_INTEGRATION.md) | Windows/Android UX, runtime boundary, privacy, performance, acceptance gates |
 | [Development](DEVELOPMENT.md) | Local setup, quality gates, release procedure |
 | [Roadmap](ROADMAP.md) | Evidence-gated future work |
 | [Research program](research/README.md) | Full Czech taxonomy, literature, data, models, training, evaluation |
@@ -35,7 +37,7 @@ Every quantitative or capability claim belongs to one of these classes:
 | Model, tokenizer, scoring, or safety policy | `SCIENTIFIC_BASIS.md`, `ARCHITECTURE.md`, ADR, benchmark |
 | Benchmark cases or metric definitions | `EVALUATION.md`, measured README summary |
 | Dependency or asset license | `NOTICE.md`, README license section, relevant ADR |
-| Release | `CHANGELOG.md`, `CITATION.cff`, package version, tag, GitHub release |
+| Release | `CHANGELOG.md`, `CITATION.cff`, research report, package version, tag, GitHub release |
 | Roadmap completion | Move the item into changelog/docs only after verification |
 
 Documentation changes are reviewed by the same correctness standard as code.
