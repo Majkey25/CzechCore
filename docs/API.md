@@ -211,8 +211,9 @@ czechcore rewrite --protect pip "jako jo ... co ma pip ..."
 czechcore rewrite --json --endpoint http://127.0.0.1:8080/v1/chat/completions "text"
 ```
 
-No default rewrite model is claimed yet. The first 0.6B candidate failed the
-Czech acceptance example; balanced 4B evaluation is in progress.
+No default rewrite model is claimed. Qwen3 0.6B/4B, Qwen3.5 4B, and Aya Expanse
+8B screens all failed the release gate; details are in
+[`HYBRID_SEMANTIC_REWRITE.md`](research/HYBRID_SEMANTIC_REWRITE.md).
 
 ## Exit behavior
 

@@ -13,6 +13,7 @@
 </p>
 
 <p align="center">
+  <a href="docs/GETTING_STARTED.md">Install by device</a> ·
   <a href="docs/RESEARCH_REPORT.md">Research report</a> ·
   <a href="docs/EVALUATION.md">Evaluation</a> ·
   <a href="docs/ARCHITECTURE.md">Architecture</a> ·
@@ -145,7 +146,20 @@ coverage matrix make those gaps explicit.
 
 ## Quick start
 
-Python 3.12 is the reference release environment; 3.13 and 3.14 are CI-tested.
+Python 3.12 is the reference release environment. Start with the complete guide
+for your device:
+
+| Device | Setup |
+| --- | --- |
+| Windows | [Release install, models, verification, update, uninstall](docs/setup/WINDOWS.md) |
+| macOS | [Apple Silicon/Intel install and verification](docs/setup/MACOS.md) |
+| Linux | [Ubuntu/general Linux install and verification](docs/setup/LINUX.md) |
+| Android | [Current APK/runtime status and emulator gate](docs/setup/ANDROID.md) |
+
+The [device chooser](docs/GETTING_STARTED.md) explains requirements, the published
+wheel checksum, first-run downloads, offline verification, and supported modes.
+
+For repository development:
 
 ```powershell
 git clone https://github.com/Majkey25/CzechCore.git
@@ -241,6 +255,7 @@ Source, dataset, model, and evaluator revisions are pinned in
 
 | Document | Purpose |
 | --- | --- |
+| [Install by device](docs/GETTING_STARTED.md) | Windows, macOS, Linux, and Android status/setup entry point |
 | [Research report](docs/RESEARCH_REPORT.md) | Executive scientific report, results, interpretation, and release verdict |
 | [Scientific basis](docs/SCIENTIFIC_BASIS.md) | Czech phenomena, model theory, and primary literature |
 | [Evaluation](docs/EVALUATION.md) | Metrics, benchmark protocol, hardware, and measured baselines |

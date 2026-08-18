@@ -7,6 +7,11 @@ decisions. The root README is the quick start, not the complete specification.
 
 | Document | Maintains |
 | --- | --- |
+| [Install by device](GETTING_STARTED.md) | Release install, model provisioning, verification, update, removal, and device routing |
+| [Windows setup](setup/WINDOWS.md) | PowerShell/venv installation and physical/hosted Windows verification |
+| [macOS setup](setup/MACOS.md) | Apple Silicon/Intel installation and hosted macOS evidence |
+| [Linux setup](setup/LINUX.md) | Ubuntu/general Linux installation and hosted Linux evidence |
+| [Android status](setup/ANDROID.md) | Missing APK/runtime boundary and required emulator/device gate |
 | [Research report](RESEARCH_REPORT.md) | Executive scientific result, methods, measurements, interpretation, release verdict |
 | [Scientific basis](SCIENTIFIC_BASIS.md) | Linguistic scope, model theory, published evidence |
 | [Evaluation](EVALUATION.md) | Metrics, benchmark protocol, current measurements |

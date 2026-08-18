@@ -6,6 +6,14 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Device-specific Windows, macOS, Linux, and Android setup/status guides with a
+  single installation entry point, release hash verification, model/cache
+  lifecycle, live scenarios, updates, removal, and troubleshooting.
+- Clean virtual-environment model-smoke workflow for the public wheel on hosted
+  Windows x64, macOS arm64, and Ubuntu x64 runners.
+
 ## [0.2.0] - 2026-08-18
 
 ### Added
