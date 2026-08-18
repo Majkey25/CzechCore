@@ -76,3 +76,4 @@ def test_platform_smoke_uses_real_model_on_all_desktop_runners() -> None:
     assert "python -m venv" in workflow
     assert "czechcore download" in workflow
     assert "-m model" in workflow
+    assert "shell: ${{ matrix.shell }}" not in workflow

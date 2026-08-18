@@ -25,7 +25,6 @@ jobs:
         include:
           - name: Windows x64
             os: windows-latest
-            shell: pwsh
             python: .platform-venv\Scripts\python.exe
             cli: .platform-venv\Scripts\czechcore.exe
             cache_path: |
@@ -33,7 +32,6 @@ jobs:
               ~\.cache\huggingface\hub\models--ufal--transformer-base-geccc-mate
           - name: macOS arm64
             os: macos-latest
-            shell: bash
             python: .platform-venv/bin/python
             cli: .platform-venv/bin/czechcore
             cache_path: |
@@ -41,7 +39,6 @@ jobs:
               ~/.cache/huggingface/hub/models--ufal--transformer-base-geccc-mate
           - name: Ubuntu x64
             os: ubuntu-latest
-            shell: bash
             python: .platform-venv/bin/python
             cli: .platform-venv/bin/czechcore
             cache_path: |
@@ -56,11 +53,9 @@ jobs:
           cache: pip
 
       - name: Create clean virtual environment
-        shell: ${{ matrix.shell }}
         run: python -m venv .platform-venv
 
       - name: Install public v0.2.0 wheel
-        shell: ${{ matrix.shell }}
         run: |
           ${{ matrix.python }} -m pip install --upgrade pip
           ${{ matrix.python }} -m pip install "https://github.com/Majkey25/CzechCore/releases/download/v0.2.0/czechcore-0.2.0-py3-none-any.whl" pytest
@@ -74,15 +69,12 @@ jobs:
           key: czechcore-v0.2.0-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('src/czechcore/assets.py') }}
 
       - name: czechcore download
-        shell: ${{ matrix.shell }}
         run: ${{ matrix.cli }} download
 
       - name: Run six real-model tests
-        shell: ${{ matrix.shell }}
         run: ${{ matrix.python }} -m pytest -m model tests/test_backend.py tests/test_tokenizer.py -q
 
       - name: Run live CLI scenarios
-        shell: ${{ matrix.shell }}
         run: |
           ${{ matrix.cli }} check "Když přišel domů šel spát."
           ${{ matrix.cli }} check --json "Muži přišly domů."
