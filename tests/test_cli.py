@@ -4,6 +4,7 @@ import json
 
 import pytest
 
+from czechcore import __version__
 from czechcore.cli import main
 from czechcore.core import CorrectionKind, CorrectionResult, TextEdit
 from czechcore.rewrite import RewriteBackend
@@ -76,4 +77,4 @@ def test_cli_reports_installed_package_version(capsys: pytest.CaptureFixture[str
         main(["--version"])
 
     assert exit_info.value.code == 0
-    assert capsys.readouterr().out.strip() == "czechcore 0.1.0"
+    assert capsys.readouterr().out.strip() == f"czechcore {__version__}"
