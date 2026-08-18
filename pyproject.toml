@@ -45,6 +45,11 @@ dev = [
 research = [
     "ufal.morphodita==1.11.3.3",
 ]
+portable = [
+    "cmake==3.31.10",
+    "ctranslate2==4.8.1",
+    "ninja==1.13.0",
+]
 
 [project.scripts]
 czechcore = "czechcore.cli:main"

@@ -1,0 +1,11 @@
+diff --git a/src/thread_pool.cc b/src/thread_pool.cc
+index 34ef4a5..fb73b4a 100644
+--- a/src/thread_pool.cc
++++ b/src/thread_pool.cc
+@@ -79,5 +79,5 @@ namespace ctranslate2 {
+   static void set_thread_affinity(std::thread& thread, int index) {
+-#if !defined(__linux__) || defined(_OPENMP)
++#if !defined(__linux__) || defined(__ANDROID__) || defined(_OPENMP)
+     (void)thread;
+     (void)index;
+     throw std::runtime_error("Setting thread affinity is only supported in Linux binaries built "
