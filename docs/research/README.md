@@ -19,7 +19,7 @@ papers, HTML snapshots, repositories, and datasets live in
 | GECCC development evaluation | 8,478 sentences |
 | Focused proofread acceptance | 65 cases |
 | Semantic rewrite acceptance | 12 cases |
-| Source provenance | 39 records |
+| Source provenance | 40 records |
 
 ## Current program
 
@@ -34,6 +34,7 @@ papers, HTML snapshots, repositories, and datasets live in
 - [GECCC development evaluation record](../../research/evaluations/geccc-dev-2026-08-18.json)
 - [Local rewrite model screen](../../research/evaluations/rewrite-model-screen-2026-08-18.json)
 - [Morphology ranker screen](../../research/evaluations/ranker-screen-2026-08-18.json)
+- [Portable runtime and Android arm64 build screen](../../research/evaluations/portable-runtime-screen-2026-08-18.json)
 - [Semantic rewrite acceptance cases](../../benchmarks/rewrite_cases.jsonl)
 
 ## Maintained syntheses

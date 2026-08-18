@@ -6,9 +6,13 @@
 
 ## Current status
 
-Android is not functional in the current release. There is no package ID, APK,
-Play Store listing, Gradle project, JNI runtime, or on-device model bundle to
-install. Any instructions claiming otherwise would be false.
+Android is not installable from the v0.2.0 release. Main now contains a
+source-only debug runtime probe with package `cz.czechcore.app`, Java
+WordPiece, JNI, and local CTranslate2 inference. There is still no published APK,
+Play Store listing, bundled model, SpellCheckerService, or IME.
+
+Reproducible source build and emulator commands:
+[`android/README.md`](../../android/README.md).
 
 The Android target remains part of CzechCore, but it is blocked by the portable
 inference runtime described below.
@@ -85,8 +89,20 @@ The portable runtime must reproduce:
 - protected-literal and changed-ratio gates;
 - Unicode edit alignment and UTF-16 conversion.
 
-ONNX Runtime Mobile is the current candidate, not an accepted result. Export and
-quantization must pass frozen parity/quality measurements before app packaging.
+CTranslate2 4.8.1 is now the leading measured candidate. FP32 conversion matched
+66/66 acceptance sentence-span top outputs and its C++ runtime compiled as a
+stripped 3.9 MB Android arm64-v8a shared library. INT8 changed one required
+punctuation result and is rejected as the default. Product scoring, WordPiece,
+UDPipe, JNI, APK, and emulator gates remain.
+
+Measured details:
+[Portable runtime research](../research/PORTABLE_RUNTIME_RESEARCH.md).
+
+An x86_64 source debug APK has run the FP32 model locally inside an Android 35
+emulator through JNI. Missing-comma and agreement corrections passed, correct
+text stayed unchanged, and a damaged email/version candidate was rejected with
+exact source fallback. The caution remains because no APK/model is published and
+Android text-service integration is still missing.
 
 ## Model installation policy
 

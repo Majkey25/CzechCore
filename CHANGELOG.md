@@ -13,6 +13,11 @@ All notable changes are documented here. The format follows
   lifecycle, live scenarios, updates, removal, and troubleshooting.
 - Clean virtual-environment model-smoke workflow for the public wheel on hosted
   Windows x64, macOS arm64, and Ubuntu x64 runners.
+- Measured CTranslate2 FP32/INT8 BART parity screen and successful Android
+  arm64-v8a/API 26 native runtime build; INT8 remains rejected after a punctuation
+  regression.
+- Source-only Android debug APK probe with Java WordPiece, JNI FP32 inference,
+  protected-literal fallback, JVM tests, and real Android 35 emulator flows.
 
 ## [0.2.0] - 2026-08-18
 

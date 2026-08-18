@@ -12,6 +12,7 @@ decisions. The root README is the quick start, not the complete specification.
 | [macOS setup](setup/MACOS.md) | Apple Silicon/Intel installation and hosted macOS evidence |
 | [Linux setup](setup/LINUX.md) | Ubuntu/general Linux installation and hosted Linux evidence |
 | [Android status](setup/ANDROID.md) | Missing APK/runtime boundary and required emulator/device gate |
+| [Android source probe](../android/README.md) | Reproducible CTranslate2 conversion, NDK build, APK, ADB provisioning, and emulator flow |
 | [Research report](RESEARCH_REPORT.md) | Executive scientific result, methods, measurements, interpretation, release verdict |
 | [Scientific basis](SCIENTIFIC_BASIS.md) | Linguistic scope, model theory, published evidence |
 | [Evaluation](EVALUATION.md) | Metrics, benchmark protocol, current measurements |

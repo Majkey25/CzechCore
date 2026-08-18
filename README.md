@@ -137,7 +137,7 @@ cannot be validated by a handful of examples.
 | Czech correction taxonomy | 13 families / 101 phenomena |
 | GECCC aggregate | 83,058 sentences / 228,805 edits |
 | Czech ERRANT coverage | all 65 observed error types |
-| Primary-source manifest | 39 papers, datasets, repositories, model cards, and rule collections |
+| Primary-source manifest | 40 papers, datasets, repositories, model cards, and rule collections |
 | Local rewrite screen | 4 model profiles, 12 meaning/invariant cases |
 
 Mapping a phenomenon means it is named, sourced, and measurable. It does **not**

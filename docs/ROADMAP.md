@@ -49,6 +49,9 @@ numbers, modality, and ambiguity preserved; unsafe outputs fall back to proofrea
 
 - [x] Specify the versioned UTF-8/native result contract, offset unit, model
   manifest, scheduling, and platform trust boundaries.
+- [x] Convert the compact BART model to CTranslate2 FP32, reproduce 66/66
+  acceptance-span top outputs, reject the regressing INT8 candidate, and compile
+  Android arm64-v8a/x86_64 native runtimes.
 - [ ] Export encoder/decoder generation to a verified portable format.
 - [ ] Quantize with measured accuracy, latency, startup, and memory deltas.
 - [ ] Produce a model manifest with hashes, licenses, tokenizer revision, and
@@ -68,6 +71,8 @@ approved tolerance and fits measured device budgets.
   live suggestions/automatic application.
 - [ ] Implement and package the Windows TSF text service and engine broker.
 - [ ] Implement and package the Android text-service application.
+- [x] Build and run a source-only Android debug APK probe with Java WordPiece,
+  JNI local inference, protected-literal fallback, and four emulator flows.
 - [ ] Integrate the runtime into a maintained offline Android IME distribution.
 - [ ] UTF-16/code-point offset conversion with emoji regression tests.
 - [ ] Implement `off / underline / confirm / automatic` settings, stale-result

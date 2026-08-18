@@ -105,11 +105,21 @@ The existing model is encoder-decoder, so a valid export must include:
 - unchanged-candidate scoring and safety policy;
 - exact detokenization and edit alignment.
 
-[ONNX Runtime Mobile](https://onnxruntime.ai/docs/tutorials/mobile/) supports
-Android Java/C/C++ and mobile model packaging. Hugging Face Optimum supports
-BART-style `ORTModelForSeq2SeqLM` export. These facts establish feasibility,
-not parity. ONNX Runtime GenAI is not selected because its current documented
-encoder-decoder model types do not include generic BART.
+CTranslate2 4.8.1 is the leading measured runtime: it supports BART and beam
+search, matched 66/66 acceptance-span FP32 top outputs, and compiled with the
+Android NDK for arm64-v8a/API 26. Its INT8 model changed one required punctuation
+result and is rejected as the default. ONNX Runtime Mobile remains an alternative,
+but generic BART generation would require additional orchestration.
+
+A separate x86_64/API 26 build ran the FP32 model locally in an Android 35
+emulator and returned the required missing-comma correction. It proves native
+inference only; it does not replace the APK/JNI/text-service acceptance gates.
+
+A source debug APK subsequently added Java WordPiece, JNI, app-specific external
+model loading, background inference, and protected-literal fallback. Four core
+flows passed in the emulator with an empty final crash buffer. Distribution,
+UDPipe parity, model lifecycle, sensitive-field handling, SpellCheckerService,
+and IME gates remain.
 
 The runtime ships only after:
 

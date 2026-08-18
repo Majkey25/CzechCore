@@ -16,7 +16,7 @@ Choose your operating system:
 | macOS Apple Silicon | Supported when the dependency wheels install | Python wheel in a venv | Hosted arm64 macOS VM |
 | macOS Intel | Expected dependency support, not yet a required matrix target | Python wheel in a venv | Not claimed until a run exists |
 | Linux x64 | Supported research runtime | Python wheel in a venv | Hosted Ubuntu x64 VM |
-| Android arm64 | Not installable | No APK is available | Blocked on portable runtime and app |
+| Android arm64 | Source debug probe only | No published APK is available | x86_64 emulator flow + arm64 build; text services remain blocked |
 
 Windows, macOS, and Linux run the same Python reference engine. Android is a
 different deployment target and cannot run the desktop wheel as a keyboard or

@@ -25,5 +25,17 @@ CzechCore source code does not contain the following model assets. The explicit
 - Source: <https://pypi.org/project/ufal.udpipe/>
 - License: Mozilla Public License 2.0
 
+## Optional portable runtime
+
+- Project: CTranslate2 4.8.1
+- Source: <https://github.com/OpenNMT/CTranslate2>
+- Pinned source revision: `0d8bcd362ac75ef860ef161d6f0efad0ae439ff0`
+- License: MIT
+- Purpose: source-only BART conversion, C++/Android inference, beam search, and
+  quantization research
+
+Converted CTranslate2 weights retain the original Czech model license; conversion
+does not make the CC BY-NC-SA model commercially usable.
+
 The default model stack is not licensed for commercial use. Commercial
 distribution requires separately licensed or replacement model assets.

@@ -9,7 +9,7 @@
 - Real model tests cover contextual agreement, comma insertion, and homograph
   preservation.
 - Protected technical literals, rewrite ratio, and over-length abstention work.
-- Research provenance now covers 39 primary sources/artifacts, 202 official IJP explanations,
+- Research provenance now covers 40 primary sources/artifacts, 202 official IJP explanations,
   65 GECCC error types, and 101 taxonomy phenomena.
 
 These are engineering/research foundations, not complete Czech coverage.
@@ -84,7 +84,8 @@ semantic rewrite risks. Evaluate before expanding input context.
 - No bootstrap confidence intervals/significance tests.
 - No domain/error-family model comparison report.
 - No cold-start/peak-memory measurement in the benchmark command.
-- No Windows/Android device benchmark.
+- Android has one x86_64 source-debug emulator PSS/RSS measurement; no physical
+  arm64 or Windows system-adapter device benchmark exists.
 
 ## Priority experiment queue
 

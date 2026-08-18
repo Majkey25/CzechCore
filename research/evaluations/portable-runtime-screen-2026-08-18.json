@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-18",
+  "reference_model_source_id": "model-transformer-base-geccc-mate",
+  "runtime_source_id": "runtime-ctranslate2-481",
+  "runtime_revision": "0d8bcd362ac75ef860ef161d6f0efad0ae439ff0",
+  "runtime_version": "4.8.1",
+  "converter_compatibility": {
+    "transformers_version": "5.15.0",
+    "required_shim": "BartConfig.normalize_before=false",
+    "reason": "CTranslate2 4.8.1 expects a removed standard BART post-norm configuration field"
+  },
+  "acceptance_probe": {
+    "cases": 65,
+    "sentence_spans": 66,
+    "device": "Windows CPU",
+    "beam_size": 4,
+    "num_hypotheses": 4
+  },
+  "float32": {
+    "model_bytes": 243158208,
+    "top_output_matches": 66,
+    "ordered_four_beam_matches": 62,
+    "four_beam_set_matches": 62,
+    "pytorch_elapsed_seconds": 12.092201999912504,
+    "ctranslate2_elapsed_seconds": 4.98685009975452,
+    "decision": "accepted for the next parity and Android integration stage"
+  },
+  "int8": {
+    "model_bytes": 62287948,
+    "top_output_matches": 65,
+    "ordered_four_beam_matches": 32,
+    "four_beam_set_matches": 46,
+    "pytorch_elapsed_seconds": 11.859259200107772,
+    "ctranslate2_elapsed_seconds": 2.5318598999874666,
+    "top_failure": {
+      "source": "Kdy přijdeš",
+      "reference_top": "Kdy přijdeš?",
+      "candidate_top": "Kdy přijdeš"
+    },
+    "decision": "rejected as the default because it regresses a required punctuation correction"
+  },
+  "android_arm64_build": {
+    "ndk_version": "28.2.13676358",
+    "android_api": 26,
+    "abi": "arm64-v8a",
+    "compiler": "Clang 19.0.1",
+    "backend": "Ruy",
+    "cuda": false,
+    "mkl": false,
+    "openmp_runtime": "NONE",
+    "shared_library_unstripped_bytes": 55653440,
+    "shared_library_stripped_bytes": 3911616,
+    "shared_library_stripped_sha256": "69d4644ef84b9adc3907f74b49b8b3aa275a9be72e29707dc948b6fe6ee7696b",
+    "elf": "ELF64 AArch64 shared object",
+    "needed_libraries": [
+      "libdl.so",
+      "liblog.so",
+      "libm.so",
+      "libc.so"
+    ],
+    "required_patch": "Treat __ANDROID__ as unsupported for pthread_setaffinity_np; default affinity remains disabled",
+    "build_result": "success"
+  },
+  "android_x86_64_emulator_probe": {
+    "emulator": "sdk_gphone64_x86_64",
+    "android_api": 35,
+    "abi": "x86_64",
+    "compile_target_api": 26,
+    "shared_library_stripped_bytes": 4386568,
+    "shared_library_stripped_sha256": "cf5e7377b5abbb9d695550709549f05d504cc31077bbce922021ea6d92c33fbd",
+    "input_tokens": [
+      "[CLS]",
+      "Když",
+      "přišel",
+      "domů",
+      "šel",
+      "spát",
+      ".",
+      "[SEP]"
+    ],
+    "output_tokens": [
+      "Když",
+      "přišel",
+      "domů",
+      ",",
+      "šel",
+      "spát",
+      "."
+    ],
+    "first_measured_process_seconds": 5.19,
+    "second_measured_process_seconds": 1.74,
+    "desktop_model_server_used": false,
+    "result": "local native inference success"
+  },
+  "android_debug_apk_probe": {
+    "package": "cz.czechcore.app",
+    "version": "0.1.0-dev",
+    "build_tools": {
+      "android_gradle_plugin": "9.2.0",
+      "gradle": "9.7.0",
+      "java": 17,
+      "ndk": "28.2.13676358",
+      "compile_sdk": 36,
+      "target_sdk": 36,
+      "min_sdk": 26
+    },
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "apk_bytes": 9512479,
+    "apk_sha256": "243914109a34efb5ca355dc82c15c7a673da2dbeb1209cfcad5656479816e220",
+    "model_packaging": "external app-specific storage; model is not bundled in APK",
+    "jvm_unit_tests": 5,
+    "flows": [
+      {
+        "source": "Když přišel domů šel spát.",
+        "output": "Když přišel domů, šel spát.",
+        "result": "pass"
+      },
+      {
+        "source": "Muži přišly domů.",
+        "output": "Muži přišli domů.",
+        "result": "pass"
+      },
+      {
+        "source": "Byli doma.",
+        "output": "Byli doma.",
+        "result": "pass"
+      },
+      {
+        "source": "Kontakt majkey25@example.cz, verze v1.2.3.",
+        "raw_model_output": "Kontakt majkey25@ example. cz, verze v1. 2. 3.",
+        "output": "Kontakt majkey25@example.cz, verze v1.2.3.",
+        "result": "unsafe candidate rejected; source fallback"
+      }
+    ],
+    "post_inference_pss_kb": 375568,
+    "post_inference_rss_kb": 446404,
+    "crash_buffer_after_final_runs": "empty",
+    "raw_user_text_in_app_logcat": false,
+    "result": "source debug APK local correction probe passed"
+  },
+  "status": "portable_model_and_android_source_apk_probe_validated",
+  "remaining_gates": [
+    "product-level unchanged-candidate scoring parity",
+    "WordPiece implementation parity on Android",
+    "UDPipe sentence/token range runtime on Android",
+    "APK model lifecycle and privacy controls",
+    "SpellCheckerService, ACTION_PROCESS_TEXT, and IME integration",
+    "full tokenizer and UDPipe parity on Android",
+    "release-signed APK emulator acceptance matrix",
+    "physical arm64 latency, memory, battery, and thermal measurements"
+  ]
+}

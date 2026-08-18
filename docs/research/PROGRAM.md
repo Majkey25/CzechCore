@@ -93,7 +93,7 @@ The taxonomy covers at minimum:
 - Calling a small curated suite a complete Czech evaluation.
 - Claiming 100% correctness or calibrated probability without evidence.
 - Adding hundreds of fragile regex grammar rules.
-- Starting Windows/Android UI work before the engine evaluation and portable
+- Starting production Windows/Android UI work before the engine evaluation and portable
   runtime gates are met.
 - Treating non-commercial model assets as commercially usable.
 

@@ -367,6 +367,17 @@
       "purpose": "AKCES-domain upper-bound and teacher comparison"
     },
     {
+      "id": "runtime-ctranslate2-481",
+      "kind": "git",
+      "title": "CTranslate2 4.8.1",
+      "url": "https://github.com/OpenNMT/CTranslate2",
+      "local_path": "repos/ctranslate2-4.8.1",
+      "revision": "0d8bcd362ac75ef860ef161d6f0efad0ae439ff0",
+      "license": "MIT",
+      "redistribution": "not_committed",
+      "purpose": "Portable C++ BART beam-search runtime and Android arm64 build candidate"
+    },
+    {
       "id": "runtime-llamacpp-b10486-windows-cpu",
       "kind": "file",
       "title": "llama.cpp b10486 Windows CPU x64 runtime",
