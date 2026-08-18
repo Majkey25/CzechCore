@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CzechCore Runtime Probe</string>
+    <string name="title">Offline Czech correction</string>
+    <string name="input_hint">Enter one Czech sentence</string>
+    <string name="correct">Correct locally</string>
+    <string name="model_missing">Model missing from app-specific storage.</string>
+    <string name="model_ready">Local FP32 model ready.</string>
+    <string name="running">Running local beam inference…</string>
+    <string name="complete">Correction complete.</string>
+    <string name="candidate_rejected">Candidate rejected to preserve protected text.</string>
+    <string name="failed">Correction failed.</string>
+</resources>

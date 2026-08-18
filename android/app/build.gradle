@@ -1,0 +1,53 @@
+plugins {
+    id "com.android.application"
+}
+
+def ct2IncludeDir = providers.gradleProperty("ct2IncludeDir").getOrElse("")
+
+android {
+    namespace = "cz.czechcore.app"
+    compileSdk = 36
+    ndkVersion = "28.2.13676358"
+
+    defaultConfig {
+        applicationId = "cz.czechcore.app"
+        minSdk = 26
+        targetSdk = 36
+        versionCode = 1
+        versionName = "0.1.0-dev"
+
+        ndk {
+            abiFilters "x86_64", "arm64-v8a"
+        }
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DCT2_INCLUDE_DIR=${ct2IncludeDir}",
+                          "-DCT2_LIBRARY_DIR=${rootProject.projectDir}/local-libs"
+                cppFlags "-std=c++17", "-fexceptions", "-frtti"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
+    }
+}
+
+dependencies {
+    testImplementation "junit:junit:4.13.2"
+}

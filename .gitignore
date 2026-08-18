@@ -7,3 +7,9 @@ __pycache__/
 build/
 dist/
 *.egg-info/
+android/.gradle/
+android/.idea/
+android/local.properties
+android/local-libs/
+android/app/.cxx/
+android/app/build/

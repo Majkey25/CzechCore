@@ -77,3 +77,35 @@ def test_platform_smoke_uses_real_model_on_all_desktop_runners() -> None:
     assert "czechcore download" in workflow
     assert "-m model" in workflow
     assert "shell: ${{ matrix.shell }}" not in workflow
+
+
+def test_android_probe_keeps_model_and_network_out_of_source_apk() -> None:
+    android = ROOT / "android" / "app" / "src" / "main"
+    required = (
+        android / "AndroidManifest.xml",
+        android / "cpp" / "CMakeLists.txt",
+        android / "cpp" / "native_bridge.cpp",
+        android / "java" / "cz" / "czechcore" / "app" / "MainActivity.java",
+        android / "java" / "cz" / "czechcore" / "app" / "WordPieceTokenizer.java",
+        ROOT / "android" / "README.md",
+    )
+    assert all(path.is_file() for path in required)
+
+    manifest = required[0].read_text(encoding="utf-8")
+    assert "android.permission.INTERNET" not in manifest
+    assert "android.permission.BIND_ACCESSIBILITY_SERVICE" not in manifest
+
+    ignored = (ROOT / ".gitignore").read_text(encoding="utf-8")
+    assert "android/local-libs/" in ignored
+    assert "android/app/build/" in ignored
+
+    build = (ROOT / "android" / "app" / "build.gradle").read_text(encoding="utf-8")
+    assert 'abiFilters "x86_64", "arm64-v8a"' in build
+
+    wrapper = (ROOT / "android" / "gradle" / "wrapper" / "gradle-wrapper.properties").read_text(
+        encoding="utf-8"
+    )
+    assert "gradle-9.7.0-bin.zip" in wrapper
+    assert (
+        "distributionSha256Sum=84fbba45c7f4c64abc77460e1c00f541e9f960e3c7ed2538f1ede19eacd873ae"
+    ) in wrapper
