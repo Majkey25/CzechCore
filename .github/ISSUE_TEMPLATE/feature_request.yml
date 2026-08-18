@@ -1,0 +1,35 @@
+name: Feature request
+description: Propose a scoped, evidence-backed improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the current user-visible limitation.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Add examples, measurements, corpus references, or device constraints.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Smallest useful solution
+      description: Explain the behavior and how it can be verified.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Project boundaries
+      options:
+        - label: The proposal keeps text inference offline.
+          required: true
+        - label: The proposal does not require hardcoded benchmark answers.
+          required: true

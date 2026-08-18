@@ -1,0 +1,60 @@
+name: Bug report
+description: Report reproducible incorrect behavior or a regression
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Do not report security vulnerabilities here. Use the private security
+        advisory link in SECURITY.md.
+  - type: input
+    id: version
+    attributes:
+      label: CzechCore version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Correction quality
+        - Tokenization or offsets
+        - Autocorrect policy
+        - Protected text
+        - Asset download
+        - CLI or JSON
+        - Packaging or CI
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include exact input, command or Python call, and output.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: For Czech rules, link an authoritative source when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "OS, Python, CPU/GPU, model revision"
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: The example contains no private or sensitive text.
+          required: true
