@@ -5,7 +5,19 @@ from pathlib import Path
 
 import pytest
 
-from czechcore.benchmark import evaluate_pairs, load_cases
+from czechcore.benchmark import BenchmarkCase, evaluate_pairs, load_cases, run_benchmark_details
+from czechcore.core import CorrectionResult
+
+
+class WrongEngine:
+    def correct(
+        self,
+        text: str,
+        *,
+        autocorrect: bool = False,
+        min_confidence: float = 0.995,
+    ) -> CorrectionResult:
+        return CorrectionResult(text, "Jiná věta.", text, ())
 
 
 def test_metrics_count_false_changes_to_correct_sentences() -> None:
@@ -51,3 +63,22 @@ def test_load_cases_rejects_missing_string_field(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="line 1"):
         load_cases(path)
+
+
+def test_benchmark_details_classify_false_changes() -> None:
+    metrics, failures = run_benchmark_details(
+        (BenchmarkCase("Správně.", "Správně.", "correct"),),
+        WrongEngine(),
+    )
+
+    assert metrics.changed_correct_sentences == 1
+    assert failures[0].kind == "false_change"
+
+
+def test_benchmark_rejects_invalid_batch_size() -> None:
+    with pytest.raises(ValueError, match="batch_size"):
+        run_benchmark_details(
+            (BenchmarkCase("Správně.", "Správně.", "correct"),),
+            WrongEngine(),
+            batch_size=0,
+        )

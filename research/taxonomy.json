@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "updated": "2026-08-18",
+  "authoritative_source_id": "collection-ijc-general-rules",
+  "corpus_source_id": "dataset-geccc-model-version",
+  "families": [
+    {
+      "id": "orthography",
+      "name": "Phonology, graphemes, lexical spelling, and word boundaries",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Character-level and lexical Czech spelling, pronunciation-driven confusions, compounds, loanwords, and transliteration.",
+      "ijc_sections": ["ijc-80", "ijc-100", "ijc-920"],
+      "geccc_types": ["R:DIACR", "R:SPELL", "R:ORTH"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "orthography.sound_grapheme", "name": "Sound-to-grapheme relations", "baseline_status": "unmeasured", "source_rule_ids": ["901", "149"]},
+        {"id": "orthography.i_y", "name": "i/í versus y/ý", "baseline_status": "partial", "source_rule_ids": ["103"]},
+        {"id": "orthography.listed_words", "name": "Listed words and related forms", "baseline_status": "unmeasured", "source_rule_ids": ["100"]},
+        {"id": "orthography.byt_bit", "name": "Prefix-derived forms of být/bít", "baseline_status": "unmeasured", "source_rule_ids": ["101"]},
+        {"id": "orthography.letter_e", "name": "ě, je, and ně groups", "baseline_status": "unmeasured", "source_rule_ids": ["126"]},
+        {"id": "orthography.u_ring", "name": "ú versus ů", "baseline_status": "partial", "source_rule_ids": ["127"]},
+        {"id": "orthography.n_nn", "name": "n versus nn", "baseline_status": "unmeasured", "source_rule_ids": ["125"]},
+        {"id": "orthography.prefix_s_z", "name": "s(e)- versus z(e)- prefixes", "baseline_status": "unmeasured", "source_rule_ids": ["110"]},
+        {"id": "orthography.preposition_s_z", "name": "s/se versus z/ze and s sebou", "baseline_status": "partial", "source_rule_ids": ["111"]},
+        {"id": "orthography.loanwords", "name": "Czech adaptation and spelling of loanwords", "baseline_status": "unmeasured", "source_rule_ids": ["120", "121", "122", "123", "124"]},
+        {"id": "orthography.compounds", "name": "Fused expressions and compound adjectives", "baseline_status": "unmeasured", "source_rule_ids": ["130", "140"]},
+        {"id": "orthography.hyphenation", "name": "Line-end word division", "baseline_status": "out_of_scope", "source_rule_ids": ["135"]},
+        {"id": "orthography.assimilation", "name": "Consonant groups, voicing assimilation, inserted/omitted sounds", "baseline_status": "unmeasured", "source_rule_ids": ["907", "908", "909", "910", "911", "912"]},
+        {"id": "orthography.transliteration", "name": "Cyrillic transcription and transliteration", "baseline_status": "unmeasured", "source_rule_ids": ["920", "921", "922", "923", "924", "925", "926"]}
+      ]
+    },
+    {
+      "id": "punctuation",
+      "name": "Punctuation, quotation, and spacing",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Clause punctuation, sentence-final marks, quotation, paired punctuation, dashes, and typographic spacing.",
+      "ijc_sections": ["ijc-150"],
+      "geccc_types": ["M:PUNCT", "U:PUNCT", "R:PUNCT", "R:QUOTATION", "R:ORTH:WSPACE"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "punctuation.complex_sentence", "name": "Commas between main and subordinate clauses", "baseline_status": "partial", "source_rule_ids": ["150"]},
+        {"id": "punctuation.simple_sentence", "name": "Commas in a simple sentence", "baseline_status": "unmeasured", "source_rule_ids": ["151"]},
+        {"id": "punctuation.infinitive", "name": "Commas in infinitive constructions", "baseline_status": "unmeasured", "source_rule_ids": ["152"]},
+        {"id": "punctuation.conjunction_a_i_ani", "name": "Commas before a, i, ani", "baseline_status": "unmeasured", "source_rule_ids": ["153"]},
+        {"id": "punctuation.conjunction_jako_nez", "name": "Commas before jako and než", "baseline_status": "unmeasured", "source_rule_ids": ["154"]},
+        {"id": "punctuation.conjunction_nebo_ci", "name": "Commas before nebo and či", "baseline_status": "unmeasured", "source_rule_ids": ["155"]},
+        {"id": "punctuation.explanatory_conjunctions", "name": "Commas before anebo, aneb, čili, neboli and related expressions", "baseline_status": "unmeasured", "source_rule_ids": ["156", "157", "158"]},
+        {"id": "punctuation.period", "name": "Period and sentence termination", "baseline_status": "partial", "source_rule_ids": ["160"]},
+        {"id": "punctuation.question_exclamation", "name": "Question and exclamation marks", "baseline_status": "unmeasured", "source_rule_ids": ["171", "172"]},
+        {"id": "punctuation.semicolon_colon", "name": "Semicolon and colon", "baseline_status": "unmeasured", "source_rule_ids": ["173", "161"]},
+        {"id": "punctuation.quotation", "name": "Czech quotation marks and direct quotation", "baseline_status": "unmeasured", "source_rule_ids": ["162"]},
+        {"id": "punctuation.brackets", "name": "Parentheses and brackets", "baseline_status": "unmeasured", "source_rule_ids": ["163"]},
+        {"id": "punctuation.hyphen_dash", "name": "Hyphen versus dash", "baseline_status": "unmeasured", "source_rule_ids": ["164", "165"]},
+        {"id": "punctuation.ellipsis", "name": "Ellipsis", "baseline_status": "unmeasured", "source_rule_ids": ["166"]},
+        {"id": "punctuation.slash_apostrophe", "name": "Slash and apostrophe", "baseline_status": "unmeasured", "source_rule_ids": ["167", "168"]},
+        {"id": "punctuation.spacing", "name": "Whitespace around punctuation", "baseline_status": "partial", "source_rule_ids": ["150", "151", "162", "164", "165"]}
+      ]
+    },
+    {
+      "id": "capitalization",
+      "name": "Capitalization and proper-name classes",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Sentence casing and Czech capitalization rules for people, places, organizations, works, events, products, and substitutes.",
+      "ijc_sections": ["ijc-180"],
+      "geccc_types": ["R:ORTH:CASING"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "capitalization.general", "name": "General capitalization principles", "baseline_status": "partial", "source_rule_ids": ["180"]},
+        {"id": "capitalization.people", "name": "People, beings, titles, and derived adjectives", "baseline_status": "unmeasured", "source_rule_ids": ["181"]},
+        {"id": "capitalization.astronomy", "name": "Astronomical names and zodiac signs", "baseline_status": "unmeasured", "source_rule_ids": ["182"]},
+        {"id": "capitalization.geography", "name": "Countries, regions, landforms, settlements, and streets", "baseline_status": "unmeasured", "source_rule_ids": ["183", "184", "185", "186", "187"]},
+        {"id": "capitalization.organizations", "name": "Organizations and organizational units", "baseline_status": "unmeasured", "source_rule_ids": ["188", "189"]},
+        {"id": "capitalization.works_documents", "name": "Documents and artistic or scholarly works", "baseline_status": "unmeasured", "source_rule_ids": ["190"]},
+        {"id": "capitalization.events_holidays", "name": "Historic events, memorial days, holidays, competitions", "baseline_status": "unmeasured", "source_rule_ids": ["191", "193"]},
+        {"id": "capitalization.products_substitutes", "name": "Products, varieties, breeds, awards, and substitute names", "baseline_status": "unmeasured", "source_rule_ids": ["192", "194", "195", "196"]}
+      ]
+    },
+    {
+      "id": "word_formation",
+      "name": "Morphematics, derivation, compounds, and gendered forms",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "description": "Morpheme structure and derivational correctness beyond inflection.",
+      "ijc_sections": ["ijc-199", "ijc-200", "ijc-239"],
+      "geccc_types": ["R:MORPH"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "word_formation.morphemes", "name": "Morpheme boundaries and alternations", "baseline_status": "unmeasured", "source_rule_ids": ["778", "730"]},
+        {"id": "word_formation.demonyms", "name": "Demonyms and inhabitants' names", "baseline_status": "unmeasured", "source_rule_ids": ["720", "741", "740"]},
+        {"id": "word_formation.family_names", "name": "Family-name plurals and family expressions", "baseline_status": "unmeasured", "source_rule_ids": ["710"]},
+        {"id": "word_formation.adjective_suffixes", "name": "Adjective suffix selection and derivation", "baseline_status": "unmeasured", "source_rule_ids": ["750", "751", "752", "753", "754", "755", "756"]},
+        {"id": "word_formation.variants", "name": "Variant suffixes such as -koli/-koliv", "baseline_status": "unmeasured", "source_rule_ids": ["760"]},
+        {"id": "word_formation.preposition_vocalization", "name": "Preposition vocalization", "baseline_status": "unmeasured", "source_rule_ids": ["770"]},
+        {"id": "word_formation.gendered_surnames", "name": "Feminization of common nouns and surnames", "baseline_status": "unmeasured", "source_rule_ids": ["699", "700", "701", "702", "703", "704", "705"]}
+      ]
+    },
+    {
+      "id": "nouns",
+      "name": "Noun and proper-name morphology",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Gender, animacy, number, case, declension paradigms, vocative, and proper-name inflection.",
+      "ijc_sections": ["ijc-250", "ijc-270", "ijc-315", "ijc-359", "ijc-398"],
+      "geccc_types": ["R:NOUN:INFL", "R:NOUN", "M:NOUN", "U:NOUN", "R:PROPN", "R:PROPN:INFL", "M:PROPN", "U:PROPN"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "nouns.gender", "name": "Noun gender", "baseline_status": "unmeasured", "source_rule_ids": ["200"]},
+        {"id": "nouns.animacy", "name": "Masculine animacy", "baseline_status": "unmeasured", "source_rule_ids": ["201"]},
+        {"id": "nouns.number", "name": "Singular, plural, mass, and pluralia tantum", "baseline_status": "unmeasured", "source_rule_ids": ["202"]},
+        {"id": "nouns.case_common", "name": "Common-noun case and paradigm selection", "baseline_status": "partial", "source_rule_ids": ["220", "221", "222", "223", "224", "225", "226", "227", "228", "229", "230", "250", "251", "252", "253", "254", "255", "260", "261", "262", "263", "264"]},
+        {"id": "nouns.vocative", "name": "Vocative forms", "baseline_status": "unmeasured", "source_rule_ids": ["225"]},
+        {"id": "nouns.personal_names", "name": "Declension of personal names", "baseline_status": "unmeasured", "source_rule_ids": ["315", "320", "321", "322", "323", "324", "325", "326", "350", "351", "352"]},
+        {"id": "nouns.geographic_names", "name": "Declension of geographic names", "baseline_status": "unmeasured", "source_rule_ids": ["359", "360", "361", "370", "371", "372", "380", "390", "395"]},
+        {"id": "nouns.organization_names", "name": "Declension of institutions and companies", "baseline_status": "unmeasured", "source_rule_ids": ["398"]},
+        {"id": "nouns.apposition", "name": "Appositional place-name constructions", "baseline_status": "unmeasured", "source_rule_ids": ["203"]}
+      ]
+    },
+    {
+      "id": "adjectives_adverbs",
+      "name": "Adjective and adverb morphology",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Possessive adjectives, comparison, inflection, and adjective/adverb lexical selection.",
+      "ijc_sections": ["ijc-400"],
+      "geccc_types": ["R:ADJ:INFL", "R:ADJ", "M:ADJ", "U:ADJ", "R:ADV", "R:ADV:INFL", "M:ADV", "U:ADV"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "adjectives_adverbs.possessive", "name": "Individual possessive adjectives", "baseline_status": "unmeasured", "source_rule_ids": ["400"]},
+        {"id": "adjectives_adverbs.comparison", "name": "Comparison of adjectives and adverbs", "baseline_status": "unmeasured", "source_rule_ids": ["410"]},
+        {"id": "adjectives_adverbs.short_long", "name": "Nominal versus compound adjective forms", "baseline_status": "unmeasured", "source_rule_ids": ["420"]},
+        {"id": "adjectives_adverbs.inflection", "name": "Adjective inflection and agreement", "baseline_status": "partial", "source_rule_ids": ["400", "603"]},
+        {"id": "adjectives_adverbs.lexical", "name": "Adjective/adverb lexical substitution or omission", "baseline_status": "unmeasured", "source_rule_ids": ["410", "420"]}
+      ]
+    },
+    {
+      "id": "pronouns_determiners",
+      "name": "Pronouns and determiners",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Case forms, mě/mně, possessive competition, reflexives, and determiner/pronoun choice.",
+      "ijc_sections": ["ijc-440"],
+      "geccc_types": ["M:PRON", "U:PRON", "R:PRON", "R:PRON:INFL", "R:DET", "M:DET", "U:DET"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "pronouns_determiners.me_mne", "name": "mě/mně and forms of já", "baseline_status": "partial", "source_rule_ids": ["650"]},
+        {"id": "pronouns_determiners.possessive", "name": "Possessive pronoun competition", "baseline_status": "unmeasured", "source_rule_ids": ["630"]},
+        {"id": "pronouns_determiners.reflexive", "name": "Reflexive pronouns and verbs", "baseline_status": "unmeasured", "source_rule_ids": ["580"]},
+        {"id": "pronouns_determiners.inflection", "name": "Pronoun case and inflection", "baseline_status": "unmeasured", "source_rule_ids": ["650", "891"]},
+        {"id": "pronouns_determiners.choice", "name": "Missing, unnecessary, or substituted pronouns/determiners", "baseline_status": "unmeasured", "source_rule_ids": ["630", "650"]}
+      ]
+    },
+    {
+      "id": "numerals",
+      "name": "Numerals, numbers, symbols, and counted nouns",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Numeral morphology, number formatting, currencies, numeric compounds, and government of counted nouns.",
+      "ijc_sections": ["ijc-470", "ijc-780"],
+      "geccc_types": ["R:NUM", "R:NUM:INFL", "M:NUM", "U:NUM"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "numerals.two_both", "name": "Forms of dva and oba", "baseline_status": "unmeasured", "source_rule_ids": ["670"]},
+        {"id": "numerals.three_four", "name": "Forms of tři and čtyři", "baseline_status": "unmeasured", "source_rule_ids": ["671"]},
+        {"id": "numerals.grouping_decimals", "name": "Digit grouping, multiword numerals, and decimals", "baseline_status": "guarded", "source_rule_ids": ["791"]},
+        {"id": "numerals.counted_object", "name": "Counted noun after numerals", "baseline_status": "unmeasured", "source_rule_ids": ["792"]},
+        {"id": "numerals.numeric_compounds", "name": "Digit-word compounds and multiplicatives", "baseline_status": "guarded", "source_rule_ids": ["790"]},
+        {"id": "numerals.roman_decades", "name": "Roman numerals, decades, and centuries", "baseline_status": "guarded", "source_rule_ids": ["793", "795"]},
+        {"id": "numerals.currency_symbols", "name": "Numbers, symbols, and currency amounts", "baseline_status": "guarded", "source_rule_ids": ["785", "786"]}
+      ]
+    },
+    {
+      "id": "verbs_auxiliaries",
+      "name": "Verb and auxiliary morphology",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Conjugation, tense, mood, participles, auxiliaries, conditional forms, reflexivity, and transgressives.",
+      "ijc_sections": ["ijc-500"],
+      "geccc_types": ["R:VERB", "R:VERB:INFL", "M:VERB", "U:VERB", "R:AUX", "R:AUX:INFL", "M:AUX", "U:AUX"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "verbs_auxiliaries.conjugation", "name": "Conjugation paradigms and variant forms", "baseline_status": "partial", "source_rule_ids": ["500", "510", "540"]},
+        {"id": "verbs_auxiliaries.participles", "name": "Active and passive participles", "baseline_status": "unmeasured", "source_rule_ids": ["520", "530"]},
+        {"id": "verbs_auxiliaries.imperative", "name": "Imperative", "baseline_status": "unmeasured", "source_rule_ids": ["560"]},
+        {"id": "verbs_auxiliaries.conditional", "name": "Conditional forms byste/abyste/kdybyste and jako by", "baseline_status": "partial", "source_rule_ids": ["575"]},
+        {"id": "verbs_auxiliaries.reflexivity", "name": "Reflexive versus non-reflexive verbs", "baseline_status": "unmeasured", "source_rule_ids": ["580"]},
+        {"id": "verbs_auxiliaries.transgressives", "name": "Transgressives", "baseline_status": "unmeasured", "source_rule_ids": ["590"]},
+        {"id": "verbs_auxiliaries.tense_person_number", "name": "Tense, person, and number", "baseline_status": "partial", "source_rule_ids": ["500", "520", "530"]},
+        {"id": "verbs_auxiliaries.missing_extra_aux", "name": "Missing, unnecessary, or substituted auxiliaries", "baseline_status": "unmeasured", "source_rule_ids": ["575"]}
+      ]
+    },
+    {
+      "id": "syntax",
+      "name": "Agreement, government, valency, coordination, and word order",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "description": "Sentence-level structure and contextual errors not reducible to isolated spelling.",
+      "ijc_sections": ["ijc-600"],
+      "geccc_types": ["R:WO", "R:WO:SPELL", "R:ADP", "M:ADP", "U:ADP", "R:CCONJ", "M:CCONJ", "U:CCONJ", "R:SCONJ", "M:SCONJ", "U:SCONJ", "R:OTHER", "M:OTHER", "U:OTHER"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "syntax.agreement_simple", "name": "Subject-predicate agreement with a simple subject", "baseline_status": "partial", "source_rule_ids": ["600"]},
+        {"id": "syntax.agreement_coordinated", "name": "Agreement with coordinated subjects", "baseline_status": "unmeasured", "source_rule_ids": ["601"]},
+        {"id": "syntax.agreement_complex", "name": "Complex agreement and precedence cases", "baseline_status": "unmeasured", "source_rule_ids": ["602"]},
+        {"id": "syntax.postposed_attribute", "name": "Agreement of postposed attributes", "baseline_status": "unmeasured", "source_rule_ids": ["603"]},
+        {"id": "syntax.predicative_case", "name": "Nominative versus instrumental in nominal predicates", "baseline_status": "unmeasured", "source_rule_ids": ["610"]},
+        {"id": "syntax.valency_government", "name": "Verb/noun valency and case government", "baseline_status": "unmeasured", "source_rule_ids": ["620"]},
+        {"id": "syntax.preposition_choice", "name": "Preposition choice and governed case", "baseline_status": "unmeasured", "source_rule_ids": ["640"]},
+        {"id": "syntax.coordination", "name": "Coordinating conjunction choice and structure", "baseline_status": "unmeasured", "source_rule_ids": ["153", "155", "156"]},
+        {"id": "syntax.subordination", "name": "Subordinating conjunctions and clause attachment", "baseline_status": "partial", "source_rule_ids": ["150"]},
+        {"id": "syntax.word_order", "name": "Word order, clitics, and exact reordering", "baseline_status": "unmeasured", "source_rule_ids": ["575", "600", "620", "650"]}
+      ]
+    },
+    {
+      "id": "particles_interjections",
+      "name": "Particles and interjections",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "description": "Missing, unnecessary, or substituted particles and interjections.",
+      "ijc_sections": [],
+      "geccc_types": ["R:PART", "M:PART", "U:PART", "R:INTJ", "M:INTJ", "U:INTJ"],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "particles_interjections.particles", "name": "Particle insertion, deletion, and substitution", "baseline_status": "unmeasured", "source_rule_ids": ["891"]},
+        {"id": "particles_interjections.interjections", "name": "Interjection insertion, deletion, and substitution", "baseline_status": "unmeasured", "source_rule_ids": ["891"]},
+        {"id": "particles_interjections.discourse_ambiguity", "name": "Discourse-sensitive particle and interjection ambiguity", "baseline_status": "unmeasured", "source_rule_ids": ["894"]}
+      ]
+    },
+    {
+      "id": "documents_typography",
+      "name": "Addresses, dates, time, letters, lists, and document typography",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "description": "Structured writing formats that must be normalized cautiously and often protected from neural rewriting.",
+      "ijc_sections": ["ijc-799"],
+      "geccc_types": [],
+      "required_evidence": ["positive", "negative", "ambiguity"],
+      "phenomena": [
+        {"id": "documents_typography.addresses", "name": "Postal and document addresses", "baseline_status": "guarded", "source_rule_ids": ["800"]},
+        {"id": "documents_typography.dates", "name": "Calendar dates and places of origin", "baseline_status": "guarded", "source_rule_ids": ["810"]},
+        {"id": "documents_typography.time", "name": "Time expressions", "baseline_status": "guarded", "source_rule_ids": ["820"]},
+        {"id": "documents_typography.phone", "name": "Telephone and fax numbers", "baseline_status": "guarded", "source_rule_ids": ["830"]},
+        {"id": "documents_typography.letters", "name": "Letter layout, salutations, closings, and signatures", "baseline_status": "unmeasured", "source_rule_ids": ["840", "850", "860"]},
+        {"id": "documents_typography.lists_linebreaks", "name": "Lists, line breaks, and unsuitable line-end expressions", "baseline_status": "unmeasured", "source_rule_ids": ["870", "880"]},
+        {"id": "documents_typography.citations_sorting", "name": "Bibliographic citations and alphabetical ordering", "baseline_status": "out_of_scope", "source_rule_ids": ["883", "885"]}
+      ]
+    },
+    {
+      "id": "reference_framework",
+      "name": "Normative framework and source literature",
+      "scope": "reference",
+      "baseline_status": "out_of_scope",
+      "description": "Rules for interpreting codification, usage, reference works, terminology, and cited literature.",
+      "ijc_sections": ["ijc-890", "ijc-990"],
+      "geccc_types": [],
+      "required_evidence": ["positive"],
+      "phenomena": [
+        {"id": "reference_framework.norm_usage", "name": "Codification, norm, usage, and language correctness", "baseline_status": "out_of_scope", "source_rule_ids": ["892", "894"]},
+        {"id": "reference_framework.guides_terms", "name": "Reference guides, terminology, and bibliography", "baseline_status": "out_of_scope", "source_rule_ids": ["890", "893", "891", "990"]}
+      ]
+    }
+  ]
+}

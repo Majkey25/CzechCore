@@ -42,6 +42,9 @@ dev = [
     "pytest-cov>=7,<8",
     "ruff>=0.14,<1",
 ]
+research = [
+    "ufal.morphodita==1.11.3.3",
+]
 
 [project.scripts]
 czechcore = "czechcore.cli:main"
@@ -68,7 +71,7 @@ select = ["B", "E", "F", "I", "PERF", "RUF", "SIM", "UP"]
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "strict"
-include = ["src", "tests"]
+include = ["src", "tests", "tools"]
 stubPath = "typings"
 
 [tool.coverage.run]

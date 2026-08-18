@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-18",
+  "dataset_source_id": "dataset-geccc-model-version",
+  "split": "dev",
+  "sentences": 8478,
+  "model_source_id": "model-transformer-base-geccc-mate",
+  "model_revision": "86338eff14fd318c3e8875c911f0778563b4b3b7",
+  "inference": {
+    "beams": 4,
+    "unchanged_candidate": true,
+    "suggestion_min_confidence": 0.25,
+    "max_changed_ratio": 0.35,
+    "batch_size": 16,
+    "device": "cpu"
+  },
+  "runtime": {
+    "elapsed_seconds": 1939.0862436000025,
+    "mean_latency_ms": 228.71977395612203,
+    "changed_sentences": 3985,
+    "warnings": 1961
+  },
+  "initial_pipeline": {
+    "prediction_sha256": "3370e10f2f4a1bb51a6c4c7fd3187b0fbd625cdf31907ed42fd3a29633e34799",
+    "sentence_metrics": {
+      "exact": 4108,
+      "source_correct": 3288,
+      "false_changes": 605,
+      "corrected_errors": 1381,
+      "unchanged_errors": 1810,
+      "wrong_rewrites": 1999
+    },
+    "m2scorer": {
+      "precision": 0.7802,
+      "recall": 0.3673,
+      "f0_5": 0.6370
+    },
+    "czech_errant": {
+      "tp": 5728,
+      "fp": 2259,
+      "fn": 10765,
+      "precision": 0.7172,
+      "recall": 0.3473,
+      "f0_5": 0.5912
+    }
+  },
+  "current_safety_replay": {
+    "rejected_previous_candidates": 153,
+    "sentence_metrics": {
+      "exact": 4152,
+      "source_correct": 3288,
+      "false_changes": 558,
+      "corrected_errors": 1378,
+      "unchanged_errors": 1908,
+      "wrong_rewrites": 1904
+    },
+    "m2scorer": {
+      "precision": 0.7884,
+      "recall": 0.3551,
+      "f0_5": 0.6337
+    }
+  },
+  "confidence_curve": {
+    "batch_size": 16,
+    "diagnostics_sha256": "350acd6a3f81d0ef5f5b00fb3fe1af327ed15b1743334d94a323819f1c5b4210",
+    "threshold_0_25_prediction_sha256": "32a1837766be04fa8e7d375c411a5f7353117981f810774c6aaab44acd8c5e1d",
+    "points": [
+      {"threshold": 0.25, "coverage": 0.45294, "sentence_change_precision": 0.37031, "false_change_rate": 0.16971, "m2_precision": 0.7884, "m2_recall": 0.3551, "m2_f0_5": 0.6337},
+      {"threshold": 0.30, "coverage": 0.25029, "sentence_change_precision": 0.45617, "false_change_rate": 0.12987, "m2_precision": 0.8080, "m2_recall": 0.1491, "m2_f0_5": 0.4289},
+      {"threshold": 0.35, "coverage": 0.14532, "sentence_change_precision": 0.48295, "false_change_rate": 0.08942, "m2_precision": 0.8146, "m2_recall": 0.0748, "m2_f0_5": 0.2735},
+      {"threshold": 0.40, "coverage": 0.08776, "sentence_change_precision": 0.49731, "false_change_rate": 0.06661, "m2_precision": 0.8035, "m2_recall": 0.0394, "m2_f0_5": 0.1648},
+      {"threshold": 0.995, "coverage": 0.0, "sentence_change_precision": 1.0, "false_change_rate": 0.0}
+    ],
+    "decision": "Beam-relative confidence cannot support useful precision-first autocorrect; train a feature-rich ranker/calibrator."
+  },
+  "status": "fails_release_gate",
+  "failures": [
+    "false-change rate on correct source sentences is too high",
+    "confidence is beam-relative and not calibrated",
+    "no scalar confidence threshold provides useful safe coverage",
+    "syntax, valency, conjunction, verb, and OTHER recall are low",
+    "current safety improves precision but loses recall"
+  ]
+}

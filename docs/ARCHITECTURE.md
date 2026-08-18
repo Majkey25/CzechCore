@@ -15,6 +15,20 @@ original text
     -> suggested_text / confidence-gated output_text
 ```
 
+Explicit semantic rewrite uses a separate local path:
+
+```text
+source + proofread candidate
+    -> loopback-only local instruction LLM
+    -> literal/number/structure invariants
+    -> CzechCore post-check
+    -> whole-sentence suggestion marked requires_review
+    -> fallback to proofread on invariant failure
+```
+
+This path is not used by `correct` and cannot silently autocorrect text. A
+semantic-equivalence classifier remains a release gate for broad rewrite quality.
+
 ## Modules
 
 | Module | Responsibility |
@@ -26,6 +40,7 @@ original text
 | `engine.py` | Sentence orchestration, abstention policy, suggestion/autocorrect behavior |
 | `cli.py` | User-facing download/check/version commands and one-time JSON serialization |
 | `benchmark.py` | JSONL boundary validation and sentence-exact metrics |
+| `rewrite.py` | Local LLM client, rewrite invariants, proofread/LLM composition |
 
 Dependencies flow inward through typed protocols: `engine.py` consumes a sentence
 tokenizer and correction backend. Unit tests can verify policy without loading a
@@ -48,8 +63,9 @@ compatibility fallback.
 ## Sentence boundaries
 
 UDPipe creates a fresh tokenizer for each call. For every sentence, CzechCore
-records the first and last `TokenRange`, then joins token forms with spaces for the
-neural model. Whitespace between sentences remains outside edits and is preserved.
+uses surface multiword tokens and their exact ranges, then joins token forms with
+spaces for the neural model. Whitespace between sentences remains outside edits
+and is preserved.
 
 Sentences above the model position limit are not truncated. They receive
 `sentence_too_long` and remain unchanged.
@@ -109,7 +125,8 @@ Model/data files are not part of the MIT-licensed wheel.
 - Four beams trade latency for candidate quality.
 - Each accepted sentence uses `SequenceMatcher`; sentence sizes are bounded by the
   model position limit.
-- Text with many sentences is processed sequentially in `0.1.x`.
+- `correct_many` batches generation and unchanged-candidate scoring while
+  preserving one result per input.
 
 ## Platform adapters
 

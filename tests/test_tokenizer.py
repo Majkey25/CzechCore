@@ -55,3 +55,17 @@ def test_sentence_ranges_preserve_original_text() -> None:
 
     assert [text[item.start : item.end] for item in spans] == ["První věta.", "Druhá věta!"]
     assert spans[0].tokenized == "První věta ."
+
+
+@pytest.mark.model
+def test_multiword_token_preserves_surface_form_and_range() -> None:
+    try:
+        tokenizer = CzechTokenizer()
+    except AssetMissingError:
+        pytest.skip("run `czechcore download` to install model assets")
+
+    text = "Kdybych měla čas, nespěchala bych do práce."
+    span = tokenizer.sentences(text)[0]
+
+    assert text[span.start : span.end] == text
+    assert span.tokenized.startswith("Kdybych měla čas")

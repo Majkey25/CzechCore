@@ -12,6 +12,14 @@ py -3.12 -m venv .venv
 
 The asset command is explicit because runtime inference must remain offline.
 
+MorphoDiTa ranker experiments additionally use the optional research extra:
+
+```powershell
+.venv\Scripts\python -m pip install -e ".[dev,research]"
+```
+
+The core engine and CI import path do not require this optional binding.
+
 ## Quality gates
 
 ```powershell

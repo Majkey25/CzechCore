@@ -48,3 +48,16 @@ def test_real_model_contextual_corrections(
     expected: str,
 ) -> None:
     assert backend.hypotheses(source)[0].text == expected
+
+
+@pytest.mark.model
+def test_real_model_batch_matches_single_predictions(backend: TransformerBackend) -> None:
+    sources = ("Muži přišly domů .", "Když přišel domů šel spát .", "Bili psa .")
+
+    predictions = backend.hypotheses_many(sources)
+
+    assert [items[0].text for items in predictions] == [
+        "Muži přišli domů.",
+        "Když přišel domů, šel spát.",
+        "Bili psa.",
+    ]

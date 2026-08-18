@@ -23,7 +23,10 @@ and include:
 
 - Text correction runs locally. User text is not sent to UFAL, Hugging Face,
   GitHub, or CzechCore services.
-- Network access occurs only through the explicit `czechcore download` command.
+- Remote network access occurs only through explicit asset provisioning.
+- Experimental rewrite calls accept only loopback HTTP (`127.0.0.1` or `::1`)
+  and refuse redirects. The operator must trust the local model
+  server process because it receives the source text.
 - The Transformer snapshot is pinned to a Git revision and loaded with
   `local_files_only=True`; remote model code is not executed.
 - The UDPipe model is downloaded over HTTPS and accepted only after SHA-256

@@ -13,6 +13,7 @@ decisions. The root README is the quick start, not the complete specification.
 | [Architecture](ARCHITECTURE.md) | Runtime flow, modules, assets, trust boundaries |
 | [Development](DEVELOPMENT.md) | Local setup, quality gates, release procedure |
 | [Roadmap](ROADMAP.md) | Evidence-gated future work |
+| [Research program](research/README.md) | Full Czech taxonomy, literature, data, models, training, evaluation |
 | [Decisions](decisions/README.md) | Accepted ADRs and their consequences |
 
 ## Evidence labels

@@ -82,7 +82,8 @@ language-independent and Czech-specific errors. See Pechman et al.,
 DOI `10.1007/978-3-032-02551-7_7`.
 
 Published scores belong to those papers/models. They are not CzechCore acceptance
-scores and are not reproduced by the 35-sentence repository suite.
+scores and are not reproduced by the repository acceptance suite. CzechCore's
+full GECCC development results are reported separately.
 
 ## Tokenization and exact ranges
 

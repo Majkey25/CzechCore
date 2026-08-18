@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from ufal.udpipe import Model, ProcessingError, Sentence
+from ufal.udpipe import Model, MultiwordToken, ProcessingError, Sentence, Word
 
 from czechcore.assets import local_udpipe_model
 
@@ -58,10 +58,30 @@ class CzechTokenizer:
         while tokenizer.nextSentence(sentence, error):
             if len(sentence.words) <= 1:
                 continue
-            words = sentence.words[1:]
-            start, _ = parse_token_range(words[0].misc)
-            _, end = parse_token_range(words[-1].misc)
-            spans.append(SentenceSpan(start, end, " ".join(word.form for word in words)))
+            tokens: list[Word | MultiwordToken] = []
+            multiword_index = 0
+            for word in sentence.words[1:]:
+                while (
+                    multiword_index < len(sentence.multiwordTokens)
+                    and word.id > sentence.multiwordTokens[multiword_index].idLast
+                ):
+                    multiword_index += 1
+                if (
+                    multiword_index < len(sentence.multiwordTokens)
+                    and word.id >= sentence.multiwordTokens[multiword_index].idFirst
+                    and word.id <= sentence.multiwordTokens[multiword_index].idLast
+                ):
+                    multiword = sentence.multiwordTokens[multiword_index]
+                    if word.id > multiword.idFirst:
+                        continue
+                    tokens.append(multiword)
+                else:
+                    tokens.append(word)
+            if not tokens:
+                raise RuntimeError("UDPipe sentence contains no surface tokens")
+            start = tokens[0].getTokenRangeStart()
+            end = tokens[-1].getTokenRangeEnd()
+            spans.append(SentenceSpan(start, end, " ".join(token.form for token in tokens)))
         if error.occurred():
             raise RuntimeError(error.message)
         return tuple(spans)

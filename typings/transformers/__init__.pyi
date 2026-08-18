@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 from os import PathLike
 from typing import Self
 
@@ -20,10 +21,11 @@ class PreTrainedTokenizerFast:
     ) -> Self: ...
     def __call__(
         self,
-        text: str,
+        text: str | Sequence[str],
         *,
         return_tensors: str,
         truncation: bool = ...,
+        padding: bool = ...,
     ) -> dict[str, Tensor]: ...
     def batch_decode(self, sequences: Tensor, *, skip_special_tokens: bool) -> list[str]: ...
     def decode(self, token_ids: Tensor, *, skip_special_tokens: bool) -> str: ...

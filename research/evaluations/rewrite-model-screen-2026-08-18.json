@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-18",
+  "runtime_source_id": "runtime-llamacpp-b10486-windows-cpu",
+  "runtime_build": "b10486-7acdbb1f1",
+  "generation": {
+    "temperature": 0,
+    "top_k": 1,
+    "top_p": 1,
+    "reasoning": false,
+    "max_tokens": 160
+  },
+  "source": "jako jo je to prakticky nejpouzivanejsi nastroj na sirsi obsah nez co ma pip a hodne na ai zamereny",
+  "accepted_reference": "Jako jo, je to prakticky nejpoužívanější nástroj, má širší záběr než pip a je hodně zaměřený na AI.",
+  "results": [
+    {
+      "model_source_id": "model-qwen3-06b-q4-rewrite-candidate",
+      "output": "Je to prakticky nejpouzivanejsi nastroj na sirsi, jehož obsah nez to mám a hodně na AI zamereny.",
+      "passed": false,
+      "failures": [
+        "lost protected tool name pip",
+        "did not restore Czech diacritics consistently",
+        "produced ungrammatical and meaning-damaged text"
+      ]
+    },
+    {
+      "model_source_id": "model-qwen3-4b-q4km-rewrite-candidate",
+      "output": "Jako Jo je to prakticky nejpoužitelnější nástroj na SIRS, obsah než co má PIP a hodně na AI zamerený.",
+      "passed": false,
+      "failures": [
+        "changed protected tool name pip to PIP",
+        "invented SIRS",
+        "changed nejpoužívanější to nejpoužitelnější",
+        "did not restore Czech diacritics consistently"
+      ]
+    },
+    {
+      "model_source_id": "model-qwen35-4b-q4km-rewrite-candidate",
+      "output": "Jako je to prakticky nejpopulárnější nástroj na šíření obsahu než co má PIP a hodně je zaměřeno na AI.",
+      "passed": false,
+      "failures": [
+        "changed protected tool name pip to PIP",
+        "changed nejpoužívanější to nejpopulárnější",
+        "misread širší as šíření",
+        "left the comparison ungrammatical"
+      ]
+    },
+    {
+      "model_source_id": "model-aya-expanse-8b-q4km-rewrite-candidate",
+      "output": "Jako jo je to prakticky nejpoužívanější nástroj na širší obsah, nejen co má pip, a hodně se zaměřuje na umělou inteligenci.",
+      "passed": false,
+      "suite_exact": 4,
+      "suite_total": 12,
+      "suite_invariant_fallbacks": 2,
+      "failures": [
+        "did not reconstruct the comparison as broader scope than pip",
+        "changed the requested AI-orientation phrasing",
+        "failed the exact user acceptance reference"
+      ]
+    }
+  ],
+  "decision": "No screened model is eligible for the rewrite default. Aya is the strongest teacher candidate; continue task-specific Czech fine-tuning/distillation and human semantic evaluation."
+}

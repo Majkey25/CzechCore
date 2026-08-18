@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from collections.abc import Iterable
+from collections.abc import Iterable, Sequence
 from math import exp, isfinite
 from pathlib import Path
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 import torch
 from torch import Tensor
@@ -19,6 +19,14 @@ class SentenceTooLongError(ValueError):
 
 class CorrectionBackend(Protocol):
     def hypotheses(self, tokenized_sentence: str) -> tuple[Hypothesis, ...]: ...
+
+
+@runtime_checkable
+class BatchCorrectionBackend(Protocol):
+    def hypotheses_many(
+        self,
+        tokenized_sentences: Sequence[str],
+    ) -> tuple[tuple[Hypothesis, ...], ...]: ...
 
 
 def normalize_hypotheses(items: Iterable[tuple[str, float]]) -> tuple[Hypothesis, ...]:
@@ -53,8 +61,13 @@ class TransformerBackend:
         self._model.eval()
         self._max_tokens = int(self._model.config.max_position_embeddings)
 
-    def _score_target(self, input_ids: Tensor, attention_mask: Tensor, target: str) -> float:
-        encoded_target = self._tokenizer(target, return_tensors="pt")
+    def _score_targets(
+        self,
+        input_ids: Tensor,
+        attention_mask: Tensor,
+        targets: Sequence[str],
+    ) -> tuple[float, ...]:
+        encoded_target = self._tokenizer(targets, return_tensors="pt", padding=True)
         target_ids = encoded_target["input_ids"].to(self._device)
         with torch.inference_mode():
             output = self._model(
@@ -67,17 +80,33 @@ class TransformerBackend:
         mask = target_ids.ne(self._tokenizer.pad_token_id)
         selected = selected[:, 1:]
         mask = mask[:, 1:]
-        return float(selected[mask].mean().item())
+        return tuple(
+            float(row[valid].mean().item()) for row, valid in zip(selected, mask, strict=True)
+        )
 
     def hypotheses(self, tokenized_sentence: str) -> tuple[Hypothesis, ...]:
-        if not tokenized_sentence.strip():
-            raise ValueError("tokenized sentence cannot be empty")
-        encoded = self._tokenizer(tokenized_sentence, return_tensors="pt", truncation=False)
+        return self.hypotheses_many((tokenized_sentence,))[0]
+
+    def hypotheses_many(
+        self,
+        tokenized_sentences: Sequence[str],
+    ) -> tuple[tuple[Hypothesis, ...], ...]:
+        if not tokenized_sentences:
+            return ()
+        if any(not sentence.strip() for sentence in tokenized_sentences):
+            raise ValueError("tokenized sentences cannot be empty")
+        encoded = self._tokenizer(
+            tokenized_sentences,
+            return_tensors="pt",
+            truncation=False,
+            padding=True,
+        )
         input_ids = encoded["input_ids"].to(self._device)
         attention_mask = encoded["attention_mask"].to(self._device)
-        if input_ids.shape[1] > self._max_tokens:
+        longest = int(attention_mask.sum(dim=1).max().item())
+        if longest > self._max_tokens:
             raise SentenceTooLongError(
-                f"sentence has {input_ids.shape[1]} tokens; maximum is {self._max_tokens}"
+                f"sentence has {longest} tokens; maximum is {self._max_tokens}"
             )
         with torch.inference_mode():
             generated = self._model.generate(
@@ -90,18 +119,24 @@ class TransformerBackend:
                 return_dict_in_generate=True,
                 output_scores=True,
             )
-        candidates: list[tuple[str, float]] = list(
-            zip(
-                self._tokenizer.batch_decode(generated.sequences, skip_special_tokens=True),
-                (float(score) for score in generated.sequences_scores),
-                strict=True,
-            )
+        decoded = self._tokenizer.batch_decode(generated.sequences, skip_special_tokens=True)
+        scores = tuple(float(score) for score in generated.sequences_scores)
+        normalized_sources = tuple(
+            self._tokenizer.decode(row, skip_special_tokens=True) for row in input_ids
         )
-        normalized_source = self._tokenizer.decode(input_ids[0], skip_special_tokens=True)
-        candidates.append(
-            (
-                normalized_source,
-                self._score_target(input_ids, attention_mask, normalized_source),
-            )
+        source_scores = self._score_targets(
+            input_ids,
+            attention_mask,
+            normalized_sources,
         )
-        return normalize_hypotheses(candidates)
+        hypotheses: list[tuple[Hypothesis, ...]] = []
+        for index, (source, source_score) in enumerate(
+            zip(normalized_sources, source_scores, strict=True)
+        ):
+            offset = index * 4
+            candidates = list(
+                zip(decoded[offset : offset + 4], scores[offset : offset + 4], strict=True)
+            )
+            candidates.append((source, source_score))
+            hypotheses.append(normalize_hypotheses(candidates))
+        return tuple(hypotheses)

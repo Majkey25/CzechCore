@@ -15,12 +15,16 @@ _PROTECTED_PATTERNS = tuple(
         r"(?<![\w.+-])[\w.+-]+@[\w-]+(?:\.[\w-]+)+(?![\w-])",
         r"(?<!\w)[A-Za-z]:\\[^\r\n\t<>\"|?*]+",
         r"(?<!\w)v?\d+(?:\.\d+){2,}(?!\w)",
+        r"(?<!\d)\d{1,2}\.\s?\d{1,2}\.\s?\d{4}(?!\d)",
+        r"(?<!\d)(?:\+?\d[\d ]{7,}\d)(?!\d)",
+        r"(?<!\w)[A-ZÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]{2,}(?!\w)",
         r"(?<!\w)(?:[A-Za-z][A-Za-z0-9_]*(?:\+\+|#)[A-Za-z0-9_]*|"
         r"[A-Za-z0-9_]*[a-z][A-Za-z0-9_]*[A-Z][A-Za-z0-9_]*)(?!\w)",
     )
 )
 _TRAILING_SENTENCE_PUNCTUATION = ".,;:!?"
 _ADJACENT_REPEATED_WORD = re.compile(r"(?iu)(?<!\w)([^\W\d_]+)(\s+)\1(?!\w)")
+_QUOTATION_MARKS = '"„“\u201a\u2018«»'
 
 
 class CorrectionKind(StrEnum):
@@ -159,14 +163,17 @@ def protected_literals(text: str) -> tuple[str, ...]:
     return tuple(literals)
 
 
+def protected_literal_count(text: str, literal: str) -> int:
+    if literal and literal[0].isalnum() and literal[-1].isalnum():
+        return len(re.findall(rf"(?<!\w){re.escape(literal)}(?!\w)", text))
+    return text.count(literal)
+
+
 def candidate_is_safe(source: str, candidate: str, max_changed_ratio: float) -> bool:
     if not 0.0 <= max_changed_ratio <= 1.0:
         raise ValueError("max_changed_ratio must be between 0 and 1")
-    if source and not candidate:
+    if not candidate_preserves_invariants(source, candidate):
         return False
-    for literal in protected_literals(source):
-        if candidate.count(literal) < source.count(literal):
-            return False
 
     changed = sum(
         max(source_end - source_start, candidate_end - candidate_start)
@@ -179,6 +186,27 @@ def candidate_is_safe(source: str, candidate: str, max_changed_ratio: float) -> 
         if operation != "equal"
     )
     return changed / max(len(source), 1) <= max_changed_ratio
+
+
+def candidate_preserves_invariants(source: str, candidate: str) -> bool:
+    if source and not candidate:
+        return False
+    for literal in protected_literals(source):
+        if protected_literal_count(candidate, literal) < protected_literal_count(source, literal):
+            return False
+    return _quotation_boundaries(source) == _quotation_boundaries(candidate)
+
+
+def _quotation_boundaries(text: str) -> tuple[tuple[str, bool, bool], ...]:
+    return tuple(
+        (
+            char,
+            index > 0 and text[index - 1].isspace(),
+            index + 1 < len(text) and text[index + 1].isspace(),
+        )
+        for index, char in enumerate(text)
+        if char in _QUOTATION_MARKS
+    )
 
 
 def remove_adjacent_repeated_words(text: str) -> str:

@@ -23,19 +23,23 @@ Když přišel domů, šel spát.
 ## What works
 
 - full-sentence Czech neural correction;
-- spelling, diacritics, punctuation, agreement, and contextual grammar;
+- measured support for spelling, diacritics, punctuation, agreement, and
+  contextual grammar, with substantial known syntax/false-positive gaps;
 - exact Unicode source ranges and structured edits;
 - suggestions without changing the source by default;
 - opt-in confidence-gated autocorrect;
 - protected URLs, email addresses, paths, versions, and code-like tokens;
 - fully local inference after one explicit asset download;
 - CLI and JSON output ready for later Windows/Android adapters.
+- experimental local hybrid rewrite API/CLI with explicit review and invariant
+  fallback; no rewrite model is accepted as default yet.
 
 CzechCore uses the 60.8M-parameter
 [`ufal/transformer-base-geccc-mate`](https://huggingface.co/ufal/transformer-base-geccc-mate)
-model. Its published GECCC F0.5 is 73.73. It is much smaller and slightly more
-accurate than the published 300M ByT5-small baseline, which makes it the best
-available starting point for a future device runtime.
+model. Its published model-card GECCC F0.5 is 73.73; CzechCore's reproduced
+post-safety development score is lower and reported separately below. The model
+is much smaller than the published ByT5 alternatives, making it a useful compact
+baseline, not a finished device engine.
 
 ## Documentation
 
@@ -48,6 +52,7 @@ available starting point for a future device runtime.
 | [Architecture](https://github.com/Majkey25/CzechCore/blob/main/docs/ARCHITECTURE.md) | Components, data flow, assets, trust boundaries |
 | [Development](https://github.com/Majkey25/CzechCore/blob/main/docs/DEVELOPMENT.md) | Setup, quality gates, release process |
 | [Roadmap](https://github.com/Majkey25/CzechCore/blob/main/docs/ROADMAP.md) | Evidence-gated next work |
+| [Research program](https://github.com/Majkey25/CzechCore/blob/main/docs/research/README.md) | 202 IJP rules, 65 GECCC types, 101 phenomena, literature/training/eval |
 | [Decisions](https://github.com/Majkey25/CzechCore/blob/main/docs/decisions/README.md) | Accepted architectural decisions |
 
 ## Install
@@ -135,18 +140,19 @@ czechcore-benchmark benchmarks\cases.jsonl
 
 Measured on 2026-08-18 with CPU inference:
 
-- 35 focused Czech acceptance sentences;
-- 34 exact outputs;
-- 24/25 erroneous sentences corrected exactly;
+- 65 focused Czech acceptance sentences;
+- 60 exact outputs;
+- 34/38 erroneous sentences corrected exactly;
 - 0 wrong alternative rewrites;
-- 0/10 already-correct sentences changed;
-- about 212 ms per sentence after model load.
+- 1/27 already-correct sentences changed;
+- about 77 ms per sentence with fixed batch-16 warm CPU inference after model load.
 
 This small repository suite is regression evidence, not a corpus-wide accuracy
-claim. The remaining known miss is `Petr a Jana šla domů.`; the compact model
-does not currently change `šla` to `šli`. A regex patch would be unsafe. The next
-accuracy step is measured fine-tuning or distillation, not hardcoded sentence
-answers.
+claim. The full 8,478-sentence GECCC development run currently reaches M2
+precision `0.7884`, recall `0.3551`, and F0.5 `0.6337` after the current safety
+replay, while still changing 558/3,288 already-correct source sentences. It
+therefore fails the release gate. See the
+[full baseline](https://github.com/Majkey25/CzechCore/blob/main/docs/research/GECCC_BASELINE.md).
 
 ## Safety and limits
 
@@ -155,6 +161,8 @@ answers.
   protected literals, and sentences beyond the model's 256-token limit.
 - A protected literal can make CzechCore leave the whole sentence unchanged.
 - The neural model is sentence-based; it does not use preceding paragraphs.
+- Meaning-preserving whole-sentence rewrite is specified and benchmarked but not
+  yet part of the public API; the first 0.6B mobile LLM candidate was rejected.
 - Android and Windows integration, ONNX/INT8 export, and personalization are not
   implemented yet. They follow after engine evaluation.
 

@@ -6,6 +6,43 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Versioned research program for full Czech grammar/GEC coverage.
+- Provenance manifest for 39 primary papers, repositories, datasets, model cards,
+  and the complete official IJP rule collection.
+- Machine-readable outline of 22 IJP chapters/202 explanations, aggregate mapping
+  of all 65 GECCC error types, and 13-family/101-phenomenon correction taxonomy.
+- Typed source/taxonomy validators enforced in CI.
+- Scientific syntheses for Czech grammar, GEC literature, corpora/licenses,
+  architectures, synthetic training, confidence, evaluation, portable runtime,
+  and measured research gaps.
+- Machine-readable 101-phenomenon coverage matrix, 65-case proofread acceptance
+  suite, and 12-case semantic rewrite/invariant suite.
+- Full 8,478-sentence GECCC development baseline with M2Scorer, Czech ERRANT,
+  multiple-reference, domain, runtime, and failure reporting.
+- Batched model scoring/correction, configurable research safety thresholds, and
+  detailed benchmark failures.
+- Hybrid local GEC + LLM semantic rewrite architecture and pinned llama.cpp,
+  Qwen, Qwen3.5, and Aya feasibility artifacts with explicit pass/fail evidence.
+- Loopback-only `HybridRewriter` Python API and `czechcore rewrite` CLI with
+  protected-literal masking, high-recall GEC context, conservative fallback,
+  invariant checks, review-only output, and diagnostic post-check disagreement.
+- Fixed batch-16 GECCC confidence/coverage curve proving that scalar beam
+  confidence cannot support useful autocorrect.
+- Reproducible document-grouped MorphoDiTa/logistic ranker experiment; the model
+  artifact remains rejected because validation precision misses the 90% gate.
+
+### Fixed
+
+- Preserve UDPipe surface multiword tokens such as `kdybych` and their exact
+  source ranges.
+- Protect phone numbers, calendar dates, and Czech quotation boundaries from
+  neural punctuation rewrites.
+- Enforce token boundaries for protected literals and recheck invariants globally
+  after all sentence edits, including when UDPipe splits inside a URL/version.
+- Force UTF-8 for benchmark JSON on Windows.
+
 ## [0.1.0] - 2026-08-18
 
 ### Added

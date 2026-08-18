@@ -33,3 +33,33 @@
 {"source":"Mluvili jsme o nový projektu.","reference":"Mluvili jsme o novém projektu.","category":"case_agreement"}
 {"source":"Děkuji za odpověd.","reference":"Děkuji za odpověď.","category":"spelling"}
 {"source":"Na shledanou.","reference":"Na shledanou.","category":"correct_sentence"}
+{"source":"Dúm stojí u silnice.","reference":"Dům stojí u silnice.","category":"u_ring"}
+{"source":"Dům stojí u silnice.","reference":"Dům stojí u silnice.","category":"correct_u_ring"}
+{"source":"Zapoměl klíče doma.","reference":"Zapomněl klíče doma.","category":"letter_e"}
+{"source":"Zapomněl klíče doma.","reference":"Zapomněl klíče doma.","category":"correct_letter_e"}
+{"source":"Deně cvičím.","reference":"Denně cvičím.","category":"n_nn"}
+{"source":"Denně cvičím.","reference":"Denně cvičím.","category":"correct_n_nn"}
+{"source":"Kdy přijdeš","reference":"Kdy přijdeš?","category":"question_mark"}
+{"source":"Kdy přijdeš?","reference":"Kdy přijdeš?","category":"correct_question_mark"}
+{"source":"Přijdu až budu mít čas.","reference":"Přijdu, až budu mít čas.","category":"comma_subordinate_clause"}
+{"source":"Přijdu a zavolám.","reference":"Přijdu a zavolám.","category":"correct_conjunction_a"}
+{"source":"Byl vyšší, než já.","reference":"Byl vyšší než já.","category":"comma_nez"}
+{"source":"Byl vyšší než já.","reference":"Byl vyšší než já.","category":"correct_comma_nez"}
+{"source":"Bydlím v české republice.","reference":"Bydlím v České republice.","category":"geographic_capitalization"}
+{"source":"Bydlím v České republice.","reference":"Bydlím v České republice.","category":"correct_geographic_capitalization"}
+{"source":"Petr, pojď sem.","reference":"Petře, pojď sem.","category":"vocative"}
+{"source":"Petře, pojď sem.","reference":"Petře, pojď sem.","category":"correct_vocative"}
+{"source":"Pošli to mě.","reference":"Pošli to mně.","category":"pronoun_inflection"}
+{"source":"Pošli to mně.","reference":"Pošli to mně.","category":"correct_pronoun_inflection"}
+{"source":"Přišli dvě muži.","reference":"Přišli dva muži.","category":"numeral_two"}
+{"source":"Přišli dva muži.","reference":"Přišli dva muži.","category":"correct_numeral_two"}
+{"source":"Kdyby jste přišli dřív, stihli byste vlak.","reference":"Kdybyste přišli dřív, stihli byste vlak.","category":"conditional_form"}
+{"source":"Kdybyste přišli dřív, stihli byste vlak.","reference":"Kdybyste přišli dřív, stihli byste vlak.","category":"correct_conditional_form"}
+{"source":"Včera ho jsem viděl.","reference":"Včera jsem ho viděl.","category":"word_order"}
+{"source":"Včera jsem ho viděl.","reference":"Včera jsem ho viděl.","category":"correct_word_order"}
+{"source":"Zúčastnil se na schůzce.","reference":"Zúčastnil se schůzky.","category":"valency_government"}
+{"source":"Zúčastnil se schůzky.","reference":"Zúčastnil se schůzky.","category":"correct_valency_government"}
+{"source":"„Přijdu zítra,“ řekl.","reference":"„Přijdu zítra,“ řekl.","category":"correct_quotation"}
+{"source":"Soubor je v C:\\Users\\mates\\projektu.","reference":"Soubor je v C:\\Users\\mates\\projektu.","category":"protected_path"}
+{"source":"Zavolej na 777 123 456.","reference":"Zavolej na 777 123 456.","category":"protected_phone"}
+{"source":"Schůzka je 18. 8. 2026.","reference":"Schůzka je 18. 8. 2026.","category":"protected_date"}

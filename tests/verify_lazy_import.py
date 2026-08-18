@@ -8,6 +8,10 @@ package = importlib.import_module("czechcore")
 if "torch" in sys.modules:
     raise RuntimeError("top-level czechcore import loaded torch")
 
+HybridRewriter = package.HybridRewriter
+if not isinstance(HybridRewriter, type) or "torch" in sys.modules:
+    raise RuntimeError("lazy rewrite export loaded the ML runtime")
+
 CzechCore = package.CzechCore
 
 if (

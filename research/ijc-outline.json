@@ -1,0 +1,1151 @@
+{
+  "schema_version": 1,
+  "source_id": "collection-ijc-general-rules",
+  "source_sha256": "07fb4278382fa7e2ef9a76ef3dd7483896883a7c1ea799608078bbd00486fe8c",
+  "section_count": 22,
+  "rule_count": 202,
+  "sections": [
+    {
+      "id": "ijc-80",
+      "title": "− Výslovnost",
+      "rules": [
+        {
+          "id": "901",
+          "title": "Vztah zvukové a grafické stránky jazyka",
+          "url": "https://prirucka.ujc.cas.cz/?id=901"
+        },
+        {
+          "id": "902",
+          "title": "Fonetická transkripce",
+          "url": "https://prirucka.ujc.cas.cz/?id=902"
+        },
+        {
+          "id": "903",
+          "title": "Tvoření českých samohlásek",
+          "url": "https://prirucka.ujc.cas.cz/?id=903"
+        },
+        {
+          "id": "904",
+          "title": "Odchylky od náležité výslovnosti českých samohlásek",
+          "url": "https://prirucka.ujc.cas.cz/?id=904"
+        },
+        {
+          "id": "905",
+          "title": "Tvoření českých souhlásek",
+          "url": "https://prirucka.ujc.cas.cz/?id=905"
+        },
+        {
+          "id": "906",
+          "title": "Méně známé české souhlásky",
+          "url": "https://prirucka.ujc.cas.cz/?id=906"
+        },
+        {
+          "id": "907",
+          "title": "Výslovnostní pravidla – spojení dvou stejných souhlásek",
+          "url": "https://prirucka.ujc.cas.cz/?id=907"
+        },
+        {
+          "id": "908",
+          "title": "Výslovnostní pravidla – spodoba znělosti",
+          "url": "https://prirucka.ujc.cas.cz/?id=908"
+        },
+        {
+          "id": "909",
+          "title": "Výslovnostní pravidla – zvláštní případy spodoby znělosti",
+          "url": "https://prirucka.ujc.cas.cz/?id=909"
+        },
+        {
+          "id": "910",
+          "title": "Výslovnostní pravidla – změna místa a způsobu tvoření",
+          "url": "https://prirucka.ujc.cas.cz/?id=910"
+        },
+        {
+          "id": "911",
+          "title": "Výslovnostní pravidla – vypouštění a vkládání hlásek",
+          "url": "https://prirucka.ujc.cas.cz/?id=911"
+        },
+        {
+          "id": "912",
+          "title": "Výslovnostní pravidla – výslovnost dalších souhláskových skupin",
+          "url": "https://prirucka.ujc.cas.cz/?id=912"
+        },
+        {
+          "id": "913",
+          "title": "Ráz",
+          "url": "https://prirucka.ujc.cas.cz/?id=913"
+        },
+        {
+          "id": "914",
+          "title": "Výslovnost přejatých slov a vlastních jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=914"
+        },
+        {
+          "id": "915",
+          "title": "Zvukové vlastnosti souvislé řeči",
+          "url": "https://prirucka.ujc.cas.cz/?id=915"
+        }
+      ]
+    },
+    {
+      "id": "ijc-100",
+      "title": "− Pravopis – hláska a písmeno, hranice slov",
+      "rules": [
+        {
+          "id": "149",
+          "title": "Označování hlásek písmeny",
+          "url": "https://prirucka.ujc.cas.cz/?id=149"
+        },
+        {
+          "id": "103",
+          "title": "Psaní i, í – y, ý",
+          "url": "https://prirucka.ujc.cas.cz/?id=103"
+        },
+        {
+          "id": "100",
+          "title": "Vyjmenovaná slova",
+          "url": "https://prirucka.ujc.cas.cz/?id=100"
+        },
+        {
+          "id": "101",
+          "title": "Předponová slovesa odvozená od být – bít",
+          "url": "https://prirucka.ujc.cas.cz/?id=101"
+        },
+        {
+          "id": "126",
+          "title": "Písmeno ě",
+          "url": "https://prirucka.ujc.cas.cz/?id=126"
+        },
+        {
+          "id": "127",
+          "title": "Psaní﻿ ú – ů",
+          "url": "https://prirucka.ujc.cas.cz/?id=127"
+        },
+        {
+          "id": "125",
+          "title": "Psaní n – nn",
+          "url": "https://prirucka.ujc.cas.cz/?id=125"
+        },
+        {
+          "id": "110",
+          "title": "Psaní předpon s(e)-, z(e)-",
+          "url": "https://prirucka.ujc.cas.cz/?id=110"
+        },
+        {
+          "id": "111",
+          "title": "Psaní předložek s, z (z postele, s knihou, s sebou × sebou)",
+          "url": "https://prirucka.ujc.cas.cz/?id=111"
+        },
+        {
+          "id": "120",
+          "title": "Počešťování přejatých slov včetně vlastních jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=120"
+        },
+        {
+          "id": "121",
+          "title": "Pravopis a výslovnost přejatých slov se s – z",
+          "url": "https://prirucka.ujc.cas.cz/?id=121"
+        },
+        {
+          "id": "122",
+          "title": "Psaní samohlásek v zakončení přejatých slov",
+          "url": "https://prirucka.ujc.cas.cz/?id=122"
+        },
+        {
+          "id": "123",
+          "title": "Psaní dis-, dys-, poli-, poly-, vice-, více-",
+          "url": "https://prirucka.ujc.cas.cz/?id=123"
+        },
+        {
+          "id": "124",
+          "title": "Psaní slov s částí radio-, -manie/-mánie, -fuze/-fúze, -fobie",
+          "url": "https://prirucka.ujc.cas.cz/?id=124"
+        },
+        {
+          "id": "130",
+          "title": "Psaní spřežek a spřahování",
+          "url": "https://prirucka.ujc.cas.cz/?id=130"
+        },
+        {
+          "id": "140",
+          "title": "Složená přídavná jména",
+          "url": "https://prirucka.ujc.cas.cz/?id=140"
+        },
+        {
+          "id": "135",
+          "title": "Dělení slov na konci řádku",
+          "url": "https://prirucka.ujc.cas.cz/?id=135"
+        },
+        {
+          "id": "148",
+          "title": "Z historie českého pravopisu",
+          "url": "https://prirucka.ujc.cas.cz/?id=148"
+        }
+      ]
+    },
+    {
+      "id": "ijc-150",
+      "title": "− Pravopis – interpunkce",
+      "rules": [
+        {
+          "id": "150",
+          "title": "Psaní čárky v souvětí",
+          "url": "https://prirucka.ujc.cas.cz/?id=150"
+        },
+        {
+          "id": "151",
+          "title": "Psaní čárky ve větě jednoduché",
+          "url": "https://prirucka.ujc.cas.cz/?id=151"
+        },
+        {
+          "id": "152",
+          "title": "Psaní čárky v infinitivních konstrukcích",
+          "url": "https://prirucka.ujc.cas.cz/?id=152"
+        },
+        {
+          "id": "153",
+          "title": "Psaní čárky před spojkami a, i, ani",
+          "url": "https://prirucka.ujc.cas.cz/?id=153"
+        },
+        {
+          "id": "154",
+          "title": "Psaní čárky před spojkami jako, než",
+          "url": "https://prirucka.ujc.cas.cz/?id=154"
+        },
+        {
+          "id": "155",
+          "title": "Psaní čárky před spojkami nebo, či",
+          "url": "https://prirucka.ujc.cas.cz/?id=155"
+        },
+        {
+          "id": "156",
+          "title": "Psaní čárky před spojkami anebo, aneb, čili, neboli",
+          "url": "https://prirucka.ujc.cas.cz/?id=156"
+        },
+        {
+          "id": "157",
+          "title": "Psaní čárky před výrazy eventuálně, respektive, případně",
+          "url": "https://prirucka.ujc.cas.cz/?id=157"
+        },
+        {
+          "id": "158",
+          "title": "Psaní čárky před výrazy včetně, ne-li",
+          "url": "https://prirucka.ujc.cas.cz/?id=158"
+        },
+        {
+          "id": "160",
+          "title": "Tečka",
+          "url": "https://prirucka.ujc.cas.cz/?id=160"
+        },
+        {
+          "id": "171",
+          "title": "Otazník",
+          "url": "https://prirucka.ujc.cas.cz/?id=171"
+        },
+        {
+          "id": "172",
+          "title": "Vykřičník",
+          "url": "https://prirucka.ujc.cas.cz/?id=172"
+        },
+        {
+          "id": "173",
+          "title": "Středník",
+          "url": "https://prirucka.ujc.cas.cz/?id=173"
+        },
+        {
+          "id": "161",
+          "title": "Dvojtečka",
+          "url": "https://prirucka.ujc.cas.cz/?id=161"
+        },
+        {
+          "id": "162",
+          "title": "Uvozovky",
+          "url": "https://prirucka.ujc.cas.cz/?id=162"
+        },
+        {
+          "id": "163",
+          "title": "Závorky",
+          "url": "https://prirucka.ujc.cas.cz/?id=163"
+        },
+        {
+          "id": "164",
+          "title": "Spojovník",
+          "url": "https://prirucka.ujc.cas.cz/?id=164"
+        },
+        {
+          "id": "165",
+          "title": "Pomlčka",
+          "url": "https://prirucka.ujc.cas.cz/?id=165"
+        },
+        {
+          "id": "166",
+          "title": "Tři tečky",
+          "url": "https://prirucka.ujc.cas.cz/?id=166"
+        },
+        {
+          "id": "167",
+          "title": "Lomítko",
+          "url": "https://prirucka.ujc.cas.cz/?id=167"
+        },
+        {
+          "id": "168",
+          "title": "Apostrof",
+          "url": "https://prirucka.ujc.cas.cz/?id=168"
+        }
+      ]
+    },
+    {
+      "id": "ijc-180",
+      "title": "− Pravopis – velká písmena",
+      "rules": [
+        {
+          "id": "180",
+          "title": "Psaní velkých písmen – obecné poučení",
+          "url": "https://prirucka.ujc.cas.cz/?id=180"
+        },
+        {
+          "id": "181",
+          "title": "Velká písmena – jména živých bytostí a přídavná jména od nich odvozená",
+          "url": "https://prirucka.ujc.cas.cz/?id=181"
+        },
+        {
+          "id": "182",
+          "title": "Velká písmena – hvězdářská jména a astrologická znamení",
+          "url": "https://prirucka.ujc.cas.cz/?id=182"
+        },
+        {
+          "id": "183",
+          "title": "Velká písmena – světadíly, země, území",
+          "url": "https://prirucka.ujc.cas.cz/?id=183"
+        },
+        {
+          "id": "184",
+          "title": "Velká písmena – vodstva, hory, pohoří, nížiny",
+          "url": "https://prirucka.ujc.cas.cz/?id=184"
+        },
+        {
+          "id": "185",
+          "title": "Velká písmena – obce, města, městské části, sídliště a čtvrti",
+          "url": "https://prirucka.ujc.cas.cz/?id=185"
+        },
+        {
+          "id": "186",
+          "title": "Velká písmena – ulice, třídy, nábřeží, náměstí, mosty, sady, zahrady, aleje, kolonády",
+          "url": "https://prirucka.ujc.cas.cz/?id=186"
+        },
+        {
+          "id": "187",
+          "title": "Velká písmena – stavby a jejich části, stanice a zastávky",
+          "url": "https://prirucka.ujc.cas.cz/?id=187"
+        },
+        {
+          "id": "188",
+          "title": "Velká písmena – organizace (státy, správní oblasti, zastupitelské sbory, ministerstva, školy, divadla apod.)",
+          "url": "https://prirucka.ujc.cas.cz/?id=188"
+        },
+        {
+          "id": "189",
+          "title": "Velká písmena – organizační složky (pobočka, úsek, odbor, výbor apod.)",
+          "url": "https://prirucka.ujc.cas.cz/?id=189"
+        },
+        {
+          "id": "190",
+          "title": "Velká písmena – dokumenty, umělecká a odborná díla",
+          "url": "https://prirucka.ujc.cas.cz/?id=190"
+        },
+        {
+          "id": "191",
+          "title": "Velká písmena – dějinné události, památné dny a svátky",
+          "url": "https://prirucka.ujc.cas.cz/?id=191"
+        },
+        {
+          "id": "193",
+          "title": "Velká písmena – akce, soutěže",
+          "url": "https://prirucka.ujc.cas.cz/?id=193"
+        },
+        {
+          "id": "192",
+          "title": "Velká písmena – výrobky, odrůdy, plemena",
+          "url": "https://prirucka.ujc.cas.cz/?id=192"
+        },
+        {
+          "id": "194",
+          "title": "Velká písmena – vyznamenání",
+          "url": "https://prirucka.ujc.cas.cz/?id=194"
+        },
+        {
+          "id": "195",
+          "title": "Velká písmena – zástupné názvy",
+          "url": "https://prirucka.ujc.cas.cz/?id=195"
+        },
+        {
+          "id": "196",
+          "title": "Velká písmena – přírodní útvary",
+          "url": "https://prirucka.ujc.cas.cz/?id=196"
+        }
+      ]
+    },
+    {
+      "id": "ijc-199",
+      "title": "− Morfematika",
+      "rules": [
+        {
+          "id": "778",
+          "title": "Morfematika",
+          "url": "https://prirucka.ujc.cas.cz/?id=778"
+        }
+      ]
+    },
+    {
+      "id": "ijc-200",
+      "title": "− Slovotvorba",
+      "rules": [
+        {
+          "id": "730",
+          "title": "Změny hlásek při tvoření slov",
+          "url": "https://prirucka.ujc.cas.cz/?id=730"
+        },
+        {
+          "id": "720",
+          "title": "Tvoření obyvatelských jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=720"
+        },
+        {
+          "id": "741",
+          "title": "Podstatná jména zakončená na -ák",
+          "url": "https://prirucka.ujc.cas.cz/?id=741"
+        },
+        {
+          "id": "740",
+          "title": "Podstatná jména zakončená na -ant, -ent a -and, -end",
+          "url": "https://prirucka.ujc.cas.cz/?id=740"
+        },
+        {
+          "id": "710",
+          "title": "Typ bratři Novákovi – Novákové, bratři Skotničtí – Skotnických, rodina Novákova – Novákových, rodina Skotnická – Skotnických, Novákovi, Skotničtí",
+          "url": "https://prirucka.ujc.cas.cz/?id=710"
+        },
+        {
+          "id": "743",
+          "title": "Domácké podoby rodných jmen (Klárinka, Luki/Luky)",
+          "url": "https://prirucka.ujc.cas.cz/?id=743"
+        },
+        {
+          "id": "725",
+          "title": "Česko",
+          "url": "https://prirucka.ujc.cas.cz/?id=725"
+        },
+        {
+          "id": "750",
+          "title": "Přídavná jména zakončená na -icí, -ící",
+          "url": "https://prirucka.ujc.cas.cz/?id=750"
+        },
+        {
+          "id": "751",
+          "title": "Přídavná jména zakončená na -ní, -ný",
+          "url": "https://prirucka.ujc.cas.cz/?id=751"
+        },
+        {
+          "id": "752",
+          "title": "Přídavná jména zakončená na -ální, -ární",
+          "url": "https://prirucka.ujc.cas.cz/?id=752"
+        },
+        {
+          "id": "753",
+          "title": "Přídavná jména zakončená na -ční, -ivní",
+          "url": "https://prirucka.ujc.cas.cz/?id=753"
+        },
+        {
+          "id": "754",
+          "title": "Přídavná jména typu puškinský – puškinovský",
+          "url": "https://prirucka.ujc.cas.cz/?id=754"
+        },
+        {
+          "id": "755",
+          "title": "Tvoření přídavných jmen od jmen zeměpisných",
+          "url": "https://prirucka.ujc.cas.cz/?id=755"
+        },
+        {
+          "id": "756",
+          "title": "Tvoření přídavných jmen přivlastňovacích od ženských osobních jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=756"
+        },
+        {
+          "id": "760",
+          "title": "Typ ačkoli – ačkoliv, kdokoli – kdokoliv",
+          "url": "https://prirucka.ujc.cas.cz/?id=760"
+        },
+        {
+          "id": "770",
+          "title": "Vokalizace předložek (v třetí – ve třetí)",
+          "url": "https://prirucka.ujc.cas.cz/?id=770"
+        }
+      ]
+    },
+    {
+      "id": "ijc-239",
+      "title": "− Slovotvorba – přechylování",
+      "rules": [
+        {
+          "id": "699",
+          "title": "Přechylování obecných jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=699"
+        },
+        {
+          "id": "700",
+          "title": "Přechylování příjmení ve veřejné komunikaci",
+          "url": "https://prirucka.ujc.cas.cz/?id=700"
+        },
+        {
+          "id": "701",
+          "title": "Přechylování příjmení, která mají formu podstatného jména a ve výslovnosti jsou zakončena na souhlásku (typ Novák – Nováková)",
+          "url": "https://prirucka.ujc.cas.cz/?id=701"
+        },
+        {
+          "id": "702",
+          "title": "Přechylování příjmení, která mají formu podstatného jména a ve výslovnosti jsou zakončena na samohlásku (typ Svoboda – Svobodová)",
+          "url": "https://prirucka.ujc.cas.cz/?id=702"
+        },
+        {
+          "id": "703",
+          "title": "Přechylování příjmení, která mají formu přídavného jména (typ Zelený – Zelená)",
+          "url": "https://prirucka.ujc.cas.cz/?id=703"
+        },
+        {
+          "id": "704",
+          "title": "Přechylování víceslovných příjmení",
+          "url": "https://prirucka.ujc.cas.cz/?id=704"
+        },
+        {
+          "id": "705",
+          "title": "Přechylování ženských příjmení pocházejících z jazyků, které mají vlastní přechylovací prostředky",
+          "url": "https://prirucka.ujc.cas.cz/?id=705"
+        }
+      ]
+    },
+    {
+      "id": "ijc-250",
+      "title": "− Tvarosloví – podstatná jména",
+      "rules": [
+        {
+          "id": "200",
+          "title": "Rod podstatných jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=200"
+        },
+        {
+          "id": "201",
+          "title": "Životnost podstatných jmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=201"
+        },
+        {
+          "id": "202",
+          "title": "Číslo podstatných jmen (dvoje housle, hromady listí)",
+          "url": "https://prirucka.ujc.cas.cz/?id=202"
+        },
+        {
+          "id": "203",
+          "title": "Spojení typu ve městě Olomouc",
+          "url": "https://prirucka.ujc.cas.cz/?id=203"
+        }
+      ]
+    },
+    {
+      "id": "ijc-270",
+      "title": "− Skloňování obecných jmen",
+      "rules": [
+        {
+          "id": "220",
+          "title": "Skloňování mužských jmen kolísajících mezi měkkým a tvrdým skloňováním",
+          "url": "https://prirucka.ujc.cas.cz/?id=220"
+        },
+        {
+          "id": "221",
+          "title": "Skloňování mužských jmen vzoru „hrad“ – 2. p. j. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=221"
+        },
+        {
+          "id": "222",
+          "title": "Skloňování mužských jmen vzoru „předseda“ – 2. p. j. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=222"
+        },
+        {
+          "id": "223",
+          "title": "Skloňování mužských jmen vzoru „hrad“ – 6. p. j. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=223"
+        },
+        {
+          "id": "224",
+          "title": "Skloňování mužských životných jmen – konkurence krátkých a dlouhých tvarů ve 3. (6.) p. j. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=224"
+        },
+        {
+          "id": "225",
+          "title": "Skloňování mužských jmen – 5. p. j. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=225"
+        },
+        {
+          "id": "226",
+          "title": "Skloňování mužských životných jmen – 1. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=226"
+        },
+        {
+          "id": "227",
+          "title": "Skloňování mužských jmen – 2. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=227"
+        },
+        {
+          "id": "228",
+          "title": "Skloňování mužských jmen – 6. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=228"
+        },
+        {
+          "id": "229",
+          "title": "Skloňování mužských jmen zakončených na -us, -ius, -eus, -os, -es",
+          "url": "https://prirucka.ujc.cas.cz/?id=229"
+        },
+        {
+          "id": "230",
+          "title": "Skloňování mužských jmen typu guru, kuli, grizzly, kádí, hippie",
+          "url": "https://prirucka.ujc.cas.cz/?id=230"
+        },
+        {
+          "id": "250",
+          "title": "Skloňování ženských jmen vzoru „žena“ – 2. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=250"
+        },
+        {
+          "id": "251",
+          "title": "Skloňování ženských jmen kolísajících mezi vzory „píseň“ a „kost“",
+          "url": "https://prirucka.ujc.cas.cz/?id=251"
+        },
+        {
+          "id": "252",
+          "title": "Skloňování ženských jmen zakončených na -ca, -ča, -ša, -ža, -ja, -ňa",
+          "url": "https://prirucka.ujc.cas.cz/?id=252"
+        },
+        {
+          "id": "253",
+          "title": "Skloňování ženských jmen zakončených na -ea, -oa, -ua, -ia, -oe",
+          "url": "https://prirucka.ujc.cas.cz/?id=253"
+        },
+        {
+          "id": "254",
+          "title": "Skloňování ženských jmen zakončených na -is, -ida",
+          "url": "https://prirucka.ujc.cas.cz/?id=254"
+        },
+        {
+          "id": "255",
+          "title": "Skloňování ženských jmen vzoru „růže“ – 2. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=255"
+        },
+        {
+          "id": "260",
+          "title": "Skloňování jmen středního rodu podle vzoru „město“ – 6. p. j. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=260"
+        },
+        {
+          "id": "261",
+          "title": "Skloňování jmen středního rodu podle vzoru „město“ – 2. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=261"
+        },
+        {
+          "id": "262",
+          "title": "Skloňování jmen středního rodu podle vzoru „město“ – 6. p. mn. č.",
+          "url": "https://prirucka.ujc.cas.cz/?id=262"
+        },
+        {
+          "id": "263",
+          "title": "Skloňování jmen středního rodu zakončených na -um, -on, -ma",
+          "url": "https://prirucka.ujc.cas.cz/?id=263"
+        },
+        {
+          "id": "264",
+          "title": "Skloňování jmen středního rodu zakončených na -ao, -eo, -io, -yo, -uo",
+          "url": "https://prirucka.ujc.cas.cz/?id=264"
+        }
+      ]
+    },
+    {
+      "id": "ijc-315",
+      "title": "− Skloňování osobních jmen",
+      "rules": [
+        {
+          "id": "315",
+          "title": "Skloňování osobních jmen – úvod",
+          "url": "https://prirucka.ujc.cas.cz/?id=315"
+        },
+        {
+          "id": "320",
+          "title": "Osobní jména mužská zakončená ve výslovnosti na souhlásku",
+          "url": "https://prirucka.ujc.cas.cz/?id=320"
+        },
+        {
+          "id": "321",
+          "title": "Osobní jména mužská zakončená ve výslovnosti na [a], [á]",
+          "url": "https://prirucka.ujc.cas.cz/?id=321"
+        },
+        {
+          "id": "322",
+          "title": "Osobní jména mužská zakončená ve výslovnosti na [e], [é]",
+          "url": "https://prirucka.ujc.cas.cz/?id=322"
+        },
+        {
+          "id": "323",
+          "title": "Osobní jména mužská zakončená ve výslovnosti na [i], [í]",
+          "url": "https://prirucka.ujc.cas.cz/?id=323"
+        },
+        {
+          "id": "324",
+          "title": "Osobní jména mužská zakončená ve výslovnosti na [o], [ó]",
+          "url": "https://prirucka.ujc.cas.cz/?id=324"
+        },
+        {
+          "id": "325",
+          "title": "Osobní jména mužská zakončená ve výslovnosti na [u], [ú], [ou], [au]",
+          "url": "https://prirucka.ujc.cas.cz/?id=325"
+        },
+        {
+          "id": "326",
+          "title": "Osobní jména víceslovná",
+          "url": "https://prirucka.ujc.cas.cz/?id=326"
+        },
+        {
+          "id": "350",
+          "title": "Osobní jména ženská zakončená ve výslovnosti na [a], [á]",
+          "url": "https://prirucka.ujc.cas.cz/?id=350"
+        },
+        {
+          "id": "351",
+          "title": "Osobní jména ženská zakončená ve výslovnosti na [e], [é], [o], [ó], [u], [ú], [ou], [i], [í]",
+          "url": "https://prirucka.ujc.cas.cz/?id=351"
+        },
+        {
+          "id": "352",
+          "title": "Osobní jména ženská zakončená ve výslovnosti na souhlásku",
+          "url": "https://prirucka.ujc.cas.cz/?id=352"
+        }
+      ]
+    },
+    {
+      "id": "ijc-359",
+      "title": "− Skloňování zeměpisných jmen",
+      "rules": [
+        {
+          "id": "359",
+          "title": "Skloňování zeměpisných jmen – úvod",
+          "url": "https://prirucka.ujc.cas.cz/?id=359"
+        },
+        {
+          "id": "360",
+          "title": "Zeměpisná jména mužská zakončená ve výslovnosti na souhlásku",
+          "url": "https://prirucka.ujc.cas.cz/?id=360"
+        },
+        {
+          "id": "361",
+          "title": "Zeměpisná jména mužská zakončená ve výslovnosti na samohlásku",
+          "url": "https://prirucka.ujc.cas.cz/?id=361"
+        },
+        {
+          "id": "370",
+          "title": "Zeměpisná jména ženská zakončená ve výslovnosti na [a], [á]",
+          "url": "https://prirucka.ujc.cas.cz/?id=370"
+        },
+        {
+          "id": "371",
+          "title": "Zeměpisná jména ženská zakončená ve výslovnosti na [e], [i]",
+          "url": "https://prirucka.ujc.cas.cz/?id=371"
+        },
+        {
+          "id": "372",
+          "title": "Zeměpisná jména ženská zakončená ve výslovnosti na souhlásku",
+          "url": "https://prirucka.ujc.cas.cz/?id=372"
+        },
+        {
+          "id": "380",
+          "title": "Zeměpisná jména středního rodu",
+          "url": "https://prirucka.ujc.cas.cz/?id=380"
+        },
+        {
+          "id": "390",
+          "title": "Zeměpisná jména víceslovná",
+          "url": "https://prirucka.ujc.cas.cz/?id=390"
+        },
+        {
+          "id": "395",
+          "title": "Zeměpisná jména pomnožná",
+          "url": "https://prirucka.ujc.cas.cz/?id=395"
+        }
+      ]
+    },
+    {
+      "id": "ijc-398",
+      "title": "− Skloňování názvů institucí a firem",
+      "rules": [
+        {
+          "id": "398",
+          "title": "Skloňování názvů institucí a firem",
+          "url": "https://prirucka.ujc.cas.cz/?id=398"
+        }
+      ]
+    },
+    {
+      "id": "ijc-400",
+      "title": "− Tvarosloví – přídavná jména",
+      "rules": [
+        {
+          "id": "400",
+          "title": "Přídavná jména individuálně přivlastňovací",
+          "url": "https://prirucka.ujc.cas.cz/?id=400"
+        },
+        {
+          "id": "410",
+          "title": "Stupňování přídavných jmen a příslovcí",
+          "url": "https://prirucka.ujc.cas.cz/?id=410"
+        },
+        {
+          "id": "420",
+          "title": "Konkurence jmenných a složených tvarů přídavných jmen, konkurence přídavných jmen a příčestí trpného",
+          "url": "https://prirucka.ujc.cas.cz/?id=420"
+        }
+      ]
+    },
+    {
+      "id": "ijc-440",
+      "title": "− Tvarosloví – zájmena",
+      "rules": [
+        {
+          "id": "650",
+          "title": "Tvary zájmena já",
+          "url": "https://prirucka.ujc.cas.cz/?id=650"
+        },
+        {
+          "id": "630",
+          "title": "Konkurence přivlastňovacích zájmen",
+          "url": "https://prirucka.ujc.cas.cz/?id=630"
+        }
+      ]
+    },
+    {
+      "id": "ijc-470",
+      "title": "− Tvarosloví – číslovky",
+      "rules": [
+        {
+          "id": "670",
+          "title": "Dva, oba",
+          "url": "https://prirucka.ujc.cas.cz/?id=670"
+        },
+        {
+          "id": "671",
+          "title": "Tři, čtyři",
+          "url": "https://prirucka.ujc.cas.cz/?id=671"
+        },
+        {
+          "id": "791",
+          "title": "Členění čísel, víceslovné číslovkové výrazy (typ 365, 2 582) a desetinná čísla",
+          "url": "https://prirucka.ujc.cas.cz/?id=791"
+        },
+        {
+          "id": "792",
+          "title": "Počítaný předmět po číslovkách",
+          "url": "https://prirucka.ujc.cas.cz/?id=792"
+        }
+      ]
+    },
+    {
+      "id": "ijc-500",
+      "title": "− Tvarosloví – slovesa",
+      "rules": [
+        {
+          "id": "500",
+          "title": "Slovesa vzorů „mazat“, „brát“, „krýt“, „kupovat“ (mažu – maži, ořu – orám, kryjí – kryjou)",
+          "url": "https://prirucka.ujc.cas.cz/?id=500"
+        },
+        {
+          "id": "510",
+          "title": "Slovesa vzoru „péci“ (infinitiv -ci – -ct)",
+          "url": "https://prirucka.ujc.cas.cz/?id=510"
+        },
+        {
+          "id": "520",
+          "title": "Slovesa vzoru „tisknout“ (příčestí činné a trpné)",
+          "url": "https://prirucka.ujc.cas.cz/?id=520"
+        },
+        {
+          "id": "530",
+          "title": "Slovesa vzoru „začít“ (příčestí činné a trpné)",
+          "url": "https://prirucka.ujc.cas.cz/?id=530"
+        },
+        {
+          "id": "540",
+          "title": "Slovesa vzoru „sázet“",
+          "url": "https://prirucka.ujc.cas.cz/?id=540"
+        },
+        {
+          "id": "560",
+          "title": "Rozkazovací způsob 4. slovesné třídy (leč – léči)",
+          "url": "https://prirucka.ujc.cas.cz/?id=560"
+        },
+        {
+          "id": "575",
+          "title": "Podmiňovací způsob (byste, abyste, kdybyste, jakoby a jako by)",
+          "url": "https://prirucka.ujc.cas.cz/?id=575"
+        },
+        {
+          "id": "580",
+          "title": "Zvratná a nezvratná slovesa",
+          "url": "https://prirucka.ujc.cas.cz/?id=580"
+        },
+        {
+          "id": "590",
+          "title": "Přechodníky",
+          "url": "https://prirucka.ujc.cas.cz/?id=590"
+        }
+      ]
+    },
+    {
+      "id": "ijc-600",
+      "title": "− Větná stavba",
+      "rules": [
+        {
+          "id": "600",
+          "title": "Shoda přísudku s podmětem jednoduchým",
+          "url": "https://prirucka.ujc.cas.cz/?id=600"
+        },
+        {
+          "id": "601",
+          "title": "Shoda přísudku s podmětem několikanásobným",
+          "url": "https://prirucka.ujc.cas.cz/?id=601"
+        },
+        {
+          "id": "602",
+          "title": "Složitější případy shody přísudku s podmětem",
+          "url": "https://prirucka.ujc.cas.cz/?id=602"
+        },
+        {
+          "id": "603",
+          "title": "Shoda postponovaného přívlastku (týkající se, vztahující se)",
+          "url": "https://prirucka.ujc.cas.cz/?id=603"
+        },
+        {
+          "id": "610",
+          "title": "Konkurence 1. a 7. p. v přísudku jmenném se sponou",
+          "url": "https://prirucka.ujc.cas.cz/?id=610"
+        },
+        {
+          "id": "620",
+          "title": "Slovesné a jmenné vazby",
+          "url": "https://prirucka.ujc.cas.cz/?id=620"
+        },
+        {
+          "id": "640",
+          "title": "Konkurence předložek v(e) – na, do – na",
+          "url": "https://prirucka.ujc.cas.cz/?id=640"
+        }
+      ]
+    },
+    {
+      "id": "ijc-780",
+      "title": "− Zkratky, značky, čísla a číslovky",
+      "rules": [
+        {
+          "id": "780",
+          "title": "Zkratky čistě grafické (p., mil., mld., s. r. o., tzn., fa)",
+          "url": "https://prirucka.ujc.cas.cz/?id=780"
+        },
+        {
+          "id": "781",
+          "title": "Zkratky iniciálové (ČR, DIČ, SMS, SÚKL, IKEA)",
+          "url": "https://prirucka.ujc.cas.cz/?id=781"
+        },
+        {
+          "id": "784",
+          "title": "Zkratková slova",
+          "url": "https://prirucka.ujc.cas.cz/?id=784"
+        },
+        {
+          "id": "782",
+          "title": "Zkratky titulů a hodností",
+          "url": "https://prirucka.ujc.cas.cz/?id=782"
+        },
+        {
+          "id": "783",
+          "title": "Pořadí titulů",
+          "url": "https://prirucka.ujc.cas.cz/?id=783"
+        },
+        {
+          "id": "785",
+          "title": "Značky, čísla a číslice",
+          "url": "https://prirucka.ujc.cas.cz/?id=785"
+        },
+        {
+          "id": "786",
+          "title": "Peněžní částky, značky měn",
+          "url": "https://prirucka.ujc.cas.cz/?id=786"
+        },
+        {
+          "id": "790",
+          "title": "Tvoření a psaní výrazů složených z číslic a slov (typ 12procentní, 20krát)",
+          "url": "https://prirucka.ujc.cas.cz/?id=790"
+        },
+        {
+          "id": "793",
+          "title": "Římské číslice",
+          "url": "https://prirucka.ujc.cas.cz/?id=793"
+        },
+        {
+          "id": "795",
+          "title": "Desetiletí a století (20. a 30. léta, 20. a 21. století)",
+          "url": "https://prirucka.ujc.cas.cz/?id=795"
+        }
+      ]
+    },
+    {
+      "id": "ijc-799",
+      "title": "− Dopisy a grafická úprava písemností",
+      "rules": [
+        {
+          "id": "799",
+          "title": "Dopisy a grafická úprava písemností – úvod",
+          "url": "https://prirucka.ujc.cas.cz/?id=799"
+        },
+        {
+          "id": "800",
+          "title": "Adresy",
+          "url": "https://prirucka.ujc.cas.cz/?id=800"
+        },
+        {
+          "id": "810",
+          "title": "Kalendářní datum a místo původu",
+          "url": "https://prirucka.ujc.cas.cz/?id=810"
+        },
+        {
+          "id": "820",
+          "title": "Časové údaje",
+          "url": "https://prirucka.ujc.cas.cz/?id=820"
+        },
+        {
+          "id": "830",
+          "title": "Telefonní a faxová čísla",
+          "url": "https://prirucka.ujc.cas.cz/?id=830"
+        },
+        {
+          "id": "840",
+          "title": "Grafická úprava dopisu",
+          "url": "https://prirucka.ujc.cas.cz/?id=840"
+        },
+        {
+          "id": "850",
+          "title": "Oslovení a závěrečný pozdrav",
+          "url": "https://prirucka.ujc.cas.cz/?id=850"
+        },
+        {
+          "id": "860",
+          "title": "Podpisy",
+          "url": "https://prirucka.ujc.cas.cz/?id=860"
+        },
+        {
+          "id": "870",
+          "title": "Psaní výčtů",
+          "url": "https://prirucka.ujc.cas.cz/?id=870"
+        },
+        {
+          "id": "880",
+          "title": "Zalomení řádků a nevhodné výrazy na jejich konci",
+          "url": "https://prirucka.ujc.cas.cz/?id=880"
+        },
+        {
+          "id": "883",
+          "title": "Bibliografické citace",
+          "url": "https://prirucka.ujc.cas.cz/?id=883"
+        },
+        {
+          "id": "885",
+          "title": "Abecední řazení",
+          "url": "https://prirucka.ujc.cas.cz/?id=885"
+        }
+      ]
+    },
+    {
+      "id": "ijc-890",
+      "title": "− Jazykové příručky a lingvistické pojmy",
+      "rules": [
+        {
+          "id": "892",
+          "title": "Kodifikace a závaznost jazykových příruček",
+          "url": "https://prirucka.ujc.cas.cz/?id=892"
+        },
+        {
+          "id": "894",
+          "title": "Norma – úzus – kodifikace a rozhodování o jazykové správnosti v praxi jazykové poradny",
+          "url": "https://prirucka.ujc.cas.cz/?id=894"
+        },
+        {
+          "id": "890",
+          "title": "Informace o příručce Pravidla českého pravopisu",
+          "url": "https://prirucka.ujc.cas.cz/?id=890"
+        },
+        {
+          "id": "893",
+          "title": "Informace o knize Akademická příručka českého jazyka",
+          "url": "https://prirucka.ujc.cas.cz/?id=893"
+        },
+        {
+          "id": "891",
+          "title": "Slovníček – vybrané pojmy",
+          "url": "https://prirucka.ujc.cas.cz/?id=891"
+        }
+      ]
+    },
+    {
+      "id": "ijc-920",
+      "title": "− Transkripce a transliterace",
+      "rules": [
+        {
+          "id": "920",
+          "title": "Transkripce a transliterace z cyrilských abeced –⁠ obecné poučení",
+          "url": "https://prirucka.ujc.cas.cz/?id=920"
+        },
+        {
+          "id": "921",
+          "title": "Transkripce z běloruské cyrilice",
+          "url": "https://prirucka.ujc.cas.cz/?id=921"
+        },
+        {
+          "id": "922",
+          "title": "Transkripce z bulharské cyrilice",
+          "url": "https://prirucka.ujc.cas.cz/?id=922"
+        },
+        {
+          "id": "923",
+          "title": "Transkripce z makedonské cyrilice",
+          "url": "https://prirucka.ujc.cas.cz/?id=923"
+        },
+        {
+          "id": "924",
+          "title": "Transkripce z ruské cyrilice",
+          "url": "https://prirucka.ujc.cas.cz/?id=924"
+        },
+        {
+          "id": "925",
+          "title": "Transkripce ze srbské cyrilice",
+          "url": "https://prirucka.ujc.cas.cz/?id=925"
+        },
+        {
+          "id": "926",
+          "title": "Transkripce z ukrajinské cyrilice",
+          "url": "https://prirucka.ujc.cas.cz/?id=926"
+        }
+      ]
+    },
+    {
+      "id": "ijc-990",
+      "title": "− Literatura",
+      "rules": [
+        {
+          "id": "990",
+          "title": "Seznam použité literatury",
+          "url": "https://prirucka.ujc.cas.cz/?id=990"
+        }
+      ]
+    }
+  ]
+}

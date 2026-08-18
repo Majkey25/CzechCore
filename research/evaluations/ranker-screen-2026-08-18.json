@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "date": "2026-08-18",
+  "dataset_source_id": "dataset-geccc-model-version",
+  "diagnostics_sha256": "350acd6a3f81d0ef5f5b00fb3fe1af327ed15b1743334d94a323819f1c5b4210",
+  "morphology_source_id": "dataset-morphodita-250909",
+  "model": "19-feature logistic calibration layer",
+  "features": [
+    "beam confidence and source/edit lengths",
+    "insert/delete/change ratios",
+    "diacritics/case/punctuation/digit signals",
+    "MorfFlex known-form, lemma-overlap, lemma-change, POS, and unknown-to-known signals"
+  ],
+  "document_grouped_splits": {
+    "train": {"candidates": 2764, "exact": 1028},
+    "calibration": {"candidates": 705, "exact": 241},
+    "validation": {"candidates": 371, "exact": 153}
+  },
+  "production_target": {
+    "minimum_precision": 0.9,
+    "minimum_calibration_accepts": 20,
+    "ranker_calibration_accepts": 0,
+    "ranker_validation_accepts": 0,
+    "confidence_baseline_accepts": 0
+  },
+  "diagnostic_oracle_frontier": {
+    "ranker_calibration_at_least_5": {"accepted": 5, "correct": 5, "precision": 1.0},
+    "ranker_validation_at_least_5": {"accepted": 6, "correct": 5, "precision": 0.8333},
+    "ranker_validation_at_least_20": {"accepted": 28, "correct": 19, "precision": 0.6786},
+    "confidence_calibration_best": {"accepted": 280, "correct": 115, "precision": 0.4107}
+  },
+  "status": "rejected_for_runtime",
+  "decision": "Surface and morphology features improve ranking but do not meet the 90% precision gate. Do not ship the artifact; add dependency, semantic-equivalence, beam-margin, and human alternative labels."
+}

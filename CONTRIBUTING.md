@@ -32,6 +32,8 @@ Do not commit model files, corpora, caches, `.venv`, or generated wheels.
 .venv\Scripts\python -m ruff format --check .
 .venv\Scripts\python -m pyright --pythonpath .venv\Scripts\python.exe
 .venv\Scripts\python -m pip check
+.venv\Scripts\python -m tools.research.validate_sources --schema-only
+.venv\Scripts\python -m tools.research.validate_taxonomy
 ```
 
 Run `czechcore-benchmark benchmarks\cases.jsonl` for changes that can alter model

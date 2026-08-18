@@ -11,6 +11,7 @@ from typing import Protocol, cast
 from czechcore import __version__
 from czechcore.assets import AssetMissingError, download_assets
 from czechcore.core import CorrectionResult
+from czechcore.rewrite import HybridRewriter, RewriteBackend
 
 
 class Engine(Protocol):
@@ -33,6 +34,36 @@ def _default_engine() -> Engine:
     return CzechCore()
 
 
+def _default_rewrite_backend(endpoint: str, model: str) -> RewriteBackend:
+    from czechcore.rewrite import LocalChatRewriteBackend
+
+    return LocalChatRewriteBackend(endpoint, model=model)
+
+
+def _default_rewrite_proofreaders() -> tuple[Engine, Engine]:
+    from czechcore.backend import TransformerBackend
+    from czechcore.engine import CzechCore
+    from czechcore.tokenizer import CzechTokenizer
+
+    tokenizer = CzechTokenizer()
+    backend = TransformerBackend()
+    return (
+        CzechCore(tokenizer=tokenizer, backend=backend),
+        CzechCore(
+            tokenizer=tokenizer,
+            backend=backend,
+            suggestion_min_confidence=0,
+            max_changed_ratio=1,
+        ),
+    )
+
+
+def configure_utf8_stdout() -> None:
+    standard_output = sys.stdout  # pyright: ignore[reportUnknownMemberType] Python 3.14 stub
+    if isinstance(standard_output, TextIOWrapper):
+        cast(ReconfigurableOutput, standard_output).reconfigure(encoding="utf-8")
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="czechcore")
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
@@ -44,6 +75,17 @@ def _parser() -> argparse.ArgumentParser:
     check.add_argument("--json", action="store_true", dest="as_json")
     check.add_argument("--autocorrect", action="store_true")
     check.add_argument("--min-confidence", type=float, default=0.995)
+
+    rewrite = commands.add_parser("rewrite", help="suggest a clear meaning-preserving rewrite")
+    rewrite.add_argument("text", nargs="+")
+    rewrite.add_argument("--json", action="store_true", dest="as_json")
+    rewrite.add_argument(
+        "--endpoint",
+        default="http://127.0.0.1:8080/v1/chat/completions",
+        help="local OpenAI-compatible chat endpoint",
+    )
+    rewrite.add_argument("--model", default="local")
+    rewrite.add_argument("--protect", action="append", default=[])
     return parser
 
 
@@ -51,10 +93,10 @@ def main(
     argv: Sequence[str] | None = None,
     *,
     engine_factory: Callable[[], Engine] = _default_engine,
+    rewrite_backend_factory: Callable[[str, str], RewriteBackend] = _default_rewrite_backend,
+    rewrite_proofreaders_factory: Callable[[], tuple[Engine, Engine]] | None = None,
 ) -> int:
-    standard_output = sys.stdout  # pyright: ignore[reportUnknownMemberType] Python 3.14 stub
-    if isinstance(standard_output, TextIOWrapper):
-        cast(ReconfigurableOutput, standard_output).reconfigure(encoding="utf-8")
+    configure_utf8_stdout()
     arguments = _parser().parse_args(argv)
     command = cast(str, arguments.command)
     if command == "download":
@@ -64,6 +106,32 @@ def main(
         return 0
 
     text = " ".join(cast(list[str], arguments.text))
+    if command == "rewrite":
+        backend = rewrite_backend_factory(
+            cast(str, arguments.endpoint),
+            cast(str, arguments.model),
+        )
+        try:
+            if rewrite_proofreaders_factory is not None:
+                proofreader, context_proofreader = rewrite_proofreaders_factory()
+            elif engine_factory is _default_engine:
+                proofreader, context_proofreader = _default_rewrite_proofreaders()
+            else:
+                proofreader = context_proofreader = engine_factory()
+            result = HybridRewriter(
+                proofreader,
+                backend,
+                context_proofreader=context_proofreader,
+            ).suggest(text, protected=cast(list[str], arguments.protect))
+        except AssetMissingError as error:
+            print(error, file=sys.stderr)
+            return 2
+        if cast(bool, arguments.as_json):
+            print(json.dumps(asdict(result), ensure_ascii=False))
+        else:
+            print(result.suggested_text)
+        return 0
+
     autocorrect = cast(bool, arguments.autocorrect)
     min_confidence = cast(float, arguments.min_confidence)
     try:

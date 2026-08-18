@@ -77,6 +77,11 @@ def test_extract_edits_returns_empty_for_unchanged_text() -> None:
         ("Použij C++20.", "Použij C + + 20."),
         ("Verze je v1.2.3.", "Verze je v 1.2.3."),
         ("Otevři C:\\Data\\text.txt.", "Otevři C: Data text.txt."),
+        ("Zavolej na 777 123 456.", "Zavolej na 777, 123, 456."),
+        ("Schůzka je 18. 8. 2026.", "Schůzka je 18, 8, 2026."),
+        ('Řekl: "Přijdu."', 'Řekl: " Přijdu. "'),
+        ("Model AI funguje.", "Model A I funguje."),
+        ("Verze je v1.2.3.", "Verze je v1.2.30."),
     ],
 )
 def test_rejects_candidate_that_changes_protected_literal(source: str, candidate: str) -> None:
@@ -100,6 +105,13 @@ def test_accepts_small_correction_that_preserves_protected_literals() -> None:
     candidate = "Projekt CzechCore používal verzi v1.2.3."
 
     assert candidate_is_safe(source, candidate, max_changed_ratio=0.35)
+
+
+def test_rejects_changed_spacing_at_czech_quotation_marks() -> None:
+    source = "„Přijdu zítra,“ řekl."
+
+    assert not candidate_is_safe(source, "„ Přijdu zítra, “ řekl.", 0.35)
+    assert candidate_is_safe(source, "„Přijdu později,“ řekl.", 0.35)
 
 
 def test_rejects_large_rewrite_and_empty_candidate() -> None:

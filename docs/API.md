@@ -25,6 +25,11 @@ result = engine.correct("Když přišel domů šel spát.")
 print(result.suggested_text)
 ```
 
+`CzechCore` accepts research/deployment policy overrides
+`suggestion_min_confidence` (default `0.25`) and `max_changed_ratio` (default
+`0.35`). Both must be within `[0, 1]`. Release defaults change only after dev-set
+calibration.
+
 ### `CzechCore.correct`
 
 ```python
@@ -43,6 +48,52 @@ def correct(
 | `min_confidence` | Inclusive `[0, 1]` threshold for application. Invalid values raise `ValueError`. |
 
 Empty text returns an empty result without invoking the model.
+
+### `CzechCore.correct_many`
+
+```python
+def correct_many(
+    texts: Sequence[str],
+    *,
+    autocorrect: bool = False,
+    min_confidence: float = 0.995,
+) -> tuple[CorrectionResult, ...]
+```
+
+Returns one aligned result per input and batches neural inference when the backend
+supports it. It is the preferred API for corpus/background processing. Exact
+evaluation reproducibility must also pin grouping/batch size: CPU padding changed
+5/8,478 close predictions between measured batch-16 and batch-32 runs.
+
+### Hybrid semantic rewrite
+
+`HybridRewriter` combines a `CzechCore` proofreader with a local OpenAI-compatible
+chat endpoint:
+
+```python
+from czechcore import CzechCore, HybridRewriter, LocalChatRewriteBackend
+
+backend = LocalChatRewriteBackend("http://127.0.0.1:8080/v1/chat/completions")
+rewriter = HybridRewriter(CzechCore(), backend)
+result = rewriter.suggest(source, protected=("pip",))
+```
+
+`RewriteResult` contains `original_text`, `proofread_text`, `suggested_text`,
+`warnings`, and `requires_review`. Rewrite output always requires explicit review;
+there is no rewrite autocorrect. The backend accepts only loopback HTTP endpoints
+and refuses redirects. Protected literals, digit sequences, and unexpected line
+breaks are checked before and after the Czech proofread pass; failure falls back
+to the conservative proofread/source text. CLI rewrite also supplies a separately
+masked high-recall GEC candidate to the LLM as context; that aggressive candidate
+is never returned as fallback.
+
+Rewrite warning prefixes identify the stage: `proofread_`, `context_`, `rewrite_`,
+or `postcheck_`. Suffixes are `changed_protected_literal`, `changed_number`,
+`added_line_break`, and `added_special_token`; `rewrite_unchanged` means no broad
+alternative survived. A `rewrite_` invariant warning causes fallback. Context and
+post-check warnings remain diagnostic; the uncalibrated post-check never silently
+overwrites an invariant-safe LLM candidate. `postcheck_disagrees` records a safe
+but different compact-GEC alternative for future ranking.
 
 ### `CorrectionResult`
 
@@ -138,9 +189,25 @@ The lower `0.60` value is an explicit caller choice, not the release default.
 
 ```text
 czechcore-benchmark benchmarks/cases.jsonl
+czechcore-benchmark benchmarks/cases.jsonl --details
+czechcore-benchmark benchmarks/cases.jsonl --batch-size 16
 ```
 
-The command emits one JSON object with sentence-exact counts and elapsed time.
+The default emits sentence-exact counts and elapsed time. `--details` also emits
+every false change, unchanged error, and wrong rewrite.
+
+### Local rewrite
+
+Run an approved local model with an OpenAI-compatible server, then request an
+explicit whole-sentence alternative:
+
+```text
+czechcore rewrite --protect pip "jako jo ... co ma pip ..."
+czechcore rewrite --json --endpoint http://127.0.0.1:8080/v1/chat/completions "text"
+```
+
+No default rewrite model is claimed yet. The first 0.6B candidate failed the
+Czech acceptance example; balanced 4B evaluation is in progress.
 
 ## Exit behavior
 

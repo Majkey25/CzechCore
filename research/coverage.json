@@ -1,0 +1,3247 @@
+{
+  "schema_version": 1,
+  "taxonomy_schema_version": 1,
+  "phenomena": [
+    {
+      "id": "orthography.sound_grapheme",
+      "name": "Sound-to-grapheme relations",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "901",
+        "149"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 10,
+            "category": "diacritics_and_punctuation"
+          },
+          {
+            "line": 11,
+            "category": "diacritics"
+          },
+          {
+            "line": 12,
+            "category": "spelling"
+          },
+          {
+            "line": 34,
+            "category": "spelling"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "orthography.i_y",
+      "name": "i/í versus y/ý",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "103"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "orthography.listed_words",
+      "name": "Listed words and related forms",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "100"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "orthography.byt_bit",
+      "name": "Prefix-derived forms of být/bít",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "101"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": [
+          {
+            "line": 5,
+            "category": "contextual_homograph"
+          },
+          {
+            "line": 6,
+            "category": "contextual_homograph"
+          }
+        ]
+      },
+      "missing_evidence": [
+        "positive",
+        "negative"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "orthography.letter_e",
+      "name": "ě, je, and ně groups",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "126"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 38,
+            "category": "letter_e"
+          }
+        ],
+        "negative": [
+          {
+            "line": 39,
+            "category": "correct_letter_e"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "orthography.u_ring",
+      "name": "ú versus ů",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "127"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 36,
+            "category": "u_ring"
+          }
+        ],
+        "negative": [
+          {
+            "line": 37,
+            "category": "correct_u_ring"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "orthography.n_nn",
+      "name": "n versus nn",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "125"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 40,
+            "category": "n_nn"
+          }
+        ],
+        "negative": [
+          {
+            "line": 41,
+            "category": "correct_n_nn"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "orthography.prefix_s_z",
+      "name": "s(e)- versus z(e)- prefixes",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "110"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "orthography.preposition_s_z",
+      "name": "s/se versus z/ze and s sebou",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "111"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 20,
+            "category": "s_sebou"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "orthography.loanwords",
+      "name": "Czech adaptation and spelling of loanwords",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "120",
+        "121",
+        "122",
+        "123",
+        "124"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "orthography.compounds",
+      "name": "Fused expressions and compound adjectives",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "130",
+        "140"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "orthography.hyphenation",
+      "name": "Line-end word division",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "out_of_scope",
+      "source_rule_ids": [
+        "135"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "out_of_scope"
+    },
+    {
+      "id": "orthography.assimilation",
+      "name": "Consonant groups, voicing assimilation, inserted/omitted sounds",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "907",
+        "908",
+        "909",
+        "910",
+        "911",
+        "912"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "orthography.transliteration",
+      "name": "Cyrillic transcription and transliteration",
+      "family_id": "orthography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "920",
+        "921",
+        "922",
+        "923",
+        "924",
+        "925",
+        "926"
+      ],
+      "geccc_proxy_types": [
+        "R:DIACR",
+        "R:SPELL",
+        "R:ORTH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.complex_sentence",
+      "name": "Commas between main and subordinate clauses",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "150"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 7,
+            "category": "comma_subordinate_clause"
+          },
+          {
+            "line": 9,
+            "category": "comma_subordinate_clause"
+          },
+          {
+            "line": 15,
+            "category": "comma_subordinate_clause"
+          },
+          {
+            "line": 16,
+            "category": "comma_subordinate_clause"
+          },
+          {
+            "line": 27,
+            "category": "comma_subordinate_clause"
+          },
+          {
+            "line": 44,
+            "category": "comma_subordinate_clause"
+          },
+          {
+            "line": 10,
+            "category": "diacritics_and_punctuation"
+          },
+          {
+            "line": 28,
+            "category": "relative_clause_commas"
+          }
+        ],
+        "negative": [
+          {
+            "line": 8,
+            "category": "correct_punctuation"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "punctuation.simple_sentence",
+      "name": "Commas in a simple sentence",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "151"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.infinitive",
+      "name": "Commas in infinitive constructions",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "152"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.conjunction_a_i_ani",
+      "name": "Commas before a, i, ani",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "153"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [
+          {
+            "line": 45,
+            "category": "correct_conjunction_a"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "punctuation.conjunction_jako_nez",
+      "name": "Commas before jako and než",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "154"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 46,
+            "category": "comma_nez"
+          }
+        ],
+        "negative": [
+          {
+            "line": 47,
+            "category": "correct_comma_nez"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "punctuation.conjunction_nebo_ci",
+      "name": "Commas before nebo and či",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "155"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.explanatory_conjunctions",
+      "name": "Commas before anebo, aneb, čili, neboli and related expressions",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "156",
+        "157",
+        "158"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.period",
+      "name": "Period and sentence termination",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "160"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.question_exclamation",
+      "name": "Question and exclamation marks",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "171",
+        "172"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 42,
+            "category": "question_mark"
+          }
+        ],
+        "negative": [
+          {
+            "line": 43,
+            "category": "correct_question_mark"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "punctuation.semicolon_colon",
+      "name": "Semicolon and colon",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "173",
+        "161"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.quotation",
+      "name": "Czech quotation marks and direct quotation",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "162"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [
+          {
+            "line": 62,
+            "category": "correct_quotation"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "punctuation.brackets",
+      "name": "Parentheses and brackets",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "163"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.hyphen_dash",
+      "name": "Hyphen versus dash",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "164",
+        "165"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.ellipsis",
+      "name": "Ellipsis",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "166"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.slash_apostrophe",
+      "name": "Slash and apostrophe",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "167",
+        "168"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "punctuation.spacing",
+      "name": "Whitespace around punctuation",
+      "family_id": "punctuation",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "150",
+        "151",
+        "162",
+        "164",
+        "165"
+      ],
+      "geccc_proxy_types": [
+        "M:PUNCT",
+        "U:PUNCT",
+        "R:PUNCT",
+        "R:QUOTATION",
+        "R:ORTH:WSPACE"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 22,
+            "category": "typographic_spacing"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "capitalization.general",
+      "name": "General capitalization principles",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "180"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 26,
+            "category": "capitalization"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "capitalization.people",
+      "name": "People, beings, titles, and derived adjectives",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "181"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "capitalization.astronomy",
+      "name": "Astronomical names and zodiac signs",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "182"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "capitalization.geography",
+      "name": "Countries, regions, landforms, settlements, and streets",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "183",
+        "184",
+        "185",
+        "186",
+        "187"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 48,
+            "category": "geographic_capitalization"
+          }
+        ],
+        "negative": [
+          {
+            "line": 49,
+            "category": "correct_geographic_capitalization"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "capitalization.organizations",
+      "name": "Organizations and organizational units",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "188",
+        "189"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "capitalization.works_documents",
+      "name": "Documents and artistic or scholarly works",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "190"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "capitalization.events_holidays",
+      "name": "Historic events, memorial days, holidays, competitions",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "191",
+        "193"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "capitalization.products_substitutes",
+      "name": "Products, varieties, breeds, awards, and substitute names",
+      "family_id": "capitalization",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "192",
+        "194",
+        "195",
+        "196"
+      ],
+      "geccc_proxy_types": [
+        "R:ORTH:CASING"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.morphemes",
+      "name": "Morpheme boundaries and alternations",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "778",
+        "730"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.demonyms",
+      "name": "Demonyms and inhabitants' names",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "720",
+        "741",
+        "740"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.family_names",
+      "name": "Family-name plurals and family expressions",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "710"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.adjective_suffixes",
+      "name": "Adjective suffix selection and derivation",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "750",
+        "751",
+        "752",
+        "753",
+        "754",
+        "755",
+        "756"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.variants",
+      "name": "Variant suffixes such as -koli/-koliv",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "760"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.preposition_vocalization",
+      "name": "Preposition vocalization",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "770"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "word_formation.gendered_surnames",
+      "name": "Feminization of common nouns and surnames",
+      "family_id": "word_formation",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "699",
+        "700",
+        "701",
+        "702",
+        "703",
+        "704",
+        "705"
+      ],
+      "geccc_proxy_types": [
+        "R:MORPH"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.gender",
+      "name": "Noun gender",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "200"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.animacy",
+      "name": "Masculine animacy",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "201"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.number",
+      "name": "Singular, plural, mass, and pluralia tantum",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "202"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.case_common",
+      "name": "Common-noun case and paradigm selection",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "220",
+        "221",
+        "222",
+        "223",
+        "224",
+        "225",
+        "226",
+        "227",
+        "228",
+        "229",
+        "230",
+        "250",
+        "251",
+        "252",
+        "253",
+        "254",
+        "255",
+        "260",
+        "261",
+        "262",
+        "263",
+        "264"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 33,
+            "category": "case_agreement"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "nouns.vocative",
+      "name": "Vocative forms",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "225"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 50,
+            "category": "vocative"
+          }
+        ],
+        "negative": [
+          {
+            "line": 51,
+            "category": "correct_vocative"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "nouns.personal_names",
+      "name": "Declension of personal names",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "315",
+        "320",
+        "321",
+        "322",
+        "323",
+        "324",
+        "325",
+        "326",
+        "350",
+        "351",
+        "352"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.geographic_names",
+      "name": "Declension of geographic names",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "359",
+        "360",
+        "361",
+        "370",
+        "371",
+        "372",
+        "380",
+        "390",
+        "395"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.organization_names",
+      "name": "Declension of institutions and companies",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "398"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "nouns.apposition",
+      "name": "Appositional place-name constructions",
+      "family_id": "nouns",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "203"
+      ],
+      "geccc_proxy_types": [
+        "R:NOUN:INFL",
+        "R:NOUN",
+        "M:NOUN",
+        "U:NOUN",
+        "R:PROPN",
+        "R:PROPN:INFL",
+        "M:PROPN",
+        "U:PROPN"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "adjectives_adverbs.possessive",
+      "name": "Individual possessive adjectives",
+      "family_id": "adjectives_adverbs",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "400"
+      ],
+      "geccc_proxy_types": [
+        "R:ADJ:INFL",
+        "R:ADJ",
+        "M:ADJ",
+        "U:ADJ",
+        "R:ADV",
+        "R:ADV:INFL",
+        "M:ADV",
+        "U:ADV"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "adjectives_adverbs.comparison",
+      "name": "Comparison of adjectives and adverbs",
+      "family_id": "adjectives_adverbs",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "410"
+      ],
+      "geccc_proxy_types": [
+        "R:ADJ:INFL",
+        "R:ADJ",
+        "M:ADJ",
+        "U:ADJ",
+        "R:ADV",
+        "R:ADV:INFL",
+        "M:ADV",
+        "U:ADV"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "adjectives_adverbs.short_long",
+      "name": "Nominal versus compound adjective forms",
+      "family_id": "adjectives_adverbs",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "420"
+      ],
+      "geccc_proxy_types": [
+        "R:ADJ:INFL",
+        "R:ADJ",
+        "M:ADJ",
+        "U:ADJ",
+        "R:ADV",
+        "R:ADV:INFL",
+        "M:ADV",
+        "U:ADV"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "adjectives_adverbs.inflection",
+      "name": "Adjective inflection and agreement",
+      "family_id": "adjectives_adverbs",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "400",
+        "603"
+      ],
+      "geccc_proxy_types": [
+        "R:ADJ:INFL",
+        "R:ADJ",
+        "M:ADJ",
+        "U:ADJ",
+        "R:ADV",
+        "R:ADV:INFL",
+        "M:ADV",
+        "U:ADV"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 32,
+            "category": "adjective_noun_agreement"
+          },
+          {
+            "line": 33,
+            "category": "case_agreement"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "adjectives_adverbs.lexical",
+      "name": "Adjective/adverb lexical substitution or omission",
+      "family_id": "adjectives_adverbs",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "410",
+        "420"
+      ],
+      "geccc_proxy_types": [
+        "R:ADJ:INFL",
+        "R:ADJ",
+        "M:ADJ",
+        "U:ADJ",
+        "R:ADV",
+        "R:ADV:INFL",
+        "M:ADV",
+        "U:ADV"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "pronouns_determiners.me_mne",
+      "name": "mě/mně and forms of já",
+      "family_id": "pronouns_determiners",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "650"
+      ],
+      "geccc_proxy_types": [
+        "M:PRON",
+        "U:PRON",
+        "R:PRON",
+        "R:PRON:INFL",
+        "R:DET",
+        "M:DET",
+        "U:DET"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 18,
+            "category": "me_mne"
+          }
+        ],
+        "negative": [
+          {
+            "line": 19,
+            "category": "correct_me_mne"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "pronouns_determiners.possessive",
+      "name": "Possessive pronoun competition",
+      "family_id": "pronouns_determiners",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "630"
+      ],
+      "geccc_proxy_types": [
+        "M:PRON",
+        "U:PRON",
+        "R:PRON",
+        "R:PRON:INFL",
+        "R:DET",
+        "M:DET",
+        "U:DET"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "pronouns_determiners.reflexive",
+      "name": "Reflexive pronouns and verbs",
+      "family_id": "pronouns_determiners",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "580"
+      ],
+      "geccc_proxy_types": [
+        "M:PRON",
+        "U:PRON",
+        "R:PRON",
+        "R:PRON:INFL",
+        "R:DET",
+        "M:DET",
+        "U:DET"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "pronouns_determiners.inflection",
+      "name": "Pronoun case and inflection",
+      "family_id": "pronouns_determiners",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "650",
+        "891"
+      ],
+      "geccc_proxy_types": [
+        "M:PRON",
+        "U:PRON",
+        "R:PRON",
+        "R:PRON:INFL",
+        "R:DET",
+        "M:DET",
+        "U:DET"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 52,
+            "category": "pronoun_inflection"
+          }
+        ],
+        "negative": [
+          {
+            "line": 53,
+            "category": "correct_pronoun_inflection"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "pronouns_determiners.choice",
+      "name": "Missing, unnecessary, or substituted pronouns/determiners",
+      "family_id": "pronouns_determiners",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "630",
+        "650"
+      ],
+      "geccc_proxy_types": [
+        "M:PRON",
+        "U:PRON",
+        "R:PRON",
+        "R:PRON:INFL",
+        "R:DET",
+        "M:DET",
+        "U:DET"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "numerals.two_both",
+      "name": "Forms of dva and oba",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "670"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 54,
+            "category": "numeral_two"
+          }
+        ],
+        "negative": [
+          {
+            "line": 55,
+            "category": "correct_numeral_two"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "numerals.three_four",
+      "name": "Forms of tři and čtyři",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "671"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "numerals.grouping_decimals",
+      "name": "Digit grouping, multiword numerals, and decimals",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "791"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "numerals.counted_object",
+      "name": "Counted noun after numerals",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "792"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "numerals.numeric_compounds",
+      "name": "Digit-word compounds and multiplicatives",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "790"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "numerals.roman_decades",
+      "name": "Roman numerals, decades, and centuries",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "793",
+        "795"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "numerals.currency_symbols",
+      "name": "Numbers, symbols, and currency amounts",
+      "family_id": "numerals",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "785",
+        "786"
+      ],
+      "geccc_proxy_types": [
+        "R:NUM",
+        "R:NUM:INFL",
+        "M:NUM",
+        "U:NUM"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.conjugation",
+      "name": "Conjugation paradigms and variant forms",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "500",
+        "510",
+        "540"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.participles",
+      "name": "Active and passive participles",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "520",
+        "530"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.imperative",
+      "name": "Imperative",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "560"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.conditional",
+      "name": "Conditional forms byste/abyste/kdybyste and jako by",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "575"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 29,
+            "category": "conditional_form"
+          },
+          {
+            "line": 30,
+            "category": "conditional_form"
+          },
+          {
+            "line": 56,
+            "category": "conditional_form"
+          }
+        ],
+        "negative": [
+          {
+            "line": 57,
+            "category": "correct_conditional_form"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "verbs_auxiliaries.reflexivity",
+      "name": "Reflexive versus non-reflexive verbs",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "580"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.transgressives",
+      "name": "Transgressives",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "590"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.tense_person_number",
+      "name": "Tense, person, and number",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "500",
+        "520",
+        "530"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "verbs_auxiliaries.missing_extra_aux",
+      "name": "Missing, unnecessary, or substituted auxiliaries",
+      "family_id": "verbs_auxiliaries",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "575"
+      ],
+      "geccc_proxy_types": [
+        "R:VERB",
+        "R:VERB:INFL",
+        "M:VERB",
+        "U:VERB",
+        "R:AUX",
+        "R:AUX:INFL",
+        "M:AUX",
+        "U:AUX"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.agreement_simple",
+      "name": "Subject-predicate agreement with a simple subject",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "600"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 1,
+            "category": "subject_predicate_agreement"
+          },
+          {
+            "line": 3,
+            "category": "subject_predicate_agreement"
+          },
+          {
+            "line": 13,
+            "category": "subject_predicate_agreement"
+          },
+          {
+            "line": 14,
+            "category": "subject_predicate_agreement"
+          },
+          {
+            "line": 31,
+            "category": "subject_predicate_agreement"
+          }
+        ],
+        "negative": [
+          {
+            "line": 2,
+            "category": "correct_agreement"
+          },
+          {
+            "line": 4,
+            "category": "correct_agreement"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "syntax.agreement_coordinated",
+      "name": "Agreement with coordinated subjects",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "601"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 17,
+            "category": "coordinated_subject_agreement"
+          }
+        ],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "syntax.agreement_complex",
+      "name": "Complex agreement and precedence cases",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "602"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.postposed_attribute",
+      "name": "Agreement of postposed attributes",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "603"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.predicative_case",
+      "name": "Nominative versus instrumental in nominal predicates",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "610"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.valency_government",
+      "name": "Verb/noun valency and case government",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "620"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 60,
+            "category": "valency_government"
+          }
+        ],
+        "negative": [
+          {
+            "line": 61,
+            "category": "correct_valency_government"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "syntax.preposition_choice",
+      "name": "Preposition choice and governed case",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "640"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.coordination",
+      "name": "Coordinating conjunction choice and structure",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "153",
+        "155",
+        "156"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.subordination",
+      "name": "Subordinating conjunctions and clause attachment",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "partial",
+      "source_rule_ids": [
+        "150"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "syntax.word_order",
+      "name": "Word order, clitics, and exact reordering",
+      "family_id": "syntax",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "575",
+        "600",
+        "620",
+        "650"
+      ],
+      "geccc_proxy_types": [
+        "R:WO",
+        "R:WO:SPELL",
+        "R:ADP",
+        "M:ADP",
+        "U:ADP",
+        "R:CCONJ",
+        "M:CCONJ",
+        "U:CCONJ",
+        "R:SCONJ",
+        "M:SCONJ",
+        "U:SCONJ",
+        "R:OTHER",
+        "M:OTHER",
+        "U:OTHER"
+      ],
+      "benchmark_evidence": {
+        "positive": [
+          {
+            "line": 21,
+            "category": "repeated_word"
+          },
+          {
+            "line": 58,
+            "category": "word_order"
+          }
+        ],
+        "negative": [
+          {
+            "line": 59,
+            "category": "correct_word_order"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "particles_interjections.particles",
+      "name": "Particle insertion, deletion, and substitution",
+      "family_id": "particles_interjections",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "891"
+      ],
+      "geccc_proxy_types": [
+        "R:PART",
+        "M:PART",
+        "U:PART",
+        "R:INTJ",
+        "M:INTJ",
+        "U:INTJ"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "particles_interjections.interjections",
+      "name": "Interjection insertion, deletion, and substitution",
+      "family_id": "particles_interjections",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "891"
+      ],
+      "geccc_proxy_types": [
+        "R:PART",
+        "M:PART",
+        "U:PART",
+        "R:INTJ",
+        "M:INTJ",
+        "U:INTJ"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "particles_interjections.discourse_ambiguity",
+      "name": "Discourse-sensitive particle and interjection ambiguity",
+      "family_id": "particles_interjections",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "894"
+      ],
+      "geccc_proxy_types": [
+        "R:PART",
+        "M:PART",
+        "U:PART",
+        "R:INTJ",
+        "M:INTJ",
+        "U:INTJ"
+      ],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "documents_typography.addresses",
+      "name": "Postal and document addresses",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "800"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "documents_typography.dates",
+      "name": "Calendar dates and places of origin",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "810"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [
+          {
+            "line": 65,
+            "category": "protected_date"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "documents_typography.time",
+      "name": "Time expressions",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "820"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "documents_typography.phone",
+      "name": "Telephone and fax numbers",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "guarded",
+      "source_rule_ids": [
+        "830"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [
+          {
+            "line": 64,
+            "category": "protected_phone"
+          }
+        ],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "ambiguity"
+      ],
+      "coverage_state": "partial"
+    },
+    {
+      "id": "documents_typography.letters",
+      "name": "Letter layout, salutations, closings, and signatures",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "840",
+        "850",
+        "860"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "documents_typography.lists_linebreaks",
+      "name": "Lists, line breaks, and unsuitable line-end expressions",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "unmeasured",
+      "source_rule_ids": [
+        "870",
+        "880"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "gap"
+    },
+    {
+      "id": "documents_typography.citations_sorting",
+      "name": "Bibliographic citations and alphabetical ordering",
+      "family_id": "documents_typography",
+      "scope": "correction",
+      "baseline_status": "out_of_scope",
+      "source_rule_ids": [
+        "883",
+        "885"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive",
+        "negative",
+        "ambiguity"
+      ],
+      "coverage_state": "out_of_scope"
+    },
+    {
+      "id": "reference_framework.norm_usage",
+      "name": "Codification, norm, usage, and language correctness",
+      "family_id": "reference_framework",
+      "scope": "reference",
+      "baseline_status": "out_of_scope",
+      "source_rule_ids": [
+        "892",
+        "894"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive"
+      ],
+      "coverage_state": "out_of_scope"
+    },
+    {
+      "id": "reference_framework.guides_terms",
+      "name": "Reference guides, terminology, and bibliography",
+      "family_id": "reference_framework",
+      "scope": "reference",
+      "baseline_status": "out_of_scope",
+      "source_rule_ids": [
+        "890",
+        "893",
+        "891",
+        "990"
+      ],
+      "geccc_proxy_types": [],
+      "benchmark_evidence": {
+        "positive": [],
+        "negative": [],
+        "ambiguity": []
+      },
+      "missing_evidence": [
+        "positive"
+      ],
+      "coverage_state": "out_of_scope"
+    }
+  ],
+  "global_cases": [
+    {
+      "line": 23,
+      "category": "protected_url",
+      "evidence": "negative"
+    },
+    {
+      "line": 24,
+      "category": "protected_email",
+      "evidence": "negative"
+    },
+    {
+      "line": 25,
+      "category": "protected_version",
+      "evidence": "negative"
+    },
+    {
+      "line": 35,
+      "category": "correct_sentence",
+      "evidence": "negative"
+    },
+    {
+      "line": 63,
+      "category": "protected_path",
+      "evidence": "negative"
+    }
+  ],
+  "summary": {
+    "phenomena": 101,
+    "complete": 0,
+    "partial": 27,
+    "gaps": 70,
+    "out_of_scope": 4,
+    "benchmark_cases": 65
+  }
+}

@@ -31,6 +31,34 @@ class TooLongBackend:
         raise SentenceTooLongError("too long")
 
 
+class BatchBackend:
+    def hypotheses(self, tokenized_sentence: str) -> tuple[Hypothesis, ...]:
+        raise AssertionError("batch path expected")
+
+    def hypotheses_many(
+        self,
+        tokenized_sentences: tuple[str, ...] | list[str],
+    ) -> tuple[tuple[Hypothesis, ...], ...]:
+        return tuple(
+            (Hypothesis(sentence.replace("přišly", "přišli"), -0.1, 0.9),)
+            for sentence in tokenized_sentences
+        )
+
+
+class SplitTokenizer:
+    def sentences(self, text: str) -> tuple[SentenceSpan, ...]:
+        return (
+            SentenceSpan(0, 9, text[:9]),
+            SentenceSpan(9, len(text), text[9:]),
+        )
+
+
+class SplitBackend:
+    def hypotheses(self, tokenized_sentence: str) -> tuple[Hypothesis, ...]:
+        candidate = "2.30 funguje." if tokenized_sentence == "2.3 funguje." else tokenized_sentence
+        return (Hypothesis(candidate, -0.1, 0.9),)
+
+
 def _engine(confidence: float = 0.9) -> CzechCore:
     return CzechCore(
         tokenizer=StaticTokenizer("Muži přišly domů ."),
@@ -127,3 +155,53 @@ def test_empty_text_needs_no_model_work() -> None:
 
     assert result.original_text == result.suggested_text == result.output_text == ""
     assert result.edits == ()
+
+
+def test_correct_many_uses_batch_backend() -> None:
+    engine = CzechCore(tokenizer=StaticTokenizer("Muži přišly domů."), backend=BatchBackend())
+
+    results = engine.correct_many(("Muži přišly domů.", "Muži přišly domů."))
+
+    assert [result.suggested_text for result in results] == [
+        "Muži přišli domů.",
+        "Muži přišli domů.",
+    ]
+
+
+def test_configurable_suggestion_threshold_abstains() -> None:
+    engine = CzechCore(
+        tokenizer=StaticTokenizer("Muži přišly domů."),
+        backend=StaticBackend((Hypothesis("Muži přišli domů.", -0.1, 0.9),)),
+        suggestion_min_confidence=0.91,
+    )
+
+    result = engine.correct("Muži přišly domů.")
+
+    assert result.suggested_text == result.original_text
+    assert result.warnings == ("low_confidence:0:17",)
+
+
+def test_rejects_invalid_safety_configuration() -> None:
+    with pytest.raises(ValueError, match="between 0 and 1"):
+        CzechCore(
+            tokenizer=StaticTokenizer("text"),
+            backend=StaticBackend(()),
+            suggestion_min_confidence=1.1,
+        )
+    with pytest.raises(ValueError, match="between 0 and 1"):
+        CzechCore(
+            tokenizer=StaticTokenizer("text"),
+            backend=StaticBackend(()),
+            max_changed_ratio=-0.1,
+        )
+
+
+def test_global_safety_catches_literal_split_across_sentence_spans() -> None:
+    source = "Verze v1.2.3 funguje."
+    engine = CzechCore(tokenizer=SplitTokenizer(), backend=SplitBackend())
+
+    result = engine.correct(source)
+
+    assert result.suggested_text == source
+    assert result.edits == ()
+    assert result.warnings == ("unsafe_document:0:21",)
