@@ -1,0 +1,90 @@
+name: Platform model smoke
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/platform-smoke.yml"
+      - "docs/GETTING_STARTED.md"
+      - "docs/setup/**"
+      - "tests/test_backend.py"
+      - "tests/test_tokenizer.py"
+
+permissions:
+  contents: read
+
+jobs:
+  model-smoke:
+    name: Model smoke (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            os: windows-latest
+            shell: pwsh
+            python: .platform-venv\Scripts\python.exe
+            cli: .platform-venv\Scripts\czechcore.exe
+            cache_path: |
+              ~\AppData\Local\CzechCore
+              ~\.cache\huggingface\hub\models--ufal--transformer-base-geccc-mate
+          - name: macOS arm64
+            os: macos-latest
+            shell: bash
+            python: .platform-venv/bin/python
+            cli: .platform-venv/bin/czechcore
+            cache_path: |
+              ~/.cache/czechcore
+              ~/.cache/huggingface/hub/models--ufal--transformer-base-geccc-mate
+          - name: Ubuntu x64
+            os: ubuntu-latest
+            shell: bash
+            python: .platform-venv/bin/python
+            cli: .platform-venv/bin/czechcore
+            cache_path: |
+              ~/.cache/czechcore
+              ~/.cache/huggingface/hub/models--ufal--transformer-base-geccc-mate
+
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Create clean virtual environment
+        shell: ${{ matrix.shell }}
+        run: python -m venv .platform-venv
+
+      - name: Install public v0.2.0 wheel
+        shell: ${{ matrix.shell }}
+        run: |
+          ${{ matrix.python }} -m pip install --upgrade pip
+          ${{ matrix.python }} -m pip install "https://github.com/Majkey25/CzechCore/releases/download/v0.2.0/czechcore-0.2.0-py3-none-any.whl" pytest
+          ${{ matrix.python }} -m pip check
+          ${{ matrix.cli }} --version
+
+      - name: Restore pinned model cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ matrix.cache_path }}
+          key: czechcore-v0.2.0-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('src/czechcore/assets.py') }}
+
+      - name: czechcore download
+        shell: ${{ matrix.shell }}
+        run: ${{ matrix.cli }} download
+
+      - name: Run six real-model tests
+        shell: ${{ matrix.shell }}
+        run: ${{ matrix.python }} -m pytest -m model tests/test_backend.py tests/test_tokenizer.py -q
+
+      - name: Run live CLI scenarios
+        shell: ${{ matrix.shell }}
+        run: |
+          ${{ matrix.cli }} check "Když přišel domů šel spát."
+          ${{ matrix.cli }} check --json "Muži přišly domů."
+          ${{ matrix.cli }} check "Kontakt majkey25@example.cz, verze v1.2.3."
+          ${{ matrix.cli }} check --autocorrect --min-confidence 0.90 "To je je vážný problém."
