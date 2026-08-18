@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use CzechCore, cite this software and the underlying UFAL GEC paper."
+title: CzechCore
+type: software
+abstract: >-
+  An offline, context-aware Czech grammar correction engine with structured
+  Unicode edits, conservative abstention, and confidence-gated autocorrection.
+authors:
+  - family-names: Majkey25
+version: 0.1.0
+date-released: 2026-08-18
+license: MIT
+repository-code: "https://github.com/Majkey25/CzechCore"
+url: "https://github.com/Majkey25/CzechCore"
+keywords:
+  - Czech
+  - grammatical error correction
+  - natural language processing
+  - offline inference
+references:
+  - type: conference-paper
+    title: "Refining Czech GEC: Insights from a Multi-Experiment Approach"
+    authors:
+      - family-names: Pechman
+        given-names: Petr
+      - family-names: Straka
+        given-names: Milan
+      - family-names: Straková
+        given-names: Jana
+      - family-names: Náplava
+        given-names: Jakub
+    collection-title: "Text, Speech, and Dialogue"
+    year: 2026
+    start: 64
+    end: 76
+    doi: 10.1007/978-3-032-02551-7_7

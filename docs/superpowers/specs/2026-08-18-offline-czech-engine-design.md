@@ -186,17 +186,16 @@ empty input, invalid settings, and atomic application.
 
 A marked integration test runs the real UFAL model against at least:
 
-- incorrect and correct subject-predicate agreement;
-- context-sensitive `Bili psa.` / `Byli doma.`;
-- missing subordinate-clause commas;
-- missing diacritics;
-- a spelling error;
-- protected email/version/code text.
+- subject-predicate agreement;
+- context-sensitive `Bili psa.`;
+- a missing subordinate-clause comma;
+- exact UDPipe sentence ranges.
 
-The repository includes a JSONL benchmark runner for source/reference pairs. It
-reports exact sentence accuracy, changed-correct-sentence rate, correction rate,
-latency, and accepted autocorrect count. Full GECCC/ERRANT scoring stays external
-until the licensed corpus is configured.
+The repository includes a JSONL benchmark runner for source/reference pairs. Its
+acceptance set additionally covers correct negatives, diacritics, spelling, and
+protected technical text. It reports exact matches, changed-correct sentences,
+corrected/unchanged errors, wrong alternative rewrites, and latency. Full
+GECCC/ERRANT scoring stays external until the licensed corpus is configured.
 
 ## Deferred deliberately
 

@@ -1,5 +1,8 @@
 # Offline Czech Engine Implementation Plan
 
+> **Status:** Completed for `v0.1.0`. This file preserves the original execution
+> plan; maintained behavior and evidence now live in `docs/` and `CHANGELOG.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build a tested offline Czech sentence correction engine with structured edits, safe abstention, CLI access, and a real UFAL model smoke test.
