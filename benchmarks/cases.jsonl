@@ -1,0 +1,35 @@
+{"source":"Muži přišly domů.","reference":"Muži přišli domů.","category":"subject_predicate_agreement"}
+{"source":"Muži přišli domů.","reference":"Muži přišli domů.","category":"correct_agreement"}
+{"source":"Ženy šli do obchodu.","reference":"Ženy šly do obchodu.","category":"subject_predicate_agreement"}
+{"source":"Ženy šly do obchodu.","reference":"Ženy šly do obchodu.","category":"correct_agreement"}
+{"source":"Bili psa.","reference":"Bili psa.","category":"contextual_homograph"}
+{"source":"Byli doma.","reference":"Byli doma.","category":"contextual_homograph"}
+{"source":"Když přišel domů šel spát.","reference":"Když přišel domů, šel spát.","category":"comma_subordinate_clause"}
+{"source":"Když přišel domů, šel spát.","reference":"Když přišel domů, šel spát.","category":"correct_punctuation"}
+{"source":"Nevím jestli přijde.","reference":"Nevím, jestli přijde.","category":"comma_subordinate_clause"}
+{"source":"Rekl ze zitra neprijde.","reference":"Řekl, že zítra nepřijde.","category":"diacritics_and_punctuation"}
+{"source":"Tohle je uplne spatne napsana veta.","reference":"Tohle je úplně špatně napsaná věta.","category":"diacritics"}
+{"source":"Včera jsme vyděli krásný film.","reference":"Včera jsme viděli krásný film.","category":"spelling"}
+{"source":"Děti si hráli venku.","reference":"Děti si hrály venku.","category":"subject_predicate_agreement"}
+{"source":"Koťata běhali po zahradě.","reference":"Koťata běhala po zahradě.","category":"subject_predicate_agreement"}
+{"source":"Řekl mi že přijde později.","reference":"Řekl mi, že přijde později.","category":"comma_subordinate_clause"}
+{"source":"Myslím že je to správně.","reference":"Myslím, že je to správně.","category":"comma_subordinate_clause"}
+{"source":"Petr a Jana šla domů.","reference":"Petr a Jana šli domů.","category":"coordinated_subject_agreement"}
+{"source":"Mě se to líbí.","reference":"Mně se to líbí.","category":"me_mne"}
+{"source":"Mně se to líbí.","reference":"Mně se to líbí.","category":"correct_me_mne"}
+{"source":"Vezmi si sebou deštník.","reference":"Vezmi si s sebou deštník.","category":"s_sebou"}
+{"source":"To je je vážný problém.","reference":"To je vážný problém.","category":"repeated_word"}
+{"source":"Ahoj , světe !","reference":"Ahoj, světe!","category":"typographic_spacing"}
+{"source":"Dokumentace je na https://example.cz/docs.","reference":"Dokumentace je na https://example.cz/docs.","category":"protected_url"}
+{"source":"Napište na majkey25@example.cz.","reference":"Napište na majkey25@example.cz.","category":"protected_email"}
+{"source":"Aktuální verze je v1.2.3.","reference":"Aktuální verze je v1.2.3.","category":"protected_version"}
+{"source":"praha je hlavní město Česka.","reference":"Praha je hlavní město Česka.","category":"capitalization"}
+{"source":"Přijdu pokud budu mít čas.","reference":"Přijdu, pokud budu mít čas.","category":"comma_subordinate_clause"}
+{"source":"Kniha kterou čtu je zajímavá.","reference":"Kniha, kterou čtu, je zajímavá.","category":"relative_clause_commas"}
+{"source":"Napsal by jste mi odpověď?","reference":"Napsal byste mi odpověď?","category":"conditional_form"}
+{"source":"Měli by jsme odejít.","reference":"Měli bychom odejít.","category":"conditional_form"}
+{"source":"Mladé ženy přišli pozdě.","reference":"Mladé ženy přišly pozdě.","category":"subject_predicate_agreement"}
+{"source":"Viděl jsem krásnou dům.","reference":"Viděl jsem krásný dům.","category":"adjective_noun_agreement"}
+{"source":"Mluvili jsme o nový projektu.","reference":"Mluvili jsme o novém projektu.","category":"case_agreement"}
+{"source":"Děkuji za odpověd.","reference":"Děkuji za odpověď.","category":"spelling"}
+{"source":"Na shledanou.","reference":"Na shledanou.","category":"correct_sentence"}
