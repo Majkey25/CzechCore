@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CzechCore Runtime Probe</string>
-    <string name="title">Offline Czech correction</string>
-    <string name="input_hint">Enter one Czech sentence</string>
-    <string name="correct">Correct locally</string>
-    <string name="model_missing">Model missing from app-specific storage.</string>
-    <string name="model_ready">Local FP32 model ready.</string>
-    <string name="running">Running local beam inference…</string>
-    <string name="complete">Correction complete.</string>
-    <string name="candidate_rejected">Candidate rejected to preserve protected text.</string>
-    <string name="failed">Correction failed.</string>
+    <string name="app_name">CzechCore</string>
+    <string name="title">Lokální česká korekce</string>
+    <string name="input_hint">Napište českou větu</string>
+    <string name="correct">Opravit lokálně</string>
+    <string name="model_missing">Lokální model není nainstalovaný.</string>
+    <string name="model_ready">Lokální FP32 model je připravený.</string>
+    <string name="running">Probíhá lokální korekce…</string>
+    <string name="complete">Korekce je hotová.</string>
+    <string name="candidate_rejected">Návrh byl odmítnut kvůli ochraně citlivého textu.</string>
+    <string name="failed">Korekce selhala.</string>
+    <string name="keyboard_setup_description">Zapněte a vyberte klávesnici CzechCore. Potom opravuje text přímo v ostatních aplikacích.</string>
+    <string name="enable_keyboard">1. Zapnout klávesnici v systému</string>
+    <string name="select_keyboard">2. Vybrat klávesnici CzechCore</string>
+    <string name="mode_format">Režim: %1$s</string>
+    <string name="ime_name">Klávesnice CzechCore</string>
+    <string name="ime_subtype_czech">Čeština</string>
+    <string name="ime_no_suggestion">Bez návrhu</string>
+    <string name="ime_ready">CzechCore je připravený</string>
+    <string name="ime_analyzing">Kontroluji větu lokálně…</string>
+    <string name="ime_suggestion_ready">Klepnutím použijete návrh</string>
+    <string name="ime_apply_suggestion">Použít navrženou opravu</string>
+    <string name="ime_candidate_rejected">Návrh porušil chráněný text</string>
+    <string name="ime_correction_failed">Korekce selhala</string>
+    <string name="ime_auto_applied">Bezpečná oprava použita automaticky</string>
+    <string name="ime_undo">Zpět</string>
+    <string name="ime_undo_description">Vrátit poslední opravu CzechCore</string>
+    <string name="ime_undo_complete">Oprava vrácena</string>
+    <string name="ime_private_field">Soukromé pole – korekce vypnuta</string>
+    <string name="ime_disabled">Korekce je vypnuta</string>
+    <string name="ime_mode_off">Vypnuto</string>
+    <string name="ime_mode_underline">Podtržení</string>
+    <string name="ime_mode_confirm">Potvrdit</string>
+    <string name="ime_mode_automatic">Automaticky</string>
+    <string name="key_symbols">\?123</string>
 </resources>

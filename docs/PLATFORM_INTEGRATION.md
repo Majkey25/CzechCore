@@ -3,7 +3,7 @@
 ## Status
 
 Architecture accepted for implementation. No Windows or Android binary is part of
-`v0.2.0`. This document defines the smallest practical product that preserves
+`v0.3.0`. This document defines the smallest practical product that preserves
 the measured engine contract and does not pretend platform coverage exists before
 real device tests.
 
@@ -89,7 +89,7 @@ Every edit contains `start`, `end`, `source`, `replacement`, `kind`,
 explicitly `unicode_scalar` at the runtime boundary. Adapters convert to UTF-16
 only after validating the exact source slice.
 
-The contract is UTF-8, deterministic for a pinned manifest, bounded to 1 MiB per
+The contract is UTF-8, deterministic for a pinned manifest, bounded to 16 KiB per
 request, and rejects unknown protocol/options instead of guessing.
 
 ## Portable inference plan
@@ -116,10 +116,14 @@ emulator and returned the required missing-comma correction. It proves native
 inference only; it does not replace the APK/JNI/text-service acceptance gates.
 
 A source debug APK subsequently added Java WordPiece, JNI, app-specific external
-model loading, background inference, and protected-literal fallback. Four core
-flows passed in the emulator with an empty final crash buffer. Distribution,
-UDPipe parity, model lifecycle, sensitive-field handling, SpellCheckerService,
-and IME gates remain.
+model loading, background inference, protected-literal fallback, and a real
+`InputMethodService`. Cross-app candidate/apply, underline, undo, automatic
+duplicate removal, and Chrome URL privacy flows passed in Android 35. Signed
+distribution, model lifecycle, physical devices, and SpellCheckerService remain.
+The source engine now keeps one running plus one latest pending request, rejects
+empty or oversized model assets, and exposes only a generic UI error. The final
+x86_64 emulator run measured 365,814 KiB PSS / 439,824 KiB RSS after inference;
+no physical-device latency, battery, or thermal claim is made.
 
 The runtime ships only after:
 
@@ -238,10 +242,22 @@ Settings/tray application
   <-> same engine control endpoint
 ```
 
-The engine process starts on first Czech text-service use and exits after a
-bounded idle interval when no client/session is active. The pipe accepts only the
-current user SID, uses length-prefixed messages, enforces size/time limits, and
-never logs text by default.
+TSF activation preloads one mutex-protected engine process. It exits after ten
+minutes without a client, so the 244 MB model is not repeatedly reloaded during
+active use but its measured 306.82 MiB working set is eventually released. The
+pipe accepts only the current user SID and `SYSTEM`, rejects remote clients, uses
+length-prefixed messages plus an acknowledgement, enforces a 16 KiB size limit
+and five-second I/O timeout, verifies the broker process image, and never logs
+raw text.
+
+The source implementation now builds this topology with a static x64 CTranslate2
+broker, x64/x86 TSF DLLs, native mode settings, and a UAC-aware setup payload.
+Native broker outputs and `ITfThreadMgr`/`ITfContext` automatic/confirm flows
+passed, including a cold broker start. Ten warm local requests measured 159.92 ms
+median and 170.96 ms p95 end-to-end. Elevated profile installation and the
+real-application matrix remain release gates. The current TSF source still waits
+for warm inference on the host thread at sentence end/manual check; marshaling
+that request off-thread remains required before a signed stable adapter release.
 
 ### TSF behavior
 

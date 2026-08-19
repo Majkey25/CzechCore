@@ -48,6 +48,7 @@ papers, HTML snapshots, repositories, and datasets live in
 - [Full evaluation protocol](EVALUATION_PROTOCOL.md)
 - [Full GECCC development baseline](GECCC_BASELINE.md)
 - [Portable runtime research](PORTABLE_RUNTIME_RESEARCH.md)
+- [Live typing adapter evidence](../../research/evaluations/live-typing-adapters-2026-08-19.json)
 - [Hybrid local semantic rewrite architecture](HYBRID_SEMANTIC_REWRITE.md)
 - [MorphoDiTa candidate-reranking research](MORPHOLOGY_RERANKING.md)
 - [Research gaps and prioritized experiments](RESEARCH_GAPS.md)

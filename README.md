@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/Majkey25/CzechCore/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Majkey25/CzechCore/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/Majkey25/CzechCore/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/Majkey25/CzechCore/actions/workflows/codeql.yml/badge.svg"></a>
   <a href="https://github.com/Majkey25/CzechCore/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Majkey25/CzechCore?display_name=tag&amp;sort=semver"></a>
   <a href="https://www.python.org/"><img alt="Python 3.12–3.14" src="https://img.shields.io/badge/Python-3.12--3.14-3776AB?logo=python&amp;logoColor=white"></a>
   <a href="#measured-status"><img alt="Research alpha" src="https://img.shields.io/badge/status-research_alpha-5C6BC0"></a>
@@ -23,10 +24,11 @@
 </p>
 
 > [!IMPORTANT]
-> `v0.2.0` is a research alpha, not a claim of perfect Czech or production-safe
+> `v0.3.0` is a research alpha, not a claim of perfect Czech or production-safe
 > silent autocorrection. The proofread engine, structured edits, evaluation
-> pipeline, and review-only local rewrite path are implemented. Windows and
-> Android system adapters remain the next deployment stage.
+> pipeline, review-only local rewrite path, Android IME, and Windows TSF source
+> adapters are implemented. Native Android/Windows binaries remain unsigned and
+> are therefore not distributed as production artifacts.
 
 ## What the project does
 
@@ -60,6 +62,10 @@ boundaries.
   number/literal/structure checks and mandatory human review;
 - reproducible corpus, taxonomy, calibration, morphology, and local-model
   experiments with rejected results retained as evidence instead of hidden.
+- Android `InputMethodService` with Czech QWERTZ input, native underlines,
+  candidates, undo, privacy exclusions, and bounded automatic repairs;
+- Windows x64/x86 TSF service, one local CTranslate2 broker, native settings,
+  and a UAC-aware source installer payload.
 
 ### Product modes
 
@@ -68,7 +74,7 @@ boundaries.
 | Proofread | Minimal sentence correction plus exact edits | Suggestions are the default |
 | Experimental apply | Applies one accepted sentence atomically above a caller threshold | Opt-in; current beam score is not calibrated correctness |
 | Rewrite | Uses a separately configured local LLM to reconstruct a clearer sentence | Whole sentence; always requires review |
-| Live typing | Underlines, confirmation, and optional safe auto-apply | Platform design complete; adapters not released |
+| Live typing | Underlines, confirmation, and optional safe auto-apply | Source adapters implemented; release packaging remains gated |
 
 Broad rewrite is intentionally separate from proofread. A fluent LLM sentence
 can still alter a name, number, negation, modality, or claim.
@@ -76,7 +82,7 @@ can still alter a name, number, negation, modality, or claim.
 ## Measured status
 
 The repository distinguishes a small regression suite from standard-corpus
-evaluation. Headline numbers below are measured on 2026-08-18; they are not
+evaluation. Headline numbers below were measured on 2026-08-18/19; they are not
 marketing estimates.
 
 | Evidence | Result | Interpretation |
@@ -88,6 +94,9 @@ marketing estimates.
 | Acceptance false changes | 1 / 27 correct inputs | Regression evidence, not population accuracy |
 | Warm acceptance latency | 72.79 ms/sentence | CPU, fixed batch 16 release run |
 | GECCC mean latency | 228.72 ms/sentence | CPU, complete pipeline |
+| Windows broker warm median / p95 | 159.92 / 170.96 ms | Ten end-to-end local requests |
+| Windows broker working set | 306.82 MiB | FP32 model, one shared user process |
+| Android emulator PSS / RSS | 365,814 / 439,824 KiB | x86_64 after inference; no phone claim |
 
 The measured verdict is precise: the current engine already produces useful
 Czech corrections and source-validated structured suggestions, but scalar beam confidence

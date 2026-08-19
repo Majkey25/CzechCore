@@ -63,6 +63,8 @@ Java_cz_czechcore_app_NativeBridge_correct(
     options.max_input_length = 0;
     options.max_decoding_length = 255;
     const auto results = translator->translate_batch({tokens}, options);
+    if (results.empty())
+      throw std::runtime_error("model returned no translation");
     const auto& output = results.front().output();
 
     jclass string_type = environment->FindClass("java/lang/String");

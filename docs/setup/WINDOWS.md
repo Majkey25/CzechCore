@@ -2,12 +2,15 @@
 
 ## Verified status
 
-CzechCore v0.2.0 is verified on 64-bit Windows with Python 3.12. The public wheel,
+CzechCore v0.3.0 supports 64-bit Windows with Python 3.12. The public wheel,
 all declared dependencies, pinned model assets, CLI, Python API, real model tests,
 and the 65-case benchmark are covered by the release process.
 
-This installs the research engine and CLI. It does not install a system-wide TSF
-underline provider; that adapter is still under development.
+The public v0.3.0 wheel below installs the research engine and CLI. The release
+source also contains a native x64/x86 TSF typing service, shared CTranslate2
+broker, settings GUI, and UAC-aware source installer payload. Unsigned native
+binaries are not distributed as production artifacts. Reproducible instructions:
+[`windows/README.md`](../../windows/README.md).
 
 ## 1. Install Python
 
@@ -44,8 +47,8 @@ removed later without changing system Python.
 ## 3. Download and verify the release wheel
 
 ~~~powershell
-$wheel = "czechcore-0.2.0-py3-none-any.whl"
-$url = "https://github.com/Majkey25/CzechCore/releases/download/v0.2.0/$wheel"
+$wheel = "czechcore-0.3.0-py3-none-any.whl"
+$url = "https://github.com/Majkey25/CzechCore/releases/download/v0.3.0/$wheel"
 Invoke-WebRequest -Uri $url -OutFile $wheel
 (Get-FileHash -Algorithm SHA256 $wheel).Hash.ToLowerInvariant()
 ~~~
@@ -53,7 +56,7 @@ Invoke-WebRequest -Uri $url -OutFile $wheel
 Required output:
 
 ~~~text
-8d1aab92dce9d854e15f18107f3f987edf7d49806efa24759994717396412621
+85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0
 ~~~
 
 Stop if the hash differs.
@@ -63,7 +66,7 @@ Stop if the hash differs.
 ~~~powershell
 py -3.12 -m venv .venv
 .venv\Scripts\python -m pip install --upgrade pip
-.venv\Scripts\python -m pip install .\czechcore-0.2.0-py3-none-any.whl
+.venv\Scripts\python -m pip install .\czechcore-0.3.0-py3-none-any.whl
 .venv\Scripts\python -m pip check
 .venv\Scripts\czechcore --version
 ~~~
@@ -72,7 +75,7 @@ Expected final lines:
 
 ~~~text
 No broken requirements found.
-czechcore 0.2.0
+czechcore 0.3.0
 ~~~
 
 Always call the executable inside .venv. Activation is optional. If preferred:

@@ -1,7 +1,8 @@
-# CzechCore Android source runtime probe
+# CzechCore Android IME and local runtime
 
-This directory builds the source-only debug APK used by the Android emulator
-evidence. It is not a released keyboard or SpellCheckerService.
+This directory builds the source-only CzechCore keyboard used by the Android
+emulator evidence. It is a real `InputMethodService`, but not yet a signed public
+APK or Play Store release.
 
 ## Verified configuration
 
@@ -106,10 +107,22 @@ adb -s <emulator> push .reference\tmp\ct2-fp32\shared_vocabulary.json /sdcard/An
 adb -s <emulator> push .reference\tmp\ct2-fp32\model.bin /sdcard/Android/data/cz.czechcore.app/files/model/
 ~~~
 
-The model is external on purpose. The debug APK has no network permission and
-does not download assets.
+Enable and select the keyboard:
 
-## 6. Run the verified flow
+~~~powershell
+adb -s <emulator> shell ime enable cz.czechcore.app/.CzechCoreImeService
+adb -s <emulator> shell ime set cz.czechcore.app/.CzechCoreImeService
+~~~
+
+Without adb, open the CzechCore launcher and use the two system-settings buttons.
+The launcher also changes `off / underline / confirm / automatic` mode.
+
+The model is external only for source/debug provisioning. It stays in the app's
+scoped external directory; the APK has no network permission and does not
+download assets. Files are still treated as untrusted: config is capped at 64
+KiB, vocabulary at 8 MiB, model weights at 512 MiB, and empty files are rejected.
+
+## 6. Run the verified app probe
 
 ~~~powershell
 adb -s <emulator> shell am force-stop cz.czechcore.app
@@ -128,14 +141,36 @@ Unit tests cover WordPiece behavior and protected literal rejection. The emulato
 matrix also verified agreement, a correct negative, and exact fallback when the
 raw model damaged an email/version.
 
+## 7. Run the verified keyboard flow
+
+1. Focus a normal text field in any app.
+2. Type a sentence or press space after existing text.
+3. CzechCore analyzes only the bounded sentence around the caret.
+4. Tap the candidate to apply it; tap **Zpět** to restore the exact source.
+
+Verified on Android 35:
+
+- missing comma candidate, visible underline, apply, and undo;
+- automatic adjacent-duplicate removal;
+- cross-app correction inside Android Settings search;
+- Chrome URL field reported `Soukromé pole – korekce vypnuta`;
+- no final crash-buffer entry and no raw-text application logging.
+
+The engine keeps one running inference plus at most one latest pending request;
+rapid typing cannot grow an unbounded queue. After FP32 inference, the Android 35
+x86_64 emulator measured 365,814 KiB PSS / 439,824 KiB RSS. This validates the
+bound but remains too large for a production phone claim without physical arm64
+profiling or a quality-approved smaller model.
+
 ## Remaining product work
 
 - exact UDPipe sentence/token ranges;
 - complete tokenizer parity and emoji/UTF-16 edit offsets;
 - structured edits rather than whole-sentence display;
 - signed model download/update/rollback;
-- sensitive-field exclusion;
-- ACTION_PROCESS_TEXT, SpellCheckerService, and optional IME;
+- ACTION_PROCESS_TEXT and SpellCheckerService compatibility surfaces;
+- signed/bundled or user-importable model delivery without adb;
+- migration from the functional validation layout to a maintained mature keyboard;
 - release signing, physical-device performance, battery, and thermal tests.
 
 See [the measured portable runtime report](../docs/research/PORTABLE_RUNTIME_RESEARCH.md).

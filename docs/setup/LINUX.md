@@ -2,7 +2,7 @@
 
 ## Verified status
 
-CzechCore v0.2.0 is tested in a clean GitHub-hosted Ubuntu x64 virtual machine
+CzechCore v0.3.0 supports a clean Ubuntu x64 virtual machine
 with Python 3.12, the public wheel, pinned assets, and real model inference.
 Other distributions are supported only when the same Python/native dependency
 wheels install successfully.
@@ -30,20 +30,20 @@ For another distribution, install a 64-bit CPython 3.12 interpreter and venv
 support from the distribution or [python.org](https://www.python.org/downloads/).
 Do not translate the Ubuntu package names blindly.
 
-## 2. Download and verify v0.2.0
+## 2. Download and verify v0.3.0
 
 ~~~bash
 mkdir -p CzechCoreRuntime
 cd CzechCoreRuntime
-curl -fL -o czechcore-0.2.0-py3-none-any.whl \
-  https://github.com/Majkey25/CzechCore/releases/download/v0.2.0/czechcore-0.2.0-py3-none-any.whl
-sha256sum czechcore-0.2.0-py3-none-any.whl
+curl -fL -o czechcore-0.3.0-py3-none-any.whl \
+  https://github.com/Majkey25/CzechCore/releases/download/v0.3.0/czechcore-0.3.0-py3-none-any.whl
+sha256sum czechcore-0.3.0-py3-none-any.whl
 ~~~
 
 Required hash:
 
 ~~~text
-8d1aab92dce9d854e15f18107f3f987edf7d49806efa24759994717396412621
+85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0
 ~~~
 
 Stop if it differs.
@@ -53,7 +53,7 @@ Stop if it differs.
 ~~~bash
 python3.12 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install ./czechcore-0.2.0-py3-none-any.whl
+.venv/bin/python -m pip install ./czechcore-0.3.0-py3-none-any.whl
 .venv/bin/python -m pip check
 .venv/bin/czechcore --version
 ~~~
@@ -62,7 +62,7 @@ Expected:
 
 ~~~text
 No broken requirements found.
-czechcore 0.2.0
+czechcore 0.3.0
 ~~~
 
 Never install CzechCore into the distribution-managed system environment.

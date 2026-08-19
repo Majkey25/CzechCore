@@ -69,14 +69,16 @@ approved tolerance and fits measured device budgets.
 - [x] Select Android `SpellCheckerService` and `ACTION_PROCESS_TEXT` as the
   smallest integration, plus an optional maintained offline IME for universal
   live suggestions/automatic application.
-- [ ] Implement and package the Windows TSF text service and engine broker.
+- [x] Implement the Windows TSF text service, shared native engine broker,
+  x64/x86 adapters, settings GUI, and source installer payload.
 - [ ] Implement and package the Android text-service application.
 - [x] Build and run a source-only Android debug APK probe with Java WordPiece,
   JNI local inference, protected-literal fallback, and four emulator flows.
-- [ ] Integrate the runtime into a maintained offline Android IME distribution.
+- [x] Implement a functional source Android IME for live cross-app validation;
+  migration to a maintained keyboard distribution remains a release UX gate.
 - [ ] UTF-16/code-point offset conversion with emoji regression tests.
-- [ ] Implement `off / underline / confirm / automatic` settings, stale-result
-  cancellation, one-step undo, and sensitive-field exclusion.
+- [x] Implement `off / underline / confirm / automatic` settings, stale-result
+  cancellation, one-step undo, and sensitive-field exclusion in the source adapters.
 
 Exit criterion: real application/device flows preserve text, offsets, privacy,
 and engine benchmark behavior.

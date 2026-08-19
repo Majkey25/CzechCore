@@ -8,7 +8,7 @@ asset, and tokenizer modules are implementation details unless stated otherwise.
 ## Install and assets
 
 ```powershell
-python -m pip install czechcore-0.2.0-py3-none-any.whl
+python -m pip install czechcore-0.3.0-py3-none-any.whl
 czechcore download
 ```
 

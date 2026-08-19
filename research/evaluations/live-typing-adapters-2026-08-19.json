@@ -1,0 +1,80 @@
+{
+  "date": "2026-08-19",
+  "status": "source_integration_verified",
+  "android": {
+    "api": 35,
+    "abi": "x86_64",
+    "package": "cz.czechcore.app",
+    "service": "cz.czechcore.app/.CzechCoreImeService",
+    "build": {
+      "unit_tests": "passed",
+      "lint_errors": 0,
+      "apk": "debug_dual_abi"
+    },
+    "live_flows": [
+      "missing_comma_underline_candidate_apply_undo",
+      "automatic_adjacent_duplicate_removal",
+      "cross_app_settings_search_candidate_apply",
+      "chrome_uri_privacy_exclusion"
+    ],
+    "resource_bounds": {
+      "maximum_pending_inferences": 1,
+      "maximum_model_bytes": 536870912,
+      "maximum_vocabulary_bytes": 8388608
+    },
+    "post_inference_memory_kib": {
+      "pss": 365814,
+      "rss": 439824
+    },
+    "network_permission": false,
+    "desktop_model_server": false
+  },
+  "windows": {
+    "toolchain": "MSVC 19.51 / Windows SDK 10.0.26100.0 / C++20",
+    "builds": [
+      "x64_native_engine",
+      "x64_tsf",
+      "x86_tsf",
+      "settings_gui",
+      "setup_payload"
+    ],
+    "quality": "/W4 /WX",
+    "native_broker_flows": [
+      "missing_comma",
+      "agreement",
+      "correct_negative",
+      "protected_email_version",
+      "automatic_adjacent_duplicate_removal"
+    ],
+    "tsf_context_flows": [
+      "automatic_apply",
+      "neural_candidate_confirm",
+      "cold_broker_preload"
+    ],
+    "ipc_security": {
+      "maximum_message_bytes": 16384,
+      "io_timeout_milliseconds": 5000,
+      "idle_shutdown_minutes": 10,
+      "current_user_and_system_acl": true,
+      "remote_clients_rejected": true,
+      "server_process_path_verified": true,
+      "untrusted_pipe_server_test": "passed",
+      "stalled_client_recovery_test": "passed"
+    },
+    "warm_broker_performance": {
+      "samples": 10,
+      "median_end_to_end_milliseconds": 159.92,
+      "p95_end_to_end_milliseconds": 170.96,
+      "working_set_mib": 306.82
+    },
+    "setup_payload_shape_check": "passed",
+    "elevated_profile_registration": "not_run_medium_integrity_token"
+  },
+  "release_gates_remaining": [
+    "signed_android_apk_and_model_delivery",
+    "physical_android_arm64_matrix",
+    "elevated_windows_install_and_real_application_matrix",
+    "windows_password_input_scope_live_test",
+    "code_signing_and_rollback"
+  ]
+}

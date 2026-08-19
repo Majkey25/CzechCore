@@ -1,34 +1,34 @@
 package cz.czechcore.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.io.ByteArrayOutputStream;
+import android.view.inputmethod.InputMethodManager;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public final class MainActivity extends Activity {
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final LocalCorrectionEngine engine = new LocalCorrectionEngine();
 
     private Button correctButton;
+    private Button enableKeyboardButton;
+    private Button selectKeyboardButton;
+    private Button modeButton;
     private EditText inputText;
     private TextView outputText;
     private TextView statusText;
-    private WordPieceTokenizer tokenizer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         correctButton = findViewById(R.id.correct_button);
+        enableKeyboardButton = findViewById(R.id.enable_keyboard_button);
+        selectKeyboardButton = findViewById(R.id.select_keyboard_button);
+        modeButton = findViewById(R.id.mode_button);
         inputText = findViewById(R.id.input_text);
         outputText = findViewById(R.id.output_text);
         statusText = findViewById(R.id.status_text);
@@ -37,7 +37,17 @@ public final class MainActivity extends Activity {
         inputText.setText(
                 suppliedText == null ? "Když přišel domů šel spát." : suppliedText);
         correctButton.setOnClickListener(view -> correct());
+        enableKeyboardButton.setOnClickListener(view ->
+                startActivity(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)));
+        selectKeyboardButton.setOnClickListener(view -> {
+            InputMethodManager manager = getSystemService(InputMethodManager.class);
+            if (manager != null) {
+                manager.showInputMethodPicker();
+            }
+        });
+        modeButton.setOnClickListener(view -> cycleMode());
         updateModelStatus();
+        updateModeButton();
 
         if (getIntent().getBooleanExtra("run", false)) {
             correctButton.post(this::correct);
@@ -45,14 +55,20 @@ public final class MainActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        updateModeButton();
+    }
+
+    @Override
     protected void onDestroy() {
-        executor.shutdownNow();
+        engine.close();
         super.onDestroy();
     }
 
     private void correct() {
         File modelDirectory = modelDirectory();
-        if (!hasModel(modelDirectory)) {
+        if (!LocalCorrectionEngine.hasModel(modelDirectory)) {
             statusText.setText(R.string.model_missing);
             return;
         }
@@ -60,22 +76,20 @@ public final class MainActivity extends Activity {
         String source = inputText.getText().toString();
         correctButton.setEnabled(false);
         statusText.setText(R.string.running);
-        executor.execute(() -> {
-            try {
-                if (tokenizer == null) {
-                    tokenizer = WordPieceTokenizer.fromJson(
-                            readUtf8(new File(modelDirectory, "shared_vocabulary.json")));
-                }
-                String[] input = tokenizer.encode(source).toArray(new String[0]);
-                String[] output = NativeBridge.correct(modelDirectory.getAbsolutePath(), input);
-                String corrected = tokenizer.decode(Arrays.asList(output));
-                if (ProtectedText.isSafe(source, corrected)) {
-                    runOnUiThread(() -> showResult(corrected));
-                } else {
-                    runOnUiThread(() -> showRejected(source));
-                }
-            } catch (Exception error) {
-                runOnUiThread(() -> showError(error));
+        engine.correct(modelDirectory, source, new LocalCorrectionEngine.Listener() {
+            @Override
+            public void onCorrected(String corrected) {
+                runOnUiThread(() -> showResult(corrected));
+            }
+
+            @Override
+            public void onRejected() {
+                runOnUiThread(() -> showRejected(source));
+            }
+
+            @Override
+            public void onError() {
+                runOnUiThread(MainActivity.this::showError);
             }
         });
     }
@@ -86,8 +100,8 @@ public final class MainActivity extends Activity {
         correctButton.setEnabled(true);
     }
 
-    private void showError(Exception error) {
-        outputText.setText(error.getMessage());
+    private void showError() {
+        outputText.setText(R.string.failed);
         statusText.setText(R.string.failed);
         correctButton.setEnabled(true);
     }
@@ -99,7 +113,38 @@ public final class MainActivity extends Activity {
     }
 
     private void updateModelStatus() {
-        statusText.setText(hasModel(modelDirectory()) ? R.string.model_ready : R.string.model_missing);
+        statusText.setText(
+                LocalCorrectionEngine.hasModel(modelDirectory())
+                        ? R.string.model_ready
+                        : R.string.model_missing);
+    }
+
+    private void cycleMode() {
+        CorrectionMode current = CorrectionMode.fromStored(
+                getSharedPreferences(CorrectionMode.PREFERENCES, MODE_PRIVATE)
+                        .getString(
+                                CorrectionMode.PREFERENCE_KEY,
+                                CorrectionMode.UNDERLINE.storedValue()));
+        getSharedPreferences(CorrectionMode.PREFERENCES, MODE_PRIVATE)
+                .edit()
+                .putString(CorrectionMode.PREFERENCE_KEY, current.next().storedValue())
+                .apply();
+        updateModeButton();
+    }
+
+    private void updateModeButton() {
+        CorrectionMode current = CorrectionMode.fromStored(
+                getSharedPreferences(CorrectionMode.PREFERENCES, MODE_PRIVATE)
+                        .getString(
+                                CorrectionMode.PREFERENCE_KEY,
+                                CorrectionMode.UNDERLINE.storedValue()));
+        int name = switch (current) {
+            case OFF -> R.string.ime_mode_off;
+            case UNDERLINE -> R.string.ime_mode_underline;
+            case CONFIRM -> R.string.ime_mode_confirm;
+            case AUTOMATIC -> R.string.ime_mode_automatic;
+        };
+        modeButton.setText(getString(R.string.mode_format, getString(name)));
     }
 
     private File modelDirectory() {
@@ -110,21 +155,4 @@ public final class MainActivity extends Activity {
         return new File(files, "model");
     }
 
-    private static boolean hasModel(File directory) {
-        return new File(directory, "config.json").isFile()
-                && new File(directory, "model.bin").isFile()
-                && new File(directory, "shared_vocabulary.json").isFile();
-    }
-
-    private static String readUtf8(File file) throws IOException {
-        try (InputStream input = new FileInputStream(file);
-                ByteArrayOutputStream output = new ByteArrayOutputStream()) {
-            byte[] buffer = new byte[8192];
-            int count;
-            while ((count = input.read(buffer)) != -1) {
-                output.write(buffer, 0, count);
-            }
-            return new String(output.toByteArray(), StandardCharsets.UTF_8);
-        }
-    }
 }

@@ -55,10 +55,10 @@ jobs:
       - name: Create clean virtual environment
         run: python -m venv .platform-venv
 
-      - name: Install public v0.2.0 wheel
+      - name: Install public v0.3.0 wheel
         run: |
           ${{ matrix.python }} -m pip install --upgrade pip
-          ${{ matrix.python }} -m pip install "https://github.com/Majkey25/CzechCore/releases/download/v0.2.0/czechcore-0.2.0-py3-none-any.whl" pytest
+          ${{ matrix.python }} -m pip install "https://github.com/Majkey25/CzechCore/releases/download/v0.3.0/czechcore-0.3.0-py3-none-any.whl" pytest
           ${{ matrix.python }} -m pip check
           ${{ matrix.cli }} --version
 
@@ -66,7 +66,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ${{ matrix.cache_path }}
-          key: czechcore-v0.2.0-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('src/czechcore/assets.py') }}
+          key: czechcore-v0.3.0-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('src/czechcore/assets.py') }}
 
       - name: czechcore download
         run: ${{ matrix.cli }} download

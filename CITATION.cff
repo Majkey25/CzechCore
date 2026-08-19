@@ -8,8 +8,8 @@ abstract: >-
   review-only local semantic rewrite path.
 authors:
   - family-names: Majkey25
-version: 0.2.0
-date-released: 2026-08-18
+version: 0.3.0
+date-released: 2026-08-19
 license: MIT
 repository-code: "https://github.com/Majkey25/CzechCore"
 url: "https://github.com/Majkey25/CzechCore"

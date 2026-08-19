@@ -1,21 +1,22 @@
 # CzechCore on Android
 
 > [!CAUTION]
-> No APK is available in v0.2.0. The desktop Python/PyTorch wheel cannot be
+> No signed APK is available in v0.3.0. The desktop Python/PyTorch wheel cannot be
 > installed as an Android keyboard or spell checker. Termux is not supported.
 
 ## Current status
 
-Android is not installable from the v0.2.0 release. Main now contains a
-source-only debug runtime probe with package `cz.czechcore.app`, Java
+Android is not installable from a signed binary in the v0.3.0 release. Its source contains a
+source-only debug IME with package `cz.czechcore.app`, Czech QWERTZ input,
+candidate UI, `SuggestionSpan` underlines, undo, privacy exclusions, Java
 WordPiece, JNI, and local CTranslate2 inference. There is still no published APK,
-Play Store listing, bundled model, SpellCheckerService, or IME.
+Play Store listing, bundled model, or SpellCheckerService.
 
 Reproducible source build and emulator commands:
 [`android/README.md`](../../android/README.md).
 
-The Android target remains part of CzechCore, but it is blocked by the portable
-inference runtime described below.
+The IME is functional from source; public installation remains blocked by signed
+APK/model distribution and physical-device release gates.
 
 ## Why the desktop instructions do not apply
 
@@ -47,7 +48,7 @@ The Android application has four explicit modes:
 Whole-sentence rewrite remains an explicit selected-text action with before/after
 review. It is never silently applied while typing.
 
-## Planned Android surfaces
+## Android surfaces
 
 ### SpellCheckerService
 
@@ -64,10 +65,10 @@ the smallest practical integration and does not replace the user's keyboard.
 
 ### InputMethodService
 
-Required for live candidates and optional automatic application across compatible
-editors. Rather than writing an entire keyboard from zero, the approved direction
-is to integrate CzechCore into a maintained offline AOSP-derived keyboard
-distribution.
+Implemented in `main` for live candidates, underlines, confirmation, undo, and
+bounded automatic application across compatible editors. The source validation
+layout is not claimed to replace the mature gesture, voice, accessibility, and
+language features of established keyboards.
 
 Official guide:
 [Create an input method](https://developer.android.com/develop/ui/views/touch-and-input/creating-input-method).
@@ -99,10 +100,10 @@ Measured details:
 [Portable runtime research](../research/PORTABLE_RUNTIME_RESEARCH.md).
 
 An x86_64 source debug APK has run the FP32 model locally inside an Android 35
-emulator through JNI. Missing-comma and agreement corrections passed, correct
-text stayed unchanged, and a damaged email/version candidate was rejected with
-exact source fallback. The caution remains because no APK/model is published and
-Android text-service integration is still missing.
+emulator through the system IME. Missing-comma/agreement candidates, apply, undo,
+automatic duplicate removal, a correct negative, cross-app Settings search, and
+Chrome URL privacy exclusion passed. The caution remains because no signed
+APK/model is published.
 
 ## Model installation policy
 
@@ -116,10 +117,10 @@ The final application must:
 - display model license and non-commercial limitations;
 - expose storage usage and a safe model-removal action.
 
-The v0.2.0 desktop wheel SHA-256 is:
+The v0.3.0 desktop wheel SHA-256 is:
 
 ~~~text
-8d1aab92dce9d854e15f18107f3f987edf7d49806efa24759994717396412621
+85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0
 ~~~
 
 This hash documents the desktop release only. It is not an APK checksum.

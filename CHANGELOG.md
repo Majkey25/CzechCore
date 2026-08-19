@@ -6,6 +6,8 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-08-19
+
 ### Added
 
 - Device-specific Windows, macOS, Linux, and Android setup/status guides with a
@@ -18,6 +20,30 @@ All notable changes are documented here. The format follows
   regression.
 - Source-only Android debug APK probe with Java WordPiece, JNI FP32 inference,
   protected-literal fallback, JVM tests, and real Android 35 emulator flows.
+- Android CzechCore IME with Czech QWERTZ/symbol layouts, cross-app candidates,
+  `SuggestionSpan` underlines, confirmation, undo, sensitive-field exclusion,
+  stale-result rejection, and bounded deterministic automatic repair.
+- Native Windows C++20 CTranslate2 broker, current-user-only named pipe, x64/x86
+  TSF display-attribute service, confirmation shortcuts, settings GUI, and
+  UAC-aware source installer payload.
+- CodeQL security-extended analysis for C/C++, Java, and Python.
+
+### Security
+
+- Bound Android model/vocabulary sizes, keep at most one pending inference, and
+  hide native exception details from the UI.
+- Reduce Windows IPC from 1 MiB to 16 KiB, add 5-second overlapped I/O timeouts,
+  reject remote clients, verify the broker process image, and test rogue-pipe,
+  stalled-client, oversized-request, and protected-literal cases.
+- Restrict setup DLL dependency loading to the installed DLL directory and
+  System32, then verify the copied payload before TSF registration.
+
+### Performance
+
+- Preload one mutex-protected Windows broker when TSF activates and release its
+  306.82 MiB measured working set after 10 minutes idle.
+- Measure 159.92 ms warm median and 170.96 ms warm p95 end-to-end Windows broker
+  latency across ten local requests.
 
 ## [0.2.0] - 2026-08-18
 
@@ -105,6 +131,7 @@ All notable changes are documented here. The format follows
 - Android, Windows, ONNX/INT8, paragraph context, and personalization are not part
   of `v0.1.0`.
 
-[Unreleased]: https://github.com/Majkey25/CzechCore/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/Majkey25/CzechCore/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/Majkey25/CzechCore/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/Majkey25/CzechCore/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Majkey25/CzechCore/releases/tag/v0.1.0

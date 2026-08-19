@@ -5,7 +5,7 @@
 | Field | Value |
 | --- | --- |
 | Report date | 2026-08-18 |
-| Software release | `v0.2.0` research alpha |
+| Software release | `v0.3.0` research alpha |
 | Primary task | Offline Czech grammatical error correction |
 | Reference implementation | Python 3.12, PyTorch, Transformers, UDPipe |
 | Default correction model | `ufal/transformer-base-geccc-mate` |
@@ -319,7 +319,7 @@ latency, and thermal measurements are still required. See
 
 ## 10. Release verdict
 
-`v0.2.0` is suitable for:
+`v0.3.0` is suitable for:
 
 - offline Czech GEC research and reproducible experiments;
 - CLI proofread and structured suggestion integration;
