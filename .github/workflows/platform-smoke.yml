@@ -55,10 +55,28 @@ jobs:
       - name: Create clean virtual environment
         run: python -m venv .platform-venv
 
+      - name: Download public v0.3.0 wheel
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p .release
+          for attempt in {1..12}; do
+            if gh release download v0.3.0 \
+              --repo "$GITHUB_REPOSITORY" \
+              --pattern "czechcore-0.3.0-py3-none-any.whl" \
+              --dir .release \
+              --clobber; then
+              exit 0
+            fi
+            sleep 5
+          done
+          exit 1
+
       - name: Install public v0.3.0 wheel
         run: |
           ${{ matrix.python }} -m pip install --upgrade pip
-          ${{ matrix.python }} -m pip install "https://github.com/Majkey25/CzechCore/releases/download/v0.3.0/czechcore-0.3.0-py3-none-any.whl" pytest
+          ${{ matrix.python }} -m pip install ".release/czechcore-0.3.0-py3-none-any.whl" pytest
           ${{ matrix.python }} -m pip check
           ${{ matrix.cli }} --version
 
