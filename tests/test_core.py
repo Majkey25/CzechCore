@@ -60,6 +60,19 @@ def test_apply_edits_rejects_source_mismatch() -> None:
         apply_edits("a", (edit,))
 
 
+def test_apply_edits_rejects_insertion_past_input() -> None:
+    edit = TextEdit(2, 2, "", ",", CorrectionKind.PUNCTUATION, 0.9, False)
+
+    with pytest.raises(ValueError, match="range"):
+        apply_edits("a", (edit,))
+
+
+def test_apply_edits_accepts_insertion_at_input_end() -> None:
+    edit = TextEdit(1, 1, "", ",", CorrectionKind.PUNCTUATION, 0.9, False)
+
+    assert apply_edits("a", (edit,)) == "a,"
+
+
 @pytest.mark.parametrize("confidence", [-0.01, 1.01])
 def test_edit_rejects_invalid_confidence(confidence: float) -> None:
     with pytest.raises(ValueError, match="confidence"):
@@ -119,8 +132,9 @@ def test_rejects_large_rewrite_and_empty_candidate() -> None:
     assert not candidate_is_safe("Toto je věta.", "", 0.35)
 
 
-def test_removes_exact_adjacent_repeated_word() -> None:
-    assert remove_adjacent_repeated_words("To je je vážný problém.") == "To je vážný problém."
+@pytest.mark.parametrize("words", ["je je", "je je je", "je je je je"])
+def test_removes_exact_adjacent_repeated_word(words: str) -> None:
+    assert remove_adjacent_repeated_words(f"To {words} vážný problém.") == "To je vážný problém."
 
 
 def test_keeps_rhetorical_repetition_separated_by_punctuation() -> None:

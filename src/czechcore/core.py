@@ -23,7 +23,7 @@ _PROTECTED_PATTERNS = tuple(
     )
 )
 _TRAILING_SENTENCE_PUNCTUATION = ".,;:!?"
-_ADJACENT_REPEATED_WORD = re.compile(r"(?iu)(?<!\w)([^\W\d_]+)(\s+)\1(?!\w)")
+_ADJACENT_REPEATED_WORD = re.compile(r"(?iu)(?<!\w)([^\W\d_]+)(?:\s+\1)+(?!\w)")
 _QUOTATION_MARKS = '"„“\u201a\u2018«»'
 
 
@@ -133,6 +133,8 @@ def extract_edits(
 def apply_edits(text: str, edits: Sequence[TextEdit]) -> str:
     previous_end = 0
     for edit in edits:
+        if edit.end > len(text):
+            raise ValueError("edit range exceeds input length")
         if edit.start < previous_end:
             raise ValueError("edits overlap or are out of order")
         if text[edit.start : edit.end] != edit.source:
