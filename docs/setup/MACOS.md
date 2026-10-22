@@ -2,7 +2,7 @@
 
 ## Verified status
 
-CzechCore v0.3.1 supports a clean Apple Silicon macOS virtual
+CzechCore v0.3.2 supports a clean Apple Silicon macOS virtual
 machine with Python 3.12, the public release wheel, pinned model assets, and real
 model inference. Intel macOS is not claimed until an Intel matrix run exists.
 
@@ -29,20 +29,20 @@ Python 3.12.x
 
 Do not use the old Apple-provided system Python.
 
-## 2. Download and verify v0.3.1
+## 2. Download and verify v0.3.2
 
 ~~~bash
 mkdir -p CzechCoreRuntime
 cd CzechCoreRuntime
-curl -fL -o czechcore-0.3.1-py3-none-any.whl \
-  https://github.com/Majkey25/CzechCore/releases/download/v0.3.1/czechcore-0.3.1-py3-none-any.whl
-shasum -a 256 czechcore-0.3.1-py3-none-any.whl
+curl -fL -o czechcore-0.3.2-py3-none-any.whl \
+  https://github.com/Majkey25/CzechCore/releases/download/v0.3.2/czechcore-0.3.2-py3-none-any.whl
+shasum -a 256 czechcore-0.3.2-py3-none-any.whl
 ~~~
 
 Required hash:
 
 ~~~text
-fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e
+c96f86e2471992b75872c66de5ddbb526f7cc5dcb4cd428f7813c5bab1ff902d
 ~~~
 
 Stop if it differs.
@@ -52,7 +52,7 @@ Stop if it differs.
 ~~~bash
 python3.12 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
-.venv/bin/python -m pip install ./czechcore-0.3.1-py3-none-any.whl
+.venv/bin/python -m pip install ./czechcore-0.3.2-py3-none-any.whl
 .venv/bin/python -m pip check
 .venv/bin/czechcore --version
 ~~~
@@ -61,7 +61,7 @@ Expected:
 
 ~~~text
 No broken requirements found.
-czechcore 0.3.1
+czechcore 0.3.2
 ~~~
 
 ## 4. Download pinned assets

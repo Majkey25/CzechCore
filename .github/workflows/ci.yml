@@ -20,8 +20,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-      - run: python -m pip install -e ".[dev]"
+      - run: python -m pip install -e ".[dev,portable]"
       - run: python -m pip check
+      - run: ct2-transformers-converter --help
       - run: python -m tools.research.validate_sources --schema-only
       - run: python -m tools.research.validate_taxonomy
       - run: python -m tools.research.build_coverage --check

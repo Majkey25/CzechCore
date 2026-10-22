@@ -24,7 +24,7 @@
 </p>
 
 > [!IMPORTANT]
-> `v0.3.1` is a research alpha, not a claim of perfect Czech or production-safe
+> `v0.3.2` is a research alpha, not a claim of perfect Czech or production-safe
 > silent autocorrection. The proofread engine, structured edits, evaluation
 > pipeline, review-only local rewrite path, Android IME, and Windows TSF source
 > adapters are implemented. Native Android/Windows binaries remain unsigned and

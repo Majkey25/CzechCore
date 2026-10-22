@@ -34,7 +34,7 @@ def test_documentation_index_targets_exist() -> None:
 def test_device_setup_guides_are_versioned_and_linked() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     version = project["version"]
-    expected_hash = "fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e"
+    expected_hash = "c96f86e2471992b75872c66de5ddbb526f7cc5dcb4cd428f7813c5bab1ff902d"
     guide_paths = (
         ROOT / "docs" / "GETTING_STARTED.md",
         ROOT / "docs" / "setup" / "WINDOWS.md",
@@ -114,9 +114,9 @@ def test_android_ime_keeps_model_and_network_out_of_source_apk() -> None:
     wrapper = (ROOT / "android" / "gradle" / "wrapper" / "gradle-wrapper.properties").read_text(
         encoding="utf-8"
     )
-    assert "gradle-9.7.0-bin.zip" in wrapper
+    assert "gradle-9.8.1-bin.zip" in wrapper
     assert (
-        "distributionSha256Sum=84fbba45c7f4c64abc77460e1c00f541e9f960e3c7ed2538f1ede19eacd873ae"
+        "distributionSha256Sum=dce76f55f8e251a3a1f130eb120f30b3d271de2b76c9b0729d316b5a1b6dc01f"
     ) in wrapper
 
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "czechcore"
-version = "0.3.1"
+version = "0.3.2"
 description = "Offline context-aware Czech grammar correction engine"
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
 ]
 dependencies = [
-    "huggingface-hub>=1.27,<2",
+    "huggingface-hub>=1.27,<3",
     "torch>=2.13,<3",
     "transformers>=5.15,<6",
     "ufal.udpipe>=1.4,<2",
@@ -46,9 +46,9 @@ research = [
     "ufal.morphodita==1.11.3.3",
 ]
 portable = [
-    "cmake==3.31.10",
-    "ctranslate2==4.8.1",
-    "ninja==1.13.0",
+    "cmake==4.4.4",
+    "ctranslate2==4.8.3",
+    "ninja==1.13.2",
 ]
 
 [project.scripts]
