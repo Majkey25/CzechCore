@@ -2,11 +2,11 @@
 
 ## Verified status
 
-CzechCore v0.3.0 supports 64-bit Windows with Python 3.12. The public wheel,
+CzechCore v0.3.1 supports 64-bit Windows with Python 3.12. The public wheel,
 all declared dependencies, pinned model assets, CLI, Python API, real model tests,
 and the 65-case benchmark are covered by the release process.
 
-The public v0.3.0 wheel below installs the research engine and CLI. The release
+The public v0.3.1 wheel below installs the research engine and CLI. The release
 source also contains a native x64/x86 TSF typing service, shared CTranslate2
 broker, settings GUI, and UAC-aware source installer payload. Unsigned native
 binaries are not distributed as production artifacts. Reproducible instructions:
@@ -47,8 +47,8 @@ removed later without changing system Python.
 ## 3. Download and verify the release wheel
 
 ~~~powershell
-$wheel = "czechcore-0.3.0-py3-none-any.whl"
-$url = "https://github.com/Majkey25/CzechCore/releases/download/v0.3.0/$wheel"
+$wheel = "czechcore-0.3.1-py3-none-any.whl"
+$url = "https://github.com/Majkey25/CzechCore/releases/download/v0.3.1/$wheel"
 Invoke-WebRequest -Uri $url -OutFile $wheel
 (Get-FileHash -Algorithm SHA256 $wheel).Hash.ToLowerInvariant()
 ~~~
@@ -56,7 +56,7 @@ Invoke-WebRequest -Uri $url -OutFile $wheel
 Required output:
 
 ~~~text
-85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0
+fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e
 ~~~
 
 Stop if the hash differs.
@@ -66,7 +66,7 @@ Stop if the hash differs.
 ~~~powershell
 py -3.12 -m venv .venv
 .venv\Scripts\python -m pip install --upgrade pip
-.venv\Scripts\python -m pip install .\czechcore-0.3.0-py3-none-any.whl
+.venv\Scripts\python -m pip install .\czechcore-0.3.1-py3-none-any.whl
 .venv\Scripts\python -m pip check
 .venv\Scripts\czechcore --version
 ~~~
@@ -75,7 +75,7 @@ Expected final lines:
 
 ~~~text
 No broken requirements found.
-czechcore 0.3.0
+czechcore 0.3.1
 ~~~
 
 Always call the executable inside .venv. Activation is optional. If preferred:

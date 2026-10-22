@@ -1,8 +1,8 @@
 #include "text.h"
 #include "pipe_io.h"
+#include "broker_identity.h"
 
 #include <windows.h>
-#include <sddl.h>
 
 #include <ctranslate2/translator.h>
 
@@ -18,7 +18,6 @@
 
 namespace {
 
-constexpr wchar_t kPipeName[] = LR"(\\.\pipe\CzechCore.Engine.v1)";
 constexpr DWORD kIdleTimeoutMilliseconds = 10 * 60 * 1000;
 
 std::string read_file(const std::filesystem::path& path) {
@@ -64,76 +63,31 @@ class Corrector final {
   ctranslate2::Translator translator_;
 };
 
-std::wstring current_user_sid() {
-  HANDLE token_raw = nullptr;
-  if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &token_raw) == 0) {
-    throw std::runtime_error("current user token is unavailable");
-  }
-  const std::unique_ptr<void, decltype(&CloseHandle)> token(token_raw, CloseHandle);
-  DWORD size = 0;
-  GetTokenInformation(token.get(), TokenUser, nullptr, 0, &size);
-  std::vector<unsigned char> buffer(size);
-  if (GetTokenInformation(token.get(), TokenUser, buffer.data(), size, &size) == 0) {
-    throw std::runtime_error("current user SID is unavailable");
-  }
-  const auto* user = reinterpret_cast<const TOKEN_USER*>(buffer.data());
-  LPWSTR sid_raw = nullptr;
-  if (ConvertSidToStringSidW(user->User.Sid, &sid_raw) == 0) {
-    throw std::runtime_error("current user SID conversion failed");
-  }
-  const std::unique_ptr<void, decltype(&LocalFree)> sid(sid_raw, LocalFree);
-  return static_cast<const wchar_t*>(sid.get());
-}
-
-class PipeSecurity final {
- public:
-  PipeSecurity() {
-    const std::wstring sddl = L"D:P(A;;GA;;;SY)(A;;GA;;;" + current_user_sid() + L")";
-    if (ConvertStringSecurityDescriptorToSecurityDescriptorW(
-            sddl.c_str(), SDDL_REVISION_1, &descriptor_, nullptr)
-        == 0) {
-      throw std::runtime_error("named pipe security descriptor failed");
-    }
-    attributes_.nLength = sizeof(attributes_);
-    attributes_.lpSecurityDescriptor = descriptor_;
-    attributes_.bInheritHandle = FALSE;
-  }
-
-  ~PipeSecurity() {
-    if (descriptor_ != nullptr) {
-      LocalFree(descriptor_);
-    }
-  }
-
-  SECURITY_ATTRIBUTES* attributes() { return &attributes_; }
-
- private:
-  PSECURITY_DESCRIPTOR descriptor_ = nullptr;
-  SECURITY_ATTRIBUTES attributes_{};
-};
-
 void serve(const std::filesystem::path& model_directory, HANDLE ready_event) {
   Corrector corrector(model_directory);
-  PipeSecurity security;
-  while (true) {
-    const HANDLE pipe_raw = CreateNamedPipeW(
-        kPipeName,
+  const std::wstring pipe_name = czechcore::new_broker_pipe_name();
+  const HANDLE pipe_raw = CreateNamedPipeW(
+        pipe_name.c_str(),
         PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE | FILE_FLAG_OVERLAPPED,
         PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT | PIPE_REJECT_REMOTE_CLIENTS,
         1,
         czechcore::kMaxPipeMessageBytes,
         czechcore::kMaxPipeMessageBytes,
         0,
-        security.attributes());
-    if (pipe_raw == INVALID_HANDLE_VALUE) {
-      throw std::runtime_error("named pipe creation failed");
-    }
-    SetEvent(ready_event);
-    const std::unique_ptr<void, decltype(&CloseHandle)> pipe(pipe_raw, CloseHandle);
+        czechcore::broker_security_attributes());
+  if (pipe_raw == INVALID_HANDLE_VALUE) {
+    throw std::runtime_error("named pipe creation failed");
+  }
+  const std::unique_ptr<void, decltype(&CloseHandle)> pipe(pipe_raw, CloseHandle);
+  const std::unique_ptr<void, decltype(&CloseHandle)> endpoint(
+      czechcore::publish_broker_pipe_name(pipe_name), CloseHandle);
+  SetEvent(ready_event);
+  while (true) {
     if (!czechcore::connect_pipe(pipe.get(), kIdleTimeoutMilliseconds)) {
       if (GetLastError() == ERROR_SEM_TIMEOUT) {
         return;
       }
+      DisconnectNamedPipe(pipe.get());
       continue;
     }
     bool response_sent = false;
@@ -174,11 +128,12 @@ void serve(const std::filesystem::path& model_directory, HANDLE ready_event) {
 }
 
 std::string request(std::string_view text) {
-  if (!WaitNamedPipeW(kPipeName, 5000)) {
+  const std::wstring pipe_name = czechcore::broker_pipe_name();
+  if (pipe_name.empty() || !WaitNamedPipeW(pipe_name.c_str(), 5000)) {
     throw std::runtime_error("CzechCore engine pipe is unavailable");
   }
   const HANDLE pipe_raw = CreateFileW(
-      kPipeName,
+      pipe_name.c_str(),
       GENERIC_READ | GENERIC_WRITE,
       0,
       nullptr,
@@ -189,6 +144,16 @@ std::string request(std::string_view text) {
     throw std::runtime_error("CzechCore engine connection failed");
   }
   const std::unique_ptr<void, decltype(&CloseHandle)> pipe(pipe_raw, CloseHandle);
+  std::wstring executable(32768, L'\0');
+  const DWORD length = GetModuleFileNameW(nullptr, executable.data(),
+                                        static_cast<DWORD>(executable.size()));
+  if (length == 0 || length >= executable.size()) {
+    throw std::runtime_error("CzechCore executable path is unavailable");
+  }
+  executable.resize(length);
+  if (!czechcore::expected_broker(pipe.get(), executable)) {
+    throw std::runtime_error("CzechCore engine identity mismatch");
+  }
   const uint32_t request_size = static_cast<uint32_t>(text.size());
   if (request_size == 0 || request_size > czechcore::kMaxPipeMessageBytes
       || !czechcore::write_pipe_exact(pipe.get(), &request_size, sizeof(request_size))
@@ -245,7 +210,8 @@ int wmain(int argument_count, wchar_t** arguments) {
       std::cout << corrector.correct(*check_text) << '\n';
       return 0;
     }
-    const HANDLE mutex_raw = CreateMutexW(nullptr, FALSE, L"Local\\CzechCore.Engine.v1");
+    SECURITY_ATTRIBUTES* security = czechcore::broker_security_attributes();
+    const HANDLE mutex_raw = CreateMutexW(security, FALSE, czechcore::kBrokerMutexName);
     if (mutex_raw == nullptr) {
       throw std::runtime_error("CzechCore engine mutex failed");
     }
@@ -254,11 +220,12 @@ int wmain(int argument_count, wchar_t** arguments) {
       return 0;
     }
     const HANDLE event_raw = CreateEventW(
-        nullptr, TRUE, FALSE, czechcore::kPipeReadyEventName);
+        security, TRUE, FALSE, czechcore::kPipeReadyEventName);
     if (event_raw == nullptr) {
       throw std::runtime_error("CzechCore engine ready event failed");
     }
     const std::unique_ptr<void, decltype(&CloseHandle)> event(event_raw, CloseHandle);
+    ResetEvent(event.get());
     serve(model_directory, event.get());
   } catch (const std::exception& error) {
     std::cerr << "CzechCore engine error: " << error.what() << '\n';

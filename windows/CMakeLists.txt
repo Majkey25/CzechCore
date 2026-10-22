@@ -13,8 +13,9 @@ target_include_directories(czechcore_text PUBLIC engine)
 target_compile_definitions(czechcore_text PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
 target_compile_options(czechcore_text PRIVATE /W4 /WX /permissive- /utf-8)
 
-add_library(czechcore_pipe STATIC client/pipe_io.cpp)
+add_library(czechcore_pipe STATIC client/pipe_io.cpp client/broker_identity.cpp)
 target_include_directories(czechcore_pipe PUBLIC client)
+target_link_libraries(czechcore_pipe PUBLIC advapi32 bcrypt)
 target_compile_definitions(czechcore_pipe PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
 target_compile_options(czechcore_pipe PRIVATE /W4 /WX /permissive- /utf-8)
 
@@ -42,6 +43,13 @@ add_executable(czechcore_text_test tests/text_test.cpp)
 target_link_libraries(czechcore_text_test PRIVATE czechcore_text)
 target_compile_options(czechcore_text_test PRIVATE /W4 /WX /permissive- /utf-8)
 add_test(NAME czechcore_text_test COMMAND czechcore_text_test)
+
+add_executable(czechcore-broker-identity-test tests/broker_identity_test.cpp)
+target_link_libraries(czechcore-broker-identity-test PRIVATE czechcore_pipe)
+target_compile_definitions(
+    czechcore-broker-identity-test PRIVATE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX)
+target_compile_options(czechcore-broker-identity-test PRIVATE /W4 /WX /permissive- /utf-8)
+add_test(NAME czechcore_broker_identity_test COMMAND czechcore-broker-identity-test)
 
 add_executable(czechcore-register-probe tests/register_probe.cpp)
 target_compile_definitions(

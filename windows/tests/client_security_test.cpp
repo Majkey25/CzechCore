@@ -1,16 +1,18 @@
 #include "engine_client.h"
+#include "broker_identity.h"
+#include "pipe_io.h"
 
 #include <windows.h>
 
 #include <filesystem>
 #include <iostream>
+#include <memory>
 #include <optional>
 #include <string>
 #include <thread>
 
 namespace {
 
-constexpr wchar_t kPipeName[] = LR"(\\.\pipe\CzechCore.Engine.v1)";
 constexpr wchar_t kRegistryPath[] = L"Software\\CzechCore";
 
 class RegistryRoot final {
@@ -88,30 +90,34 @@ int wmain(int argument_count, wchar_t** arguments) {
     std::wcerr << L"registry setup failed\n";
     return 1;
   }
+  const std::wstring pipe_name = czechcore::new_broker_pipe_name();
   const HANDLE pipe = CreateNamedPipeW(
-      kPipeName,
-      PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE,
+      pipe_name.c_str(),
+      PIPE_ACCESS_DUPLEX | FILE_FLAG_FIRST_PIPE_INSTANCE | FILE_FLAG_OVERLAPPED,
       PIPE_TYPE_BYTE | PIPE_READMODE_BYTE | PIPE_WAIT | PIPE_REJECT_REMOTE_CLIENTS,
       1,
       4096,
       4096,
       0,
-      nullptr);
+      czechcore::broker_security_attributes());
   if (pipe == INVALID_HANDLE_VALUE) {
     std::wcerr << L"test pipe creation failed\n";
     return 1;
   }
-  std::thread server([pipe] {
-    const BOOL connected = ConnectNamedPipe(pipe, nullptr);
-    if (connected != 0 || GetLastError() == ERROR_PIPE_CONNECTED) {
-      Sleep(50);
+  const std::unique_ptr<void, decltype(&CloseHandle)> endpoint(
+      czechcore::publish_broker_pipe_name(pipe_name), CloseHandle);
+  bool sent_to_untrusted_peer = false;
+  std::thread server([pipe, &sent_to_untrusted_peer] {
+    if (czechcore::connect_pipe(pipe, 1000)) {
+      uint8_t received = 0;
+      sent_to_untrusted_peer = czechcore::read_pipe_exact(pipe, &received, sizeof(received));
       DisconnectNamedPipe(pipe);
     }
   });
   const auto response = czechcore::request_engine(L"To je problém.");
   server.join();
   CloseHandle(pipe);
-  if (response.has_value()) {
+  if (response.has_value() || sent_to_untrusted_peer) {
     std::wcerr << L"untrusted pipe server was accepted\n";
     return 1;
   }

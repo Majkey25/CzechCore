@@ -4,6 +4,7 @@ from collections.abc import Sequence
 from typing import Protocol
 
 from czechcore.backend import (
+    MAX_INFERENCE_BATCH,
     BatchCorrectionBackend,
     CorrectionBackend,
     SentenceTooLongError,
@@ -23,6 +24,7 @@ from czechcore.tokenizer import CzechTokenizer, SentenceSpan
 
 SUGGESTION_MIN_CONFIDENCE = 0.25
 MAX_CHANGED_RATIO = 0.35
+MAX_DOCUMENT_CHARACTERS = 1_000_000
 
 
 class SentenceTokenizer(Protocol):
@@ -70,6 +72,28 @@ class CzechCore:
         if not 0.0 <= min_confidence <= 1.0:
             raise ValueError("min_confidence must be between 0 and 1")
 
+        results: list[CorrectionResult] = []
+        batch: list[str] = []
+        characters = 0
+        for text in texts:
+            if len(text) > MAX_DOCUMENT_CHARACTERS:
+                raise ValueError(f"document exceeds {MAX_DOCUMENT_CHARACTERS} characters")
+            if batch and (
+                len(batch) >= MAX_INFERENCE_BATCH
+                or characters + len(text) > MAX_DOCUMENT_CHARACTERS
+            ):
+                results.extend(self._correct_batch(batch, autocorrect, min_confidence))
+                batch = []
+                characters = 0
+            batch.append(text)
+            characters += len(text)
+        if batch:
+            results.extend(self._correct_batch(batch, autocorrect, min_confidence))
+        return tuple(results)
+
+    def _correct_batch(
+        self, texts: Sequence[str], autocorrect: bool, min_confidence: float
+    ) -> tuple[CorrectionResult, ...]:
         sentence_work: list[list[tuple[SentenceSpan, str, tuple[Hypothesis, ...] | int]]] = []
         requests: list[str] = []
         for text in texts:
@@ -105,6 +129,14 @@ class CzechCore:
     ) -> tuple[tuple[Hypothesis, ...] | None, ...]:
         if not requests:
             return ()
+        if len(requests) > MAX_INFERENCE_BATCH:
+            return tuple(
+                hypothesis
+                for offset in range(0, len(requests), MAX_INFERENCE_BATCH)
+                for hypothesis in self._hypotheses_many(
+                    requests[offset : offset + MAX_INFERENCE_BATCH]
+                )
+            )
         if isinstance(self._backend, BatchCorrectionBackend):
             try:
                 return self._backend.hypotheses_many(requests)

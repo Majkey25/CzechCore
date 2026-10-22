@@ -12,6 +12,9 @@ from transformers import AutoModelForSeq2SeqLM, PreTrainedTokenizerFast
 from czechcore.assets import local_transformer_model
 from czechcore.core import Hypothesis
 
+MAX_INFERENCE_BATCH = 16
+MAX_SENTENCE_CHARACTERS = 16_384
+
 
 class SentenceTooLongError(ValueError):
     pass
@@ -91,10 +94,31 @@ class TransformerBackend:
         self,
         tokenized_sentences: Sequence[str],
     ) -> tuple[tuple[Hypothesis, ...], ...]:
+        return tuple(
+            hypothesis
+            for offset in range(0, len(tokenized_sentences), MAX_INFERENCE_BATCH)
+            for hypothesis in self._hypotheses_batch(
+                tokenized_sentences[offset : offset + MAX_INFERENCE_BATCH]
+            )
+        )
+
+    def _hypotheses_batch(
+        self, tokenized_sentences: Sequence[str]
+    ) -> tuple[tuple[Hypothesis, ...], ...]:
         if not tokenized_sentences:
             return ()
-        if any(not sentence.strip() for sentence in tokenized_sentences):
-            raise ValueError("tokenized sentences cannot be empty")
+        for sentence in tokenized_sentences:
+            if len(sentence) > MAX_SENTENCE_CHARACTERS:
+                raise SentenceTooLongError("sentence exceeds character limit")
+            if not sentence.strip():
+                raise ValueError("tokenized sentences cannot be empty")
+            length = len(
+                self._tokenizer.encode(sentence, add_special_tokens=True, truncation=False)
+            )
+            if length > self._max_tokens:
+                raise SentenceTooLongError(
+                    f"sentence has {length} tokens; maximum is {self._max_tokens}"
+                )
         encoded = self._tokenizer(
             tokenized_sentences,
             return_tensors="pt",
@@ -103,11 +127,6 @@ class TransformerBackend:
         )
         input_ids = encoded["input_ids"].to(self._device)
         attention_mask = encoded["attention_mask"].to(self._device)
-        longest = int(attention_mask.sum(dim=1).max().item())
-        if longest > self._max_tokens:
-            raise SentenceTooLongError(
-                f"sentence has {longest} tokens; maximum is {self._max_tokens}"
-            )
         with torch.inference_mode():
             generated = self._model.generate(
                 input_ids=input_ids,

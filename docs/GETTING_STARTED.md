@@ -10,7 +10,7 @@ Choose your operating system:
 
 ## Support matrix
 
-| Platform | v0.3.0 status | Installation | Verification |
+| Platform | v0.3.1 status | Installation | Verification |
 | --- | --- | --- | --- |
 | Windows x64 | Supported research runtime | Python wheel in a venv | Physical Windows + hosted VM |
 | macOS Apple Silicon | Supported when the dependency wheels install | Python wheel in a venv | Hosted arm64 macOS VM |
@@ -43,18 +43,18 @@ The exact command is platform-specific and shown in each guide.
 
 ## Release artifact
 
-Release: [CzechCore v0.3.0](https://github.com/Majkey25/CzechCore/releases/tag/v0.3.0)
+Release: [CzechCore v0.3.1](https://github.com/Majkey25/CzechCore/releases/tag/v0.3.1)
 
 Wheel:
 
 ~~~text
-czechcore-0.3.0-py3-none-any.whl
+czechcore-0.3.1-py3-none-any.whl
 ~~~
 
 Expected SHA-256:
 
 ~~~text
-85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0
+fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e
 ~~~
 
 Do not install a wheel with a different hash unless a different published release

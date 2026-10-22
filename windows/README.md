@@ -7,15 +7,18 @@ setup executable and settings UI; Python and a terminal are not used at runtime.
 
 | Component | Purpose |
 | --- | --- |
-| `czechcore-engine.exe` | One x64 CTranslate2 model process per signed-in user |
+| `czechcore-engine.exe` | One x64 CTranslate2 model process per logon session |
 | `CzechCoreTsf.dll` | Thin in-process TSF service; built for x64 and x86 |
 | `czechcore-settings.exe` | Native `off / underline / automatic` settings UI |
 | `CzechCoreSetup.exe` | Payload shape check, UAC install, TSF registration, Start shortcut |
 
 The TSF DLL never loads the model inside editors. It communicates through
-`\\.\pipe\CzechCore.Engine.v1`, whose ACL allows only the current user and
-`SYSTEM`, rejects remote clients, caps messages at 16 KiB, times out stalled I/O
-after five seconds, and verifies the broker process image before sending text.
+randomly named local pipes, whose ACL allows only the current user and `SYSTEM`.
+Discovery, readiness, and the instance mutex live in a Windows private namespace
+bounded by the current user and logon SIDs. The broker publishes its pipe name
+after creating it and keeps the pipe handle open between requests. Pipes reject
+remote clients, cap messages at 16 KiB, and time out stalled I/O after five seconds.
+Clients verify the broker process image, user SID, and logon SID before sending text.
 TSF activation preloads a single mutex-protected broker; ten idle minutes release
 the measured 306.82 MiB working set.
 

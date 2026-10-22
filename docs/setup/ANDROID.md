@@ -1,12 +1,12 @@
 # CzechCore on Android
 
 > [!CAUTION]
-> No signed APK is available in v0.3.0. The desktop Python/PyTorch wheel cannot be
+> No signed APK is available in v0.3.1. The desktop Python/PyTorch wheel cannot be
 > installed as an Android keyboard or spell checker. Termux is not supported.
 
 ## Current status
 
-Android is not installable from a signed binary in the v0.3.0 release. Its source contains a
+Android is not installable from a signed binary in the v0.3.1 release. Its source contains a
 source-only debug IME with package `cz.czechcore.app`, Czech QWERTZ input,
 candidate UI, `SuggestionSpan` underlines, undo, privacy exclusions, Java
 WordPiece, JNI, and local CTranslate2 inference. There is still no published APK,
@@ -117,10 +117,10 @@ The final application must:
 - display model license and non-commercial limitations;
 - expose storage usage and a safe model-removal action.
 
-The v0.3.0 desktop wheel SHA-256 is:
+The v0.3.1 desktop wheel SHA-256 is:
 
 ~~~text
-85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0
+fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e
 ~~~
 
 This hash documents the desktop release only. It is not an APK checksum.

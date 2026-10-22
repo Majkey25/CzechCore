@@ -6,7 +6,6 @@
 
 namespace czechcore {
 
-constexpr wchar_t kPipeReadyEventName[] = L"Local\\CzechCore.Engine.Ready.v1";
 constexpr uint32_t kMaxPipeMessageBytes = 16 * 1024;
 constexpr DWORD kPipeIoTimeoutMilliseconds = 5000;
 
