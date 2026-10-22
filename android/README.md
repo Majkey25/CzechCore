@@ -59,7 +59,7 @@ pthread_setaffinity_np; default affinity remains disabled.
 Create one build directory per ABI. x86_64 is used by the current emulator:
 
 ~~~powershell
-.venv\Scripts\cmake -S C:\czechcore-ct2 -B .reference\tmp\ct2-android-x86_64 -G Ninja -DCMAKE_MAKE_PROGRAM=<czechcore-repo>\.venv\Scripts\ninja.exe -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_TOOLCHAIN_FILE=<android-sdk>\ndk\28.2.13676358\build\cmake\android.toolchain.cmake -DANDROID_ABI=x86_64 -DANDROID_PLATFORM=android-26 -DWITH_MKL=OFF -DWITH_DNNL=OFF -DWITH_OPENBLAS=OFF -DWITH_ACCELERATE=OFF -DWITH_RUY=ON -DWITH_CUDA=OFF -DOPENMP_RUNTIME=NONE -DBUILD_SHARED_LIBS=ON -DBUILD_CLI=OFF -DBUILD_TESTS=OFF -DENABLE_CPU_DISPATCH=ON
+.venv\Scripts\cmake -S C:\czechcore-ct2 -B .reference\tmp\ct2-android-x86_64 -G Ninja -DCMAKE_MAKE_PROGRAM=<czechcore-repo>\.venv\Scripts\ninja.exe "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" -DCMAKE_TOOLCHAIN_FILE=<android-sdk>\ndk\28.2.13676358\build\cmake\android.toolchain.cmake -DANDROID_ABI=x86_64 -DANDROID_PLATFORM=android-26 -DWITH_MKL=OFF -DWITH_DNNL=OFF -DWITH_OPENBLAS=OFF -DWITH_ACCELERATE=OFF -DWITH_RUY=ON -DWITH_CUDA=OFF -DOPENMP_RUNTIME=NONE -DBUILD_SHARED_LIBS=ON -DBUILD_CLI=OFF -DBUILD_TESTS=OFF -DENABLE_CPU_DISPATCH=ON
 .venv\Scripts\cmake --build .reference\tmp\ct2-android-x86_64 --parallel
 ~~~
 
