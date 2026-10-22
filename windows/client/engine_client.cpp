@@ -1,5 +1,6 @@
 #include "engine_client.h"
 
+#include "broker_identity.h"
 #include "pipe_io.h"
 #include "text.h"
 
@@ -14,7 +15,6 @@
 namespace czechcore {
 namespace {
 
-constexpr wchar_t kPipeName[] = LR"(\\.\pipe\CzechCore.Engine.v1)";
 constexpr size_t kMaxTextCharacters = 512;
 
 std::optional<std::filesystem::path> install_root() {
@@ -85,34 +85,15 @@ bool start_engine(const std::filesystem::path& root) {
 }
 
 bool wait_for_engine(const std::filesystem::path& root) {
-  const HANDLE event_raw = CreateEventW(nullptr, TRUE, FALSE, kPipeReadyEventName);
+  const HANDLE event_raw = CreateEventW(
+      broker_security_attributes(), TRUE, FALSE, kPipeReadyEventName);
   if (event_raw == nullptr) {
     return false;
   }
   const std::unique_ptr<void, decltype(&CloseHandle)> event(event_raw, CloseHandle);
   return start_engine(root)
       && WaitForSingleObject(event.get(), 15000) == WAIT_OBJECT_0
-      && WaitNamedPipeW(kPipeName, 0) != 0;
-}
-
-bool expected_server(HANDLE pipe, const std::filesystem::path& executable) {
-  ULONG process_id = 0;
-  if (GetNamedPipeServerProcessId(pipe, &process_id) == 0) {
-    return false;
-  }
-  const HANDLE process_raw = OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, process_id);
-  if (process_raw == nullptr) {
-    return false;
-  }
-  const std::unique_ptr<void, decltype(&CloseHandle)> process(process_raw, CloseHandle);
-  std::wstring path(32768, L'\0');
-  DWORD length = static_cast<DWORD>(path.size());
-  if (QueryFullProcessImageNameW(process.get(), 0, path.data(), &length) == 0) {
-    return false;
-  }
-  path.resize(length);
-  std::error_code error;
-  return std::filesystem::equivalent(executable, path, error) && !error;
+      && WaitNamedPipeW(broker_pipe_name().c_str(), 0) != 0;
 }
 
 }  // namespace
@@ -120,7 +101,7 @@ bool expected_server(HANDLE pipe, const std::filesystem::path& executable) {
 void preload_engine() {
   try {
     const auto root = install_root();
-    if (root.has_value() && WaitNamedPipeW(kPipeName, 0) == 0) {
+    if (root.has_value() && WaitNamedPipeW(broker_pipe_name().c_str(), 0) == 0) {
       start_engine(*root);
     }
   } catch (...) {
@@ -137,13 +118,15 @@ std::optional<std::wstring> request_engine(std::wstring_view text) {
       return std::nullopt;
     }
     const std::filesystem::path executable = *root / "czechcore-engine.exe";
-    if (WaitNamedPipeW(kPipeName, 0) == 0) {
+    std::wstring pipe_name = broker_pipe_name();
+    if (pipe_name.empty() || WaitNamedPipeW(pipe_name.c_str(), 0) == 0) {
       if (!wait_for_engine(*root)) {
         return std::nullopt;
       }
+      pipe_name = broker_pipe_name();
     }
     const HANDLE pipe_raw = CreateFileW(
-        kPipeName,
+        pipe_name.c_str(),
         GENERIC_READ | GENERIC_WRITE,
         0,
         nullptr,
@@ -154,7 +137,7 @@ std::optional<std::wstring> request_engine(std::wstring_view text) {
       return std::nullopt;
     }
     const std::unique_ptr<void, decltype(&CloseHandle)> pipe(pipe_raw, CloseHandle);
-    if (!expected_server(pipe.get(), executable)) {
+    if (!expected_broker(pipe.get(), executable)) {
       return std::nullopt;
     }
     const std::string request = utf16_to_utf8(text);

@@ -26,19 +26,26 @@ and include:
   GitHub, or CzechCore services.
 - Remote network access occurs only through explicit asset provisioning.
 - Experimental rewrite calls accept only loopback HTTP (`127.0.0.1` or `::1`)
-  and refuse redirects. The operator must trust the local model
+  and refuse redirects and environment/system proxies. The operator must trust the local model
   server process because it receives the source text.
 - The Transformer snapshot is pinned to a Git revision and loaded with
   `local_files_only=True`; remote model code is not executed.
 - The UDPipe model is downloaded over HTTPS and accepted only after SHA-256
   verification.
 - Model and tokenizer files are untrusted external inputs until those checks pass.
+- Python correction accepts at most 1,000,000 characters per document and runs
+  neural inference in batches of at most 16 sentences. Sentences exceeding 16,384
+  characters or the model token limit stay unchanged with a warning; token limits
+  are checked before padded tensors are allocated or transferred to the device.
 - The Android IME requests no network permission, skips password/private/URI/email
   fields, bounds model assets and pending inference work, and never logs raw text.
 - The Windows broker pipe is local-only, restricted to the current user and
   `SYSTEM`, limited to 16 KiB, bounded by 5-second I/O timeouts, and checked
-  against the configured broker process image before text is sent.
-- The Windows broker accepts one instance per user, preloads once, and exits after
+  against the configured broker process image, user SID, and logon SID before text
+  is sent. Random pipe names are published only inside a Windows private namespace
+  bounded by the current user and logon SIDs. Mutexes and readiness events use that
+  namespace too; the broker keeps its pipe handle open between requests.
+- The Windows broker accepts one instance per logon, preloads once, and exits after
   10 minutes without a client. It records operation errors only, never raw text.
 - CodeQL security-extended scans C/C++, Java, and Python on pushes, pull requests,
   and a weekly schedule.

@@ -6,6 +6,20 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-22
+
+### Security
+
+- Bypass environment and system proxies for loopback rewrite requests while
+  retaining redirect rejection.
+- Bound inference to 16 sentences per batch and validate sentence length before
+  allocating tensors. Process complete documents in successive batches; reject
+  documents over 1,000,000 characters explicitly.
+- Replace the shared Windows pipe name with a random endpoint published inside a
+  private namespace restricted to the current user and logon session. Keep the
+  pipe open between requests and verify the server image, user SID, and logon SID
+  before either client sends text.
+
 ## [0.3.0] - 2026-08-19
 
 ### Added

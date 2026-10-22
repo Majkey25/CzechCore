@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+from collections.abc import Generator
+from contextlib import contextmanager
 from dataclasses import dataclass
+from http.server import BaseHTTPRequestHandler, HTTPServer
+from threading import Thread
+from urllib.error import HTTPError
 
 import pytest
 
@@ -172,3 +177,52 @@ def test_uncalibrated_postcheck_does_not_overwrite_rewrite() -> None:
 def test_rewrite_endpoint_must_be_local() -> None:
     with pytest.raises(ValueError, match="local HTTP"):
         LocalChatRewriteBackend("https://example.com/v1/chat/completions")
+
+
+@contextmanager
+def _rewrite_server(redirect: str = "") -> Generator[tuple[int, list[bytes]]]:
+    requests: list[bytes] = []
+
+    class Handler(BaseHTTPRequestHandler):
+        def do_POST(self) -> None:
+            requests.append(self.rfile.read(int(self.headers["Content-Length"])))
+            self.send_response(302 if redirect else 200)
+            if redirect:
+                self.send_header("Location", redirect)
+            self.end_headers()
+            self.wfile.write(b'{"choices":[{"message":{"content":"Opraveno."}}]}')
+
+        def log_message(self, format: str, *args: object) -> None:
+            pass
+
+    with HTTPServer(("127.0.0.1", 0), Handler) as server:
+        thread = Thread(target=server.serve_forever, kwargs={"poll_interval": 0.01}, daemon=True)
+        thread.start()
+        try:
+            yield server.server_port, requests
+        finally:
+            server.shutdown()
+            thread.join(timeout=5)
+
+
+@pytest.mark.parametrize("redirect", [False, True])
+def test_loopback_rewrite_bypasses_ambient_proxies_and_refuses_redirects(
+    monkeypatch: pytest.MonkeyPatch, redirect: bool
+) -> None:
+    with _rewrite_server() as (proxy_port, proxy_requests):
+        proxy = f"http://127.0.0.1:{proxy_port}"
+        for variable in ("HTTP_PROXY", "http_proxy", "ALL_PROXY", "all_proxy"):
+            monkeypatch.setenv(variable, proxy)
+        monkeypatch.setenv("NO_PROXY", "")
+        monkeypatch.setenv("no_proxy", "")
+        with _rewrite_server(proxy if redirect else "") as (port, local_requests):
+            backend = LocalChatRewriteBackend(f"http://127.0.0.1:{port}", timeout_seconds=2)
+            if redirect:
+                with pytest.raises(HTTPError, match="302"):
+                    backend.rewrite("Soukromý text.", "Návrh.")
+            else:
+                assert backend.rewrite("Soukromý text.", "Návrh.") == "Opraveno."
+            assert len(local_requests) == 1
+            assert "Soukromý text.".encode() in local_requests[0]
+            assert "Návrh.".encode() in local_requests[0]
+        assert proxy_requests == []

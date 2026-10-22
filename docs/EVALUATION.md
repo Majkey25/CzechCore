@@ -1,5 +1,18 @@
 # Evaluation
 
+## Security patch verification, 2026-10-22
+
+For `v0.3.1`, `.venv/Scripts/czechcore-benchmark.exe benchmarks/cases.jsonl --details`
+retained 60/65 exact outputs, 34/38 erroneous sentences corrected, 1/27 correct
+sentences changed, four unchanged errors, and no wrong alternative rewrites.
+The unchanged dataset comes from commit `27631059189fc9ae1cc3549dc5255532df4ef0a9`;
+the model remains pinned to `86338eff14fd318c3e8875c911f0778563b4b3b7`.
+The run used Windows 10.0.26300, Python 3.12.0, PyTorch 2.14.1+cpu,
+Transformers 5.20.2, and ufal.udpipe 1.4.0.1. It took 10.046 seconds
+(154.55 ms/sentence) while other tests ran; this is not an isolated latency
+comparison with earlier measurements. All 107 local tests, including six real
+model tests, passed.
+
 ## Three evidence layers
 
 1. **Published evidence** comes from the UFAL model card and peer-reviewed GEC

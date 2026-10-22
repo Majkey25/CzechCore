@@ -34,7 +34,7 @@ def test_documentation_index_targets_exist() -> None:
 def test_device_setup_guides_are_versioned_and_linked() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     version = project["version"]
-    expected_hash = "85792931ab547c1c6284c47d943833550fc70181ceb05803356ad52033d818f0"
+    expected_hash = "fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e"
     guide_paths = (
         ROOT / "docs" / "GETTING_STARTED.md",
         ROOT / "docs" / "setup" / "WINDOWS.md",
@@ -126,6 +126,8 @@ def test_windows_live_typing_uses_tsf_and_one_local_broker() -> None:
         windows / "CMakeLists.txt",
         windows / "README.md",
         windows / "client" / "engine_client.cpp",
+        windows / "client" / "broker_identity.cpp",
+        windows / "client" / "broker_identity.h",
         windows / "client" / "pipe_io.cpp",
         windows / "client" / "pipe_io.h",
         windows / "engine" / "main.cpp",

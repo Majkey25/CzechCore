@@ -1,12 +1,13 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 
 import pytest
 
-from czechcore.backend import SentenceTooLongError
+from czechcore.backend import MAX_INFERENCE_BATCH, SentenceTooLongError
 from czechcore.core import Hypothesis
-from czechcore.engine import CzechCore
+from czechcore.engine import MAX_DOCUMENT_CHARACTERS, CzechCore
 from czechcore.tokenizer import SentenceSpan
 
 
@@ -205,3 +206,57 @@ def test_global_safety_catches_literal_split_across_sentence_spans() -> None:
     assert result.suggested_text == source
     assert result.edits == ()
     assert result.warnings == ("unsafe_document:0:21",)
+
+
+class LineTokenizer:
+    def sentences(self, text: str) -> tuple[SentenceSpan, ...]:
+        spans: list[SentenceSpan] = []
+        offset = 0
+        for line in text.splitlines(keepends=True):
+            spans.append(SentenceSpan(offset, offset + len(line), line))
+            offset += len(line)
+        return tuple(spans)
+
+
+class BoundedBackend:
+    def __init__(self) -> None:
+        self.seen: list[str] = []
+
+    def hypotheses(self, tokenized_sentence: str) -> tuple[Hypothesis, ...]:
+        self.seen.append(tokenized_sentence)
+        return (Hypothesis(tokenized_sentence.replace("přišly", "přišli"), -0.1, 0.9),)
+
+    def hypotheses_many(
+        self, tokenized_sentences: Sequence[str]
+    ) -> tuple[tuple[Hypothesis, ...], ...]:
+        assert len(tokenized_sentences) <= MAX_INFERENCE_BATCH
+        return tuple(self.hypotheses(sentence) for sentence in tokenized_sentences)
+
+
+def test_long_documents_keep_every_sentence_and_result_in_bounded_batches() -> None:
+    documents = tuple(
+        f"Muži přišly domů v {index} hodin.\n" * (MAX_INFERENCE_BATCH + 3)
+        for index in range(MAX_INFERENCE_BATCH + 1)
+    )
+    backend = BoundedBackend()
+    engine = CzechCore(tokenizer=LineTokenizer(), backend=backend)
+
+    results = engine.correct_many(documents)
+
+    assert tuple(result.original_text for result in results) == documents
+    assert tuple(result.output_text for result in results) == documents
+    assert tuple(result.suggested_text for result in results) == tuple(
+        text.replace("přišly", "přišli") for text in documents
+    )
+    assert backend.seen == [line for text in documents for line in text.splitlines(keepends=True)]
+    assert all(not result.warnings for result in results)
+
+
+def test_document_limit_rejects_before_tokenizing_or_inference() -> None:
+    backend = BoundedBackend()
+    engine = CzechCore(tokenizer=LineTokenizer(), backend=backend)
+
+    with pytest.raises(ValueError, match="document exceeds"):
+        engine.correct("x" * (MAX_DOCUMENT_CHARACTERS + 1))
+
+    assert backend.seen == []

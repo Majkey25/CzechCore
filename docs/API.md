@@ -8,7 +8,7 @@ asset, and tokenizer modules are implementation details unless stated otherwise.
 ## Install and assets
 
 ```powershell
-python -m pip install czechcore-0.3.0-py3-none-any.whl
+python -m pip install czechcore-0.3.1-py3-none-any.whl
 czechcore download
 ```
 
@@ -53,6 +53,8 @@ production automatic correction; `0.995` accepted no changes. User-facing
 automatic mode therefore remains blocked on a separately calibrated selector.
 
 Empty text returns an empty result without invoking the model.
+Documents exceeding 1,000,000 Unicode code points raise `ValueError` before
+tokenization. Split larger documents at sentence or paragraph boundaries.
 
 ### `CzechCore.correct_many`
 
@@ -69,6 +71,12 @@ Returns one aligned result per input and batches neural inference when the backe
 supports it. It is the preferred API for corpus/background processing. Exact
 evaluation reproducibility must also pin grouping/batch size: CPU padding changed
 5/8,478 close predictions between measured batch-16 and batch-32 runs.
+Inference batches now contain at most 16 sentences. Document preparation groups
+at most 16 documents and 1,000,000 characters at a time; results preserve every
+input in order. A long valid document is processed in successive sentence batches,
+without truncation. Sentences over 16,384 characters or the model token limit
+remain unchanged with `sentence_too_long`; token lengths are checked before tensor
+allocation. The returned tuple still requires memory proportional to all results.
 
 ### Hybrid semantic rewrite
 
@@ -86,7 +94,7 @@ result = rewriter.suggest(source, protected=("pip",))
 `RewriteResult` contains `original_text`, `proofread_text`, `suggested_text`,
 `warnings`, and `requires_review`. Rewrite output always requires explicit review;
 there is no rewrite autocorrect. The backend accepts only loopback HTTP endpoints
-and refuses redirects. Protected literals, digit sequences, and unexpected line
+and refuses redirects and ambient proxies. Protected literals, digit sequences, and unexpected line
 breaks are checked before and after the Czech proofread pass; failure falls back
 to the conservative proofread/source text. CLI rewrite also supplies a separately
 masked high-recall GEC candidate to the LLM as context; that aggressive candidate
@@ -140,7 +148,7 @@ Warnings use `name:start:end` where offsets refer to the original full text:
 
 | Name | Meaning |
 | --- | --- |
-| `sentence_too_long` | Encoded sentence exceeds the 256-position model limit |
+| `sentence_too_long` | Sentence exceeds 16,384 characters or the model token limit (256 positions for the bundled model) |
 | `low_confidence` | Top candidate did not reach the suggestion floor |
 | `unsafe_candidate` | Candidate changed protected content or exceeded the rewrite ratio |
 

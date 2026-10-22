@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Protocol, cast
 from urllib.parse import urlparse
-from urllib.request import HTTPRedirectHandler, Request, build_opener
+from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 
 from czechcore.core import CorrectionResult, protected_literal_count, protected_literals
 
@@ -79,7 +79,7 @@ class LocalChatRewriteBackend:
         self._model = model
         self._timeout_seconds = timeout_seconds
         self._max_tokens = max_tokens
-        self._opener = build_opener(_NoRedirect)
+        self._opener = build_opener(ProxyHandler({}), _NoRedirect)
 
     def rewrite(self, source: str, proofread: str) -> str:
         user_payload = json.dumps(
