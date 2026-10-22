@@ -49,7 +49,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     from ctranslate2.converters import TransformersConverter
 
-    # Standard Hugging Face BART is post-norm. CTranslate2 4.8.1 still reads
+    # Standard Hugging Face BART is post-norm. CTranslate2 4.8.x still reads
     # this configuration attribute, which Transformers 5 removed.
     setattr(BartConfig, "normalize_before", False)  # noqa: B010 - compatibility shim
     converter = TransformersConverter(str(model), copy_files=list(COPY_FILES))

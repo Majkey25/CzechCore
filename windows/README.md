@@ -34,7 +34,7 @@ the measured 306.82 MiB working set.
 ## Build
 
 Requirements: Visual Studio Build Tools with C++, Windows SDK, CMake, the pinned
-CTranslate2 4.8.1 checkout, and the converted FP32 model.
+CTranslate2 4.8.3 checkout, and the converted FP32 model.
 
 Configure/build the x64 broker and TSF service:
 

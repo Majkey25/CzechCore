@@ -114,9 +114,9 @@ def test_android_ime_keeps_model_and_network_out_of_source_apk() -> None:
     wrapper = (ROOT / "android" / "gradle" / "wrapper" / "gradle-wrapper.properties").read_text(
         encoding="utf-8"
     )
-    assert "gradle-9.7.0-bin.zip" in wrapper
+    assert "gradle-9.8.1-bin.zip" in wrapper
     assert (
-        "distributionSha256Sum=84fbba45c7f4c64abc77460e1c00f541e9f960e3c7ed2538f1ede19eacd873ae"
+        "distributionSha256Sum=dce76f55f8e251a3a1f130eb120f30b3d271de2b76c9b0729d316b5a1b6dc01f"
     ) in wrapper
 
 

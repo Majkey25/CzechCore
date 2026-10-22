@@ -8,14 +8,14 @@ APK or Play Store release.
 
 | Component | Version |
 | --- | --- |
-| Android Gradle Plugin | 9.2.0 |
-| Gradle wrapper | 9.7.0 |
+| Android Gradle Plugin | 9.4.1 |
+| Gradle wrapper | 9.8.1 |
 | Java | 17 |
 | compile / target SDK | 36 / 36 |
 | minimum SDK | 26 |
 | NDK | 28.2.13676358 |
 | app CMake | 3.22.1 |
-| CTranslate2 | 4.8.1 at 0d8bcd362ac75ef860ef161d6f0efad0ae439ff0 |
+| CTranslate2 | 4.8.3 at 8d91aa08225004755360daa43deb62b35b1ed65d |
 | package | cz.czechcore.app |
 
 The repository intentionally excludes converted model files and compiled
@@ -46,12 +46,12 @@ Use a short local path on Windows to avoid third-party filename limits. CUDA
 submodules are not needed:
 
 ~~~powershell
-git clone --branch v4.8.1 --depth 1 --no-recurse-submodules https://github.com/OpenNMT/CTranslate2.git C:\czechcore-ct2
+git clone --branch v4.8.3 --depth 1 --no-recurse-submodules https://github.com/OpenNMT/CTranslate2.git C:\czechcore-ct2
 git -C C:\czechcore-ct2 submodule update --init --recursive third_party/spdlog third_party/ruy third_party/cpu_features
 git -C C:\czechcore-ct2 apply "<czechcore-repo>\android\patches\ctranslate2-4.8.1-android-affinity.patch"
 ~~~
 
-The patch only prevents an unsupported Android call to
+The patch also applies to 4.8.3. It only prevents an unsupported Android call to
 pthread_setaffinity_np; default affinity remains disabled.
 
 ## 3. Build the Android runtime
@@ -59,7 +59,7 @@ pthread_setaffinity_np; default affinity remains disabled.
 Create one build directory per ABI. x86_64 is used by the current emulator:
 
 ~~~powershell
-.venv\Scripts\cmake -S C:\czechcore-ct2 -B .reference\tmp\ct2-android-x86_64 -G Ninja -DCMAKE_MAKE_PROGRAM=<czechcore-repo>\.venv\Scripts\ninja.exe -DCMAKE_TOOLCHAIN_FILE=<android-sdk>\ndk\28.2.13676358\build\cmake\android.toolchain.cmake -DANDROID_ABI=x86_64 -DANDROID_PLATFORM=android-26 -DWITH_MKL=OFF -DWITH_DNNL=OFF -DWITH_OPENBLAS=OFF -DWITH_ACCELERATE=OFF -DWITH_RUY=ON -DWITH_CUDA=OFF -DOPENMP_RUNTIME=NONE -DBUILD_SHARED_LIBS=ON -DBUILD_CLI=OFF -DBUILD_TESTS=OFF -DENABLE_CPU_DISPATCH=ON
+.venv\Scripts\cmake -S C:\czechcore-ct2 -B .reference\tmp\ct2-android-x86_64 -G Ninja -DCMAKE_MAKE_PROGRAM=<czechcore-repo>\.venv\Scripts\ninja.exe -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_TOOLCHAIN_FILE=<android-sdk>\ndk\28.2.13676358\build\cmake\android.toolchain.cmake -DANDROID_ABI=x86_64 -DANDROID_PLATFORM=android-26 -DWITH_MKL=OFF -DWITH_DNNL=OFF -DWITH_OPENBLAS=OFF -DWITH_ACCELERATE=OFF -DWITH_RUY=ON -DWITH_CUDA=OFF -DOPENMP_RUNTIME=NONE -DBUILD_SHARED_LIBS=ON -DBUILD_CLI=OFF -DBUILD_TESTS=OFF -DENABLE_CPU_DISPATCH=ON
 .venv\Scripts\cmake --build .reference\tmp\ct2-android-x86_64 --parallel
 ~~~
 
