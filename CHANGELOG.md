@@ -6,6 +6,18 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-10-22
+
+### Changed
+
+- Support Hugging Face Hub 2 while retaining the pinned model revision and Python
+  3.12–3.14 support.
+- Update portable dependencies to CTranslate2 4.8.3, CMake 4.4.4 and Ninja 1.13.2.
+  Preserve BART conversion compatibility and document the CMake policy floor
+  required by the native dependency build.
+- Update Android Gradle Plugin to 9.4.1 and the verified Gradle wrapper to 9.8.1.
+- Check portable converter imports in the existing Python CI matrix.
+
 ## [0.3.1] - 2026-10-22
 
 ### Security

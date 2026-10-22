@@ -34,7 +34,7 @@ def test_documentation_index_targets_exist() -> None:
 def test_device_setup_guides_are_versioned_and_linked() -> None:
     project = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
     version = project["version"]
-    expected_hash = "fe4ad6fd089f85d58d3c092dcae839fef9052ca545cc96e7ff6ea9d44863eb4e"
+    expected_hash = "c96f86e2471992b75872c66de5ddbb526f7cc5dcb4cd428f7813c5bab1ff902d"
     guide_paths = (
         ROOT / "docs" / "GETTING_STARTED.md",
         ROOT / "docs" / "setup" / "WINDOWS.md",
