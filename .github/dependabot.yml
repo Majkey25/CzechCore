@@ -1,17 +1,24 @@
+# Check twice weekly in UTC, with stable times per repository, ecosystem and directory.
 version: 2
 updates:
   - package-ecosystem: pip
     directory: "/"
     schedule:
-      interval: weekly
+      interval: cron
+      cronjob: "53 13 * * 0,4"
+      timezone: Etc/UTC
     open-pull-requests-limit: 5
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: weekly
+      interval: cron
+      cronjob: "40 15 * * 2,6"
+      timezone: Etc/UTC
     open-pull-requests-limit: 5
   - package-ecosystem: gradle
     directory: "/android"
     schedule:
-      interval: weekly
+      interval: cron
+      cronjob: "42 4 * * 2,5"
+      timezone: Etc/UTC
     open-pull-requests-limit: 5
