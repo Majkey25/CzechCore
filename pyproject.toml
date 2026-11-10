@@ -47,7 +47,7 @@ research = [
 ]
 portable = [
     "cmake==4.4.4",
-    "ctranslate2==4.8.3",
+    "ctranslate2==4.8.5",
     "ninja==1.13.2",
 ]
 
