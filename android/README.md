@@ -8,14 +8,14 @@ APK or Play Store release.
 
 | Component | Version |
 | --- | --- |
-| Android Gradle Plugin | 9.4.1 |
-| Gradle wrapper | 9.8.1 |
+| Android Gradle Plugin | 9.5.1 |
+| Gradle wrapper | 9.9.1 |
 | Java | 17 |
 | compile / target SDK | 36 / 36 |
 | minimum SDK | 26 |
 | NDK | 28.2.13676358 |
 | app CMake | 3.22.1 |
-| CTranslate2 | 4.8.3 at 8d91aa08225004755360daa43deb62b35b1ed65d |
+| CTranslate2 | 4.9.0 at a22ba1c63ee35d1a0d25db149aa2a66d36a6a732 |
 | package | cz.czechcore.app |
 
 The repository intentionally excludes converted model files and compiled
@@ -46,12 +46,12 @@ Use a short local path on Windows to avoid third-party filename limits. CUDA
 submodules are not needed:
 
 ~~~powershell
-git clone --branch v4.8.3 --depth 1 --no-recurse-submodules https://github.com/OpenNMT/CTranslate2.git C:\czechcore-ct2
+git clone --branch v4.9.0 --depth 1 --no-recurse-submodules https://github.com/OpenNMT/CTranslate2.git C:\czechcore-ct2
 git -C C:\czechcore-ct2 submodule update --init --recursive third_party/spdlog third_party/ruy third_party/cpu_features
 git -C C:\czechcore-ct2 apply "<czechcore-repo>\android\patches\ctranslate2-4.8.1-android-affinity.patch"
 ~~~
 
-The patch also applies to 4.8.3. It only prevents an unsupported Android call to
+The patch also applies to 4.9.0. It only prevents an unsupported Android call to
 pthread_setaffinity_np; default affinity remains disabled.
 
 ## 3. Build the Android runtime

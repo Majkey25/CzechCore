@@ -6,6 +6,13 @@ All notable changes are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- Update the CTranslate2 converter and documented native runtime to 4.9.0, with
+  an offline FP32 BART conversion and token-score regression test.
+- Update Android Gradle Plugin to 9.5.1 and regenerate the Gradle 9.9.1 wrapper
+  with the official distribution checksum.
+
 ## [0.3.2] - 2026-10-22
 
 ### Changed
