@@ -5,7 +5,6 @@ from pathlib import Path
 
 import pytest
 import torch
-from ctranslate2 import Translator
 from tokenizers import Tokenizer
 from tokenizers.models import WordLevel
 from transformers import AutoModelForSeq2SeqLM, PreTrainedTokenizerFast
@@ -29,6 +28,13 @@ def test_converter_copies_tokenizer_and_generation_contract() -> None:
 
 
 def test_float32_bart_conversion_preserves_token_scores(tmp_path: Path) -> None:
+    pytest.importorskip(
+        "ctranslate2",
+        reason="install the portable extra for FP32 conversion",
+        exc_type=ModuleNotFoundError,
+    )
+    from ctranslate2 import Translator
+
     source = tmp_path / "source"
     vocabulary = {"<s>": 0, "<pad>": 1, "</s>": 2, "<unk>": 3, "Když": 4, "přišel": 5}
     tokenizer = PreTrainedTokenizerFast(
