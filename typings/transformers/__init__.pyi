@@ -2,7 +2,9 @@ from collections.abc import Sequence
 from os import PathLike
 from typing import Self
 
+from tokenizers import Tokenizer
 from torch import Tensor, device
+from transformers.models.bart.configuration_bart import BartConfig
 
 class TokenizerModel: ...
 
@@ -12,6 +14,16 @@ class BackendTokenizer:
 class PreTrainedTokenizerFast:
     backend_tokenizer: BackendTokenizer
     pad_token_id: int
+    def __init__(
+        self,
+        *,
+        tokenizer_object: Tokenizer,
+        bos_token: str,
+        eos_token: str,
+        unk_token: str,
+        pad_token: str,
+    ) -> None: ...
+    def save_pretrained(self, save_directory: str | PathLike[str]) -> tuple[str, ...]: ...
     @classmethod
     def from_pretrained(
         cls,
@@ -45,6 +57,7 @@ class Seq2SeqModel:
     config: Seq2SeqConfig
     def to(self, target: device) -> Self: ...
     def eval(self) -> Self: ...
+    def save_pretrained(self, save_directory: str | PathLike[str]) -> None: ...
     def __call__(
         self,
         *,
@@ -66,6 +79,8 @@ class Seq2SeqModel:
     ) -> GenerateOutput: ...
 
 class AutoModelForSeq2SeqLM:
+    @classmethod
+    def from_config(cls, config: BartConfig) -> Seq2SeqModel: ...
     @classmethod
     def from_pretrained(
         cls,
